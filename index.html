@@ -162,6 +162,7 @@ fieldset:focus, main:focus { outline: none; }
 .aviso-titulo { margin: 8px 0 16px; font-size: 30px; line-height: 1.15; font-weight: 500; color: var(--tinta); text-wrap: balance; }
 .aviso-cuerpo p:not(.ojo) { font-size: 18px; line-height: 1.5; color: var(--tinta-suave); text-wrap: pretty; }
 .aviso-cuerpo .btn { margin-top: 24px; }
+.aviso-cuerpo p.aviso-pista { margin-top: 14px; font-family: var(--f-sans); font-size: 14px; color: var(--tinta-suave); }
 .aviso-cerrar {
   position: absolute;
   top: calc(env(safe-area-inset-top, 0px) + 14px);
@@ -885,7 +886,8 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     <p class="ojo">Sugerencia</p>
     <h2 id="t-aviso-chrome" class="aviso-titulo">Abrila en Chrome</h2>
     <p>Este navegador puede mostrar la invitación con los colores cambiados.</p>
-    <a class="btn" id="abrir-en-chrome" href="#">Abrir en Chrome</a>
+    <button type="button" class="btn" id="abrir-en-chrome">Abrir en Chrome</button>
+    <p class="aviso-pista" id="aviso-pista" hidden>Elegí Chrome en la lista.</p>
   </div>
 </div>
 
@@ -1216,7 +1218,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   // Se muestra en el diagnóstico (?debug) para saber qué versión cargó el teléfono
-  const VERSION = '22';
+  const VERSION = '23';
 
   // ---- Pétalos en acuarela ----
   // Los de fondo están pegados a la pantalla, arriba de todo, y siguen cayendo mientras se baja. Son elementos con
@@ -1430,8 +1432,9 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
 
   // ---- Sugerencia para el navegador de Samsung ----
   // Su "modo oscuro forzado" recolorea la página sin que se pueda evitar desde acá y sin avisar cuándo lo hace,
-  // así que a quien use ese navegador se le sugiere, antes del sobre, abrir la invitación en Chrome. El enlace es
-  // un "intent" de Android: abre esta misma dirección en Chrome y, si Chrome no está, deja la página donde está.
+  // así que a quien use ese navegador se le sugiere, antes del sobre, abrir la invitación en Chrome. Los enlaces
+  // "intent" de Android no sirven: Samsung lanza Chrome pero no le pasa la dirección. El botón abre el menú de
+  // compartir del teléfono, donde el invitado elige Chrome; sin ese menú, copia el link para pegarlo en Chrome.
   // Cerrarla con la cruz se recuerda en este teléfono, para no insistir en la próxima visita
   const AVISO_CERRADO = 'invitacion-natalia-matias-aviso-chrome';
   let avisoCerrado = false;
@@ -1439,9 +1442,14 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   if (/SamsungBrowser\//.test(navigator.userAgent) && !avisoCerrado) {
     const aviso = $('#aviso-chrome');
     const direccion = location.href.split('#')[0];
-    $('#abrir-en-chrome').href = 'intent://' + location.host + location.pathname + location.search +
-      '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(direccion) + ';end';
     aviso.hidden = false;
+    $('#abrir-en-chrome').addEventListener('click', function () {
+      const pista = $('#aviso-pista');
+      pista.hidden = false;
+      if (navigator.share) { navigator.share({ title: document.title, url: direccion }).catch(function () {}); return; }
+      pista.textContent = 'Copiá esta dirección y pegala en Chrome: ' + direccion;
+      try { navigator.clipboard.writeText(direccion).then(function () { pista.textContent = 'Link copiado: pegalo en Chrome.'; }, function () {}); } catch (e) {}
+    });
     function cerrarAviso() {
       aviso.hidden = true;
       try { localStorage.setItem(AVISO_CERRADO, '1'); } catch (e) {}
