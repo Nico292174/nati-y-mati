@@ -1,7 +1,13 @@
 # Planilla de confirmaciones
 
 La invitación manda cada confirmación a una "Aplicación web" de Google Apps Script que vive dentro de una planilla
-de Google Sheets de los novios. El código está en `Codigo.gs`. Pasos para dejarla andando (una sola vez):
+de Google Sheets de los novios. El código está en `Codigo.gs`.
+
+**Ya está andando (29/10/2026):** la planilla es "Confirmaciones casamiento", en el Drive de nicosan089@gmail.com
+(https://docs.google.com/spreadsheets/d/1FNYH5NTOvM-gDEJbslA3YYK5z9GrxtHMkVDs6k4Xx0Y/edit), con la hoja
+**Confirmaciones**. La aplicación web está implementada (versión 1) y su dirección ya está en `BODA.planilla`.
+Las primeras filas son pruebas ("Invitado de prueba", "Prueba desde la terminal", "Prueba de la invitación") y se
+pueden borrar. Los pasos de abajo quedan por si hay que rehacerla en otra cuenta:
 
 1. Entrá a Google Drive con la cuenta de los novios y creá una planilla nueva (Nuevo → Hojas de cálculo de Google).
    Ponele un nombre, por ejemplo "Confirmaciones casamiento".
