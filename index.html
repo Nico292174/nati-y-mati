@@ -1098,7 +1098,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
 
   // ---- Pétalos en acuarela ----
-  // Los que caen de fondo van pegados a la portada: llueven solo arriba y al bajar quedan atrás.
+  // Los que caen de fondo van pegados a la portada: llueven sobre ella y se van apenas se empieza a bajar.
   // Los de la ráfaga (al confirmar) se ubican respecto de la pantalla.
   const petalos = (function () {
     const cv = $('#petalos');
@@ -1108,9 +1108,11 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     const hoja = new Image();
     const N = 12, PW = 140, PH = 140;
     let listo = false;
-    let w = 0, h = 0, lista = [], corriendo = false, ambiente = false, antes = 0;
+    let w = 0, h = 0, lista = [], corriendo = false, ambiente = false, antes = 0, fundido = 1, yendose = false;
     // Un cuadro a 60 por segundo: las velocidades de cada pétalo están medidas en eso
     const CUADRO = 1000 / 60;
+    // Los de fondo se desvanecen en medio segundo
+    const FUNDIDO_CUADROS = 30;
     hoja.onload = function () { listo = true; arrancar(); };
     hoja.src = "petalos.webp";
     function medir() {
@@ -1133,12 +1135,16 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
       };
     }
     function zona() { const r = portada.getBoundingClientRect(); return { arriba: r.top, alto: r.height }; }
-    function hayQueMover(z) { return (ambiente && z.arriba + z.alto > 0) || lista.some(function (p) { return p.rafaga; }); }
+    function hayQueMover(z) { return (ambiente && (yendose || z.arriba + z.alto > 0)) || lista.some(function (p) { return p.rafaga; }); }
     function cuadro(ahora) {
       // Avanzan según el tiempo que pasó y no por cuadro dibujado: si el celular saltea cuadros
       // (al abrir la invitación pasa mucho), siguen cayendo a su ritmo en vez de frenarse
       const k = antes ? Math.min((ahora - antes) / CUADRO, 4) : 1;
       antes = ahora;
+      if (yendose) {
+        fundido = Math.max(0, fundido - k / FUNDIDO_CUADROS);
+        if (!fundido) { yendose = false; ambiente = false; lista = lista.filter(function (p) { return p.rafaga; }); }
+      }
       const z = zona();
       ctx.clearRect(0, 0, w, h);
       if (listo) {
@@ -1156,7 +1162,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
           const volteo = Math.cos(p.giro);
           const ancho = p.tam * PW / PH;
           ctx.save();
-          ctx.globalAlpha = p.alfa * borde * (volteo < 0 ? 0.85 : 1);
+          ctx.globalAlpha = p.alfa * borde * (volteo < 0 ? 0.85 : 1) * (p.rafaga ? 1 : fundido);
           ctx.translate(p.x, y); ctx.rotate(p.rot);
           ctx.scale(Math.max(0.15, Math.abs(volteo)) * (volteo < 0 ? -1 : 1), 1);
           ctx.drawImage(hoja, p.i * PW, 0, PW, PH, -ancho / 2, -p.tam / 2, ancho, p.tam);
@@ -1168,7 +1174,12 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     }
     function arrancar() { if (ctx && w && !corriendo && !document.hidden && hayQueMover(zona())) { corriendo = true; antes = 0; requestAnimationFrame(cuadro); } }
     window.addEventListener('resize', function () { if (w) medir(); });
-    window.addEventListener('scroll', arrancar, { passive: true });
+    // Dibujarlos mientras la página se mueve traba el scroll en el celular: apenas el invitado empieza a bajar,
+    // los de fondo se desvanecen y no vuelven
+    window.addEventListener('scroll', function () {
+      if (ambiente && !yendose && window.scrollY > 40) yendose = true;
+      arrancar();
+    }, { passive: true });
     document.addEventListener('visibilitychange', arrancar);
     return {
       iniciar: function () {
@@ -1197,8 +1208,9 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     btnMusica.setAttribute('aria-pressed', suena ? 'true' : 'false');
     btnMusica.setAttribute('aria-label', suena ? 'Pausar la música' : 'Poner la música');
   }
-  // En iPhone el volumen del audio no se puede cambiar desde la página. Para poder apagar la música despacio,
-  // ahí se la pasa por un control de volumen de Web Audio, que se arma con el toque en "Confirmar asistencia"
+  // En iPhone el volumen del audio no se puede cambiar desde la página. Para poder subir y apagar la música
+  // despacio, ahí se la pasa por un control de volumen de Web Audio, armado con el toque en "Abrir", antes de que
+  // empiece a sonar: cambiarla de camino a mitad de canción la cortaba en seco
   let ganancia = null, volumen = null;
   function volumenFijo() {
     const antes = audio.volume;
@@ -1207,24 +1219,34 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     try { audio.volume = antes; } catch (e) {}
     return fijo;
   }
-  function armarGanancia() {
+  function armarGanancia(inicial) {
     const AC = window.AudioContext || window.webkitAudioContext;
-    if (ganancia || !AC || !volumenFijo()) return;
+    if (ganancia || !AC) return;
     try {
-      // Que siga sonando aunque el iPhone esté en silencio, como suena el audio común
+      // Que siga sonando aunque el iPhone esté en silencio, como suena el audio común (desde iOS 17)
       if (navigator.audioSession) navigator.audioSession.type = 'playback';
       const ac = new AC();
       const g = ac.createGain();
+      g.gain.value = inicial;
       ac.createMediaElementSource(audio).connect(g);
       g.connect(ac.destination);
       ganancia = g;
     } catch (e) {}
   }
+  // Solo donde la página no maneja el volumen y el teléfono deja ignorar el silencio: sin eso, pasar la música
+  // por Web Audio desde el principio la dejaría muda en un iPhone en silencio
+  function prepararMusica() {
+    if (volumenFijo() && navigator.audioSession) armarGanancia(0);
+  }
+  // Al volver a la página, el iPhone deja el audio interrumpido hasta que se lo reanuda
+  function reanudarContexto() {
+    if (!ganancia || ganancia.context.state === 'running') return;
+    try { ganancia.context.resume(); } catch (e) {}
+  }
   function ponerVolumen(v) {
     if (ganancia) {
-      const ac = ganancia.context;
-      if (ac.state === 'suspended') ac.resume();
-      ganancia.gain.setTargetAtTime(v, ac.currentTime, 0.05);
+      reanudarContexto();
+      ganancia.gain.setTargetAtTime(v, ganancia.context.currentTime, 0.05);
       return;
     }
     try { audio.volume = v; } catch (e) {}
@@ -1234,7 +1256,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     clearInterval(volumen);
     ponerVolumen(0);
     volumen = setInterval(function () {
-      // El archivo ya viene grabado bajo, como música de fondo (en iPhone, al abrir la invitación esto no cambia nada)
+      // El archivo ya viene grabado bajo, como música de fondo
       v = Math.min(1, v + 0.05);
       ponerVolumen(v);
       if (v >= 1) clearInterval(volumen);
@@ -1243,11 +1265,11 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   // Al ir a confirmar, la música se apaga despacio y ya no vuelve sola (el botón queda por si la quieren poner)
   const APAGADO_MS = 3000;
   function apagarMusica() {
+    // Sin forma de bajarla de a poco (iPhone viejo), la música sigue sonando: mejor eso que cortarla en seco
+    if (!ganancia && volumenFijo()) return;
     quiereMusica = false;
     clearInterval(volumen);
     if (audio.paused) return;
-    if (reducir) { audio.pause(); return; }
-    armarGanancia();
     const t0 = performance.now();
     volumen = setInterval(function () {
       const x = Math.min(1, (performance.now() - t0) / APAGADO_MS);
@@ -1289,7 +1311,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   });
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) { if (!audio.paused) audio.pause(); }
-    else if (quiereMusica && !btnMusica.hidden && audio.paused) { audio.play().catch(function () {}); }
+    else if (quiereMusica && !btnMusica.hidden && audio.paused) { reanudarContexto(); audio.play().catch(function () {}); }
   });
 
   // ---- Sobre ----
@@ -1307,6 +1329,8 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   function abrir() {
     if (sobre.classList.contains('abriendo')) return;
     sobre.classList.add('abriendo');
+    // Con el toque todavía fresco: el iPhone solo deja armar el audio dentro de un toque
+    prepararMusica();
     irArriba();
     function terminar() {
       irArriba();
