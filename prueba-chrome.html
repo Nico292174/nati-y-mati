@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Prueba: abrir en Chrome</title>
+<title>Prueba 2: abrir en Chrome</title>
 <style>
   body { margin: 0; padding: 20px 16px; background: #FBF5EB; color: #3A3029; font: 16px/1.5 system-ui, sans-serif; }
   h1 { font-size: 18px; margin: 0 0 6px; }
@@ -14,20 +14,27 @@
 </style>
 </head>
 <body>
-<h1>Prueba: abrir la invitación en Chrome</h1>
-<p>Tocá cada botón, uno por vez, y anotá cuál abre la invitación en Chrome (no solo la app). Después volvé acá con "atrás".</p>
+<h1>Prueba 2: abrir la invitación en Chrome</h1>
+<p>Tocá cada botón, uno por vez, y anotá cuál abre la invitación <b>dentro de Chrome</b>. Volvé acá con "atrás" entre uno y otro.</p>
 <div id="botones"></div>
 <script>
 (function () {
   var destino = 'https://nico292174.github.io/nati-y-mati/';
   var sinEsquema = destino.replace(/^https:\/\//, '');
+  var despachador = 'com.android.chrome/com.google.android.apps.chrome.IntentDispatcher';
   var variantes = [
-    ['1 · intent simple (forma del foro de Samsung)', 'intent://' + sinEsquema + '#Intent;scheme=https;package=com.android.chrome;end'],
-    ['2 · intent con action VIEW y category BROWSABLE', 'intent://' + sinEsquema + '#Intent;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;scheme=https;package=com.android.chrome;end'],
-    ['3 · intent simple con fallback', 'intent://' + sinEsquema + '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(destino) + ';end'],
-    ['4 · esquema googlechrome://navigate', 'googlechrome://navigate?url=' + destino],
-    ['5 · intent con la dirección también como dato extra', 'intent://' + sinEsquema + '#Intent;scheme=https;package=com.android.chrome;S.url=' + encodeURIComponent(destino) + ';end'],
-    ['6 · intent sin package (que Android pregunte con qué abrir)', 'intent://' + sinEsquema + '#Intent;scheme=https;end']
+    ['A · intent a la puerta que recibe direcciones (component = IntentDispatcher)',
+      'intent://' + sinEsquema + '#Intent;scheme=https;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;component=' + despachador + ';end'],
+    ['B · intent con el esquema propio de Chrome (googlechrome://navigate)',
+      'intent://navigate?url=' + encodeURIComponent(destino) + '#Intent;scheme=googlechrome;package=com.android.chrome;end'],
+    ['C · B + component = IntentDispatcher',
+      'intent://navigate?url=' + encodeURIComponent(destino) + '#Intent;scheme=googlechrome;action=android.intent.action.VIEW;component=' + despachador + ';end'],
+    ['D · intent https con package y component a la vez',
+      'intent://' + sinEsquema + '#Intent;scheme=https;package=com.android.chrome;component=' + despachador + ';end'],
+    ['E · dirección android-app:// de Chrome',
+      'android-app://com.android.chrome/https/' + sinEsquema],
+    ['F · control: la forma simple que ya probaste (abre Chrome vacío)',
+      'intent://' + sinEsquema + '#Intent;scheme=https;package=com.android.chrome;end']
   ];
   var cont = document.getElementById('botones');
   variantes.forEach(function (v) {
