@@ -884,10 +884,10 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   </button>
   <div class="aviso-cuerpo">
     <p class="ojo">Sugerencia</p>
-    <h2 id="t-aviso-chrome" class="aviso-titulo">Abrila en Chrome</h2>
-    <p>Este navegador puede mostrar la invitación con los colores cambiados.</p>
-    <button type="button" class="btn" id="abrir-en-chrome">Abrir en Chrome</button>
-    <p class="aviso-pista" id="aviso-pista" hidden>Elegí Chrome en la lista.</p>
+    <h2 id="t-aviso-chrome" class="aviso-titulo">Apagá el modo oscuro del navegador</h2>
+    <p>Este navegador puede mostrar la invitación con los colores cambiados. Tocá el menú <b>⋮</b> de abajo a la derecha y apagá «Modo oscuro», o abrila en Chrome.</p>
+    <button type="button" class="btn" id="abrir-en-chrome">Copiar el link para Chrome</button>
+    <p class="aviso-pista" id="aviso-pista" hidden></p>
   </div>
 </div>
 
@@ -1218,7 +1218,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   // Se muestra en el diagnóstico (?debug) para saber qué versión cargó el teléfono
-  const VERSION = '23';
+  const VERSION = '24';
 
   // ---- Pétalos en acuarela ----
   // Los de fondo están pegados a la pantalla, arriba de todo, y siguen cayendo mientras se baja. Son elementos con
@@ -1432,9 +1432,9 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
 
   // ---- Sugerencia para el navegador de Samsung ----
   // Su "modo oscuro forzado" recolorea la página sin que se pueda evitar desde acá y sin avisar cuándo lo hace,
-  // así que a quien use ese navegador se le sugiere, antes del sobre, abrir la invitación en Chrome. Los enlaces
-  // "intent" de Android no sirven: Samsung lanza Chrome pero no le pasa la dirección. El botón abre el menú de
-  // compartir del teléfono, donde el invitado elige Chrome; sin ese menú, copia el link para pegarlo en Chrome.
+  // así que a quien use ese navegador se le sugiere, antes del sobre, apagar el modo oscuro del navegador o abrir
+  // la invitación en Chrome. No hay forma de mandarlo a Chrome desde acá: los enlaces "intent" de Android abren
+  // Chrome sin la dirección y el menú de compartir no lo ofrece; por eso el botón copia el link para pegarlo.
   // Cerrarla con la cruz se recuerda en este teléfono, para no insistir en la próxima visita
   const AVISO_CERRADO = 'invitacion-natalia-matias-aviso-chrome';
   let avisoCerrado = false;
@@ -1446,7 +1446,6 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     $('#abrir-en-chrome').addEventListener('click', function () {
       const pista = $('#aviso-pista');
       pista.hidden = false;
-      if (navigator.share) { navigator.share({ title: document.title, url: direccion }).catch(function () {}); return; }
       pista.textContent = 'Copiá esta dirección y pegala en Chrome: ' + direccion;
       try { navigator.clipboard.writeText(direccion).then(function () { pista.textContent = 'Link copiado: pegalo en Chrome.'; }, function () {}); } catch (e) {}
     });
