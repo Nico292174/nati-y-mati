@@ -741,6 +741,34 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
 .cuenta-numero { font-family: var(--f-sans); font-size: 26px; font-weight: 500; letter-spacing: .12em; color: var(--tinta); font-variant-numeric: tabular-nums lining-nums; }
 .cuenta-titular { font-size: 19px; font-style: italic; color: var(--tinta-suave); }
 .cuenta-banco .btn-linea { margin-top: 8px; }
+/* El olivo va a la izquierda de la tarjeta, en el aire que deja el relleno, y sus ramas pasan por encima de ella.
+   Tronco y ramas se funden con el papel (multiply) como el resto de las acuarelas */
+.cuenta-marco { position: relative; margin-top: 6px; padding-left: 44px; max-width: 100%; box-sizing: border-box; }
+/* La tarjeta deja más aire a la izquierda: por ahí entran las ramas sin tapar las letras */
+.cuenta-marco .cuenta-banco { margin-top: 0; max-width: 100%; box-sizing: border-box; padding-left: 60px; padding-right: 22px; }
+.cuenta-marco .ojo { font-size: 11.5px; letter-spacing: .24em; padding-left: .24em; }
+.olivo { position: absolute; left: 0; bottom: -8px; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.olivo-tronco { position: absolute; left: 8px; bottom: 0; width: 72px; height: auto; mix-blend-mode: multiply; }
+/* Cada rama: solo su mitad derecha, girada --ang desde el centro (la aceituna), que queda en (--x, --y) desde abajo.
+   La rama mide 670 × 129: su alto es 0,1925 del ancho, y el centro queda a la mitad de eso */
+.olivo-rama {
+  position: absolute;
+  left: var(--x);
+  bottom: var(--y);
+  width: var(--w);
+  height: auto;
+  margin-left: calc(var(--w) / -2);
+  margin-bottom: calc(var(--w) * -0.0963);
+  clip-path: inset(0 0 0 50%);
+  transform: rotate(var(--ang));
+  transform-origin: 50% 50%;
+  mix-blend-mode: multiply;
+}
+@media (max-width: 400px) {
+  .cuenta-marco { padding-left: 40px; }
+  .cuenta-marco .cuenta-banco { padding-left: 54px; padding-right: 18px; }
+  .olivo { transform: scale(.88); transform-origin: left bottom; }
+}
 .cierre { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .cierre .ojo { margin-top: 46px; }
 /* La cursiva deja aire de sobra arriba y abajo: lo descontamos para que queden 8px a la vista de cada lado */
@@ -951,18 +979,56 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
         <a class="btn-linea chico" href="https://maps.app.goo.gl/ye5DgcywNNtm7GA38" target="_blank" rel="noopener">Cómo llegar</a>
       </article>
     </div>
-    <a class="btn lugares-confirmar" href="#confirmar">Confirmar asistencia</a>
-    <!-- Los regalos van entre el botón de confirmar y la acuarela del salón, que cierra esta parte -->
+    <!-- Los regalos van después de los lugares; debajo, el botón de confirmar, y la acuarela del salón cierra esta parte -->
     <section class="regalos rv" aria-labelledby="t-regalos">
       <h2 id="t-regalos" class="titulo">Regalos</h2>
       <p>Lo más importante para nosotros es tu compañía, pero si además querés hacernos un regalito te dejamos nuestra cuenta.</p>
-      <div class="cuenta-banco">
-        <span class="ojo">Cuenta Itaú en dólares</span>
-        <span class="cuenta-numero" id="cuenta-numero">3315460</span>
-        <span class="cuenta-titular">Natalia Michelini Merino</span>
-        <button type="button" class="btn-linea chico" id="copiar-cuenta">Copiar número de cuenta</button>
+      <div class="cuenta-marco">
+        <!-- Un olivo al costado de la cuenta, con las ramas por encima de la tarjeta: tronco pintado en SVG con borde
+             irregular de acuarela, y por copa las mismas ramas de olivo en acuarela que separan las secciones, cada una
+             recortada a su mitad derecha y girada desde la aceituna del medio, que queda apoyada en el tronco -->
+        <div class="olivo" aria-hidden="true">
+          <svg class="olivo-tronco" viewBox="0 0 90 110">
+            <defs>
+              <linearGradient id="g-tronco" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C3B7A5"></stop><stop offset=".5" stop-color="#A69883"></stop><stop offset="1" stop-color="#8A7A66"></stop></linearGradient>
+              <!-- Borde irregular, como una mancha de acuarela -->
+              <filter id="f-tronco" x="-20%" y="-10%" width="140%" height="120%">
+                <feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="2" seed="5" result="t"></feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="t" scale="6" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+              </filter>
+              <!-- Grano del pigmento, como el del papel del sobre -->
+              <filter id="f-grano-tronco" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="9" stitchTiles="stitch"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 .42  0 0 0 0 .35  0 0 0 0 .27  0 0 0 .3 0"></feColorMatrix></filter>
+              <clipPath id="c-tronco"><path d="M24 110 C27 96 30 84 27 72 C24 60 16 50 15 38 C14 26 18 16 14 6 L26 9 C27 20 31 30 38 38 C41 30 43 22 47 16 L55 19 C52 26 50 34 54 40 C60 34 68 26 72 12 L80 17 C74 30 66 40 62 54 C58 68 62 84 66 110 Z"></path></clipPath>
+            </defs>
+            <ellipse cx="45" cy="107" rx="32" ry="4" fill="#8E9A7E" opacity=".2"></ellipse>
+            <g filter="url(#f-tronco)">
+              <path d="M24 110 C27 96 30 84 27 72 C24 60 16 50 15 38 C14 26 18 16 14 6 L26 9 C27 20 31 30 38 38 C41 30 43 22 47 16 L55 19 C52 26 50 34 54 40 C60 34 68 26 72 12 L80 17 C74 30 66 40 62 54 C58 68 62 84 66 110 Z" fill="url(#g-tronco)" opacity=".82"></path>
+              <rect width="90" height="110" filter="url(#f-grano-tronco)" clip-path="url(#c-tronco)"></rect>
+              <path d="M32 108 C34 94 35 82 32 70 C30 60 26 50 27 40 C28 30 30 22 28 14 L33 16 C33 26 36 34 41 40 C44 34 46 26 48 20 L51 22 C50 30 50 36 55 42 C53 54 53 70 57 86 C58 96 58 102 56 108 Z" fill="#E0D7C8" opacity=".38"></path>
+              <path d="M30 106 C32 92 33 80 30 68 M60 106 C61 90 58 76 54 62 M40 44 C37 52 35 60 36 68 M20 36 C19 30 20 24 19 16" fill="none" stroke="#6E5F4E" stroke-width="1" stroke-opacity=".3" stroke-linecap="round"></path>
+              <path d="M24 110 C27 96 30 84 27 72 C24 60 16 50 15 38 C14 26 18 16 14 6 L26 9 C27 20 31 30 38 38 C41 30 43 22 47 16 L55 19 C52 26 50 34 54 40 C60 34 68 26 72 12 L80 17 C74 30 66 40 62 54 C58 68 62 84 66 110 Z" fill="none" stroke="#7A6B59" stroke-width=".8" stroke-opacity=".3"></path>
+            </g>
+          </svg>
+          <!-- Tres ramas de la punta izquierda del tronco, dos de la del medio y cuatro de la derecha, que entran en la tarjeta -->
+          <img class="olivo-rama" style="--ang: -118deg; --w: 150px; --x: 24px; --y: 82px" src="rama-1.webp" width="670" height="129" alt="">
+          <img class="olivo-rama" style="--ang: -95deg; --w: 180px; --x: 24px; --y: 82px" src="rama-5.webp" width="652" height="129" alt="">
+          <img class="olivo-rama" style="--ang: -72deg; --w: 170px; --x: 24px; --y: 82px" src="rama-2.webp" width="652" height="129" alt="">
+          <img class="olivo-rama" style="--ang: -60deg; --w: 190px; --x: 49px; --y: 74px" src="rama-1.webp" width="670" height="129" alt="">
+          <img class="olivo-rama" style="--ang: -42deg; --w: 170px; --x: 49px; --y: 74px" src="rama-5.webp" width="652" height="129" alt="">
+          <img class="olivo-rama" style="--ang: -28deg; --w: 134px; --x: 69px; --y: 77px" src="rama-2.webp" width="652" height="129" alt="">
+          <img class="olivo-rama" style="--ang: -10deg; --w: 128px; --x: 69px; --y: 77px" src="rama-1.webp" width="670" height="129" alt="">
+          <img class="olivo-rama" style="--ang: 12deg; --w: 135px; --x: 69px; --y: 77px" src="rama-5.webp" width="652" height="129" alt="">
+          <img class="olivo-rama" style="--ang: 32deg; --w: 115px; --x: 69px; --y: 77px" src="rama-2.webp" width="652" height="129" alt="">
+        </div>
+        <div class="cuenta-banco">
+          <span class="ojo">Cuenta Itaú en dólares</span>
+          <span class="cuenta-numero" id="cuenta-numero">3315460</span>
+          <span class="cuenta-titular">Natalia Michelini Merino</span>
+          <button type="button" class="btn-linea chico" id="copiar-cuenta">Copiar número de cuenta</button>
+        </div>
       </div>
     </section>
+    <a class="btn lugares-confirmar" href="#confirmar">Confirmar asistencia</a>
     <img class="lugar-arte salon-medio" src="salon.jpg" width="860" height="1147" alt="Acuarela del salón de Chacra San José: mesas largas con manteles a rayas, flores y velas, bajo lámparas de mimbre con guirnaldas verdes">
   </section>
 
@@ -1128,7 +1194,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   // Se muestra en el diagnóstico (?debug) para saber qué versión cargó el teléfono
-  const VERSION = '16';
+  const VERSION = '17';
 
   // ---- Pétalos en acuarela ----
   // Los de fondo están pegados a la pantalla, arriba de todo, y siguen cayendo mientras se baja. Son elementos con
