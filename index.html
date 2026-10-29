@@ -157,11 +157,11 @@ fieldset:focus, main:focus { outline: none; }
   background: var(--papel);
   text-align: center;
 }
-.aviso-cuerpo { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 32ch; }
-/* La cursiva trae su propio aire arriba y abajo: se descuenta para que queden 8px hasta el rótulo y 24px hasta el texto */
-.aviso-cuerpo .titulo { margin: calc(-8px - .2em) 0 calc(8px - .27em); }
+.aviso-cuerpo { display: flex; flex-direction: column; align-items: center; max-width: 32ch; }
+/* Título en letra clara (la misma serif de los pasos del formulario): 8px desde el rótulo, 16px hasta el texto */
+.aviso-titulo { margin: 8px 0 16px; font-size: 30px; line-height: 1.15; font-weight: 500; color: var(--tinta); text-wrap: balance; }
 .aviso-cuerpo p:not(.ojo) { font-size: 18px; line-height: 1.5; color: var(--tinta-suave); text-wrap: pretty; }
-.aviso-cuerpo .btn { margin-top: 8px; }
+.aviso-cuerpo .btn { margin-top: 24px; }
 .aviso-cerrar {
   position: absolute;
   top: calc(env(safe-area-inset-top, 0px) + 14px);
@@ -883,8 +883,8 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   </button>
   <div class="aviso-cuerpo">
     <p class="ojo">Sugerencia</p>
-    <h2 id="t-aviso-chrome" class="titulo">Abrila en Chrome</h2>
-    <p>Este navegador puede mostrar la invitación con los colores cambiados. En Chrome se ve como es.</p>
+    <h2 id="t-aviso-chrome" class="aviso-titulo">Abrila en Chrome</h2>
+    <p>Este navegador puede mostrar la invitación con los colores cambiados.</p>
     <a class="btn" id="abrir-en-chrome" href="#">Abrir en Chrome</a>
   </div>
 </div>
@@ -1216,7 +1216,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   // Se muestra en el diagnóstico (?debug) para saber qué versión cargó el teléfono
-  const VERSION = '21';
+  const VERSION = '22';
 
   // ---- Pétalos en acuarela ----
   // Los de fondo están pegados a la pantalla, arriba de todo, y siguen cayendo mientras se baja. Son elementos con
