@@ -394,7 +394,8 @@ body.con-hoja::after { opacity: 1; transition-duration: 1.15s; }
 .pagina {
   max-width: 560px;
   margin: 0 auto;
-  padding-block: 20px 74px;
+  /* La acuarela de la portada arranca pegada arriba: solo deja lugar para la muesca del celular, si la hay */
+  padding-block: env(safe-area-inset-top, 0px) 74px;
   display: flex;
   flex-direction: column;
 }
@@ -406,6 +407,10 @@ body.con-hoja::after { opacity: 1; transition-duration: 1.15s; }
   height: auto;
   mix-blend-mode: multiply;
 }
+/* Las acuarelas no se tocan: en el celular, apoyar el dedo sobre una para bajar la levantaba como foto suelta
+   (cruda, sin el difuminado del borde) y la volvía a esconder al deslizar */
+img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
+.arte, .lugar-arte, .rama { pointer-events: none; }
 .hero-texto { display: flex; flex-direction: column; align-items: center; }
 .bendicion { font-family: var(--f-sans); font-size: 12px; font-weight: 500; letter-spacing: .24em; line-height: 1.8; text-transform: uppercase; color: var(--tinta-suave); max-width: 32ch; }
 .nombres {
@@ -723,7 +728,8 @@ body.con-hoja::after { opacity: 1; transition-duration: 1.15s; }
 .te-esperamos.espera:not(.visto) .nombres-svg path { fill-opacity: 0; }
 .abierta .hero .sube { animation: subir .9s cubic-bezier(.2, .7, .2, 1) both; animation-delay: var(--d, 0s); }
 .rv.visto { animation: subir .9s cubic-bezier(.2, .7, .2, 1) backwards; }
-@keyframes aparecer-arte { from { opacity: 0; transform: scale(1.06); filter: blur(5px); } to { opacity: 1; transform: none; filter: none; } }
+/* Sin desenfoque: desenfocar la acuarela grande cuadro a cuadro, justo cuando empiezan a caer los pétalos, los trababa en el celular */
+@keyframes aparecer-arte { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
 @keyframes trazo { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 /* Al entintarse, el trazo de la pluma se afina hasta desaparecer y queda la letra tal cual */
 @keyframes entintar { from { fill-opacity: 0; stroke-width: 28px; } to { fill-opacity: 1; stroke-width: 0; } }
@@ -1094,7 +1100,9 @@ body.con-hoja::after { opacity: 1; transition-duration: 1.15s; }
     const hoja = new Image();
     const N = 12, PW = 140, PH = 140;
     let listo = false;
-    let w = 0, h = 0, lista = [], corriendo = false, ambiente = false;
+    let w = 0, h = 0, lista = [], corriendo = false, ambiente = false, antes = 0;
+    // Un cuadro a 60 por segundo: las velocidades de cada pétalo están medidas en eso
+    const CUADRO = 1000 / 60;
     hoja.onload = function () { listo = true; arrancar(); };
     hoja.src = "petalos.webp";
     function medir() {
@@ -1118,14 +1126,19 @@ body.con-hoja::after { opacity: 1; transition-duration: 1.15s; }
     }
     function zona() { const r = portada.getBoundingClientRect(); return { arriba: r.top, alto: r.height }; }
     function hayQueMover(z) { return (ambiente && z.arriba + z.alto > 0) || lista.some(function (p) { return p.rafaga; }); }
-    function cuadro() {
+    function cuadro(ahora) {
+      // Avanzan según el tiempo que pasó y no por cuadro dibujado: si el celular saltea cuadros
+      // (al abrir la invitación pasa mucho), siguen cayendo a su ritmo en vez de frenarse
+      const k = antes ? Math.min((ahora - antes) / CUADRO, 4) : 1;
+      antes = ahora;
       const z = zona();
       ctx.clearRect(0, 0, w, h);
       if (listo) {
+        const freno = Math.pow(0.985, k);
         for (const p of lista) {
-          if (p.rafaga) { p.vx *= 0.985; p.vy = p.vy * 0.985 + 0.05; }
-          p.fase += 0.012; p.giro += p.vg;
-          p.x += p.vx + Math.sin(p.fase) * p.amp; p.y += p.vy; p.rot += p.vr + Math.sin(p.fase) * 0.004;
+          if (p.rafaga) { p.vx *= freno; p.vy = p.vy * freno + 0.05 * k; }
+          p.fase += 0.012 * k; p.giro += p.vg * k;
+          p.x += (p.vx + Math.sin(p.fase) * p.amp) * k; p.y += p.vy * k; p.rot += (p.vr + Math.sin(p.fase) * 0.004) * k;
           if (!p.rafaga && p.y > z.alto + 30) { p.y = -30; p.x = Math.random() * w; }
           // Los de fondo se desvanecen al llegar al final de la portada
           const y = p.rafaga ? p.y : z.arriba + p.y;
@@ -1145,7 +1158,7 @@ body.con-hoja::after { opacity: 1; transition-duration: 1.15s; }
       }
       if (!document.hidden && hayQueMover(z)) requestAnimationFrame(cuadro); else corriendo = false;
     }
-    function arrancar() { if (ctx && w && !corriendo && !document.hidden && hayQueMover(zona())) { corriendo = true; requestAnimationFrame(cuadro); } }
+    function arrancar() { if (ctx && w && !corriendo && !document.hidden && hayQueMover(zona())) { corriendo = true; antes = 0; requestAnimationFrame(cuadro); } }
     window.addEventListener('resize', function () { if (w) medir(); });
     window.addEventListener('scroll', arrancar, { passive: true });
     document.addEventListener('visibilitychange', arrancar);
