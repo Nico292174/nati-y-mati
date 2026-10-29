@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Prueba: abrir en Chrome</title>
+<style>
+  body { margin: 0; padding: 20px 16px; background: #FBF5EB; color: #3A3029; font: 16px/1.5 system-ui, sans-serif; }
+  h1 { font-size: 18px; margin: 0 0 6px; }
+  p { margin: 0 0 14px; }
+  a.b { display: block; margin: 0 0 12px; padding: 14px 16px; border-radius: 12px; background: #B7C2A4; color: #3B4A2E; text-decoration: none; font-weight: 600; }
+  a.b small { display: block; font-weight: 400; font-size: 12px; margin-top: 4px; word-break: break-all; opacity: .8; }
+</style>
+</head>
+<body>
+<h1>Prueba: abrir la invitación en Chrome</h1>
+<p>Tocá cada botón, uno por vez, y anotá cuál abre la invitación en Chrome (no solo la app). Después volvé acá con "atrás".</p>
+<div id="botones"></div>
+<script>
+(function () {
+  var destino = 'https://nico292174.github.io/nati-y-mati/';
+  var sinEsquema = destino.replace(/^https:\/\//, '');
+  var variantes = [
+    ['1 · intent simple (forma del foro de Samsung)', 'intent://' + sinEsquema + '#Intent;scheme=https;package=com.android.chrome;end'],
+    ['2 · intent con action VIEW y category BROWSABLE', 'intent://' + sinEsquema + '#Intent;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;scheme=https;package=com.android.chrome;end'],
+    ['3 · intent simple con fallback', 'intent://' + sinEsquema + '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(destino) + ';end'],
+    ['4 · esquema googlechrome://navigate', 'googlechrome://navigate?url=' + destino],
+    ['5 · intent con la dirección también como dato extra', 'intent://' + sinEsquema + '#Intent;scheme=https;package=com.android.chrome;S.url=' + encodeURIComponent(destino) + ';end'],
+    ['6 · intent sin package (que Android pregunte con qué abrir)', 'intent://' + sinEsquema + '#Intent;scheme=https;end']
+  ];
+  var cont = document.getElementById('botones');
+  variantes.forEach(function (v) {
+    var a = document.createElement('a'); a.className = 'b'; a.href = v[1];
+    a.innerHTML = v[0] + '<small></small>'; a.querySelector('small').textContent = v[1];
+    cont.appendChild(a);
+  });
+})();
+</script>
+</body>
+</html>
