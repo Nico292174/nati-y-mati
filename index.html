@@ -146,29 +146,39 @@ fieldset:focus, main:focus { outline: none; }
   background: radial-gradient(70% 55% at 50% 48%, rgba(251, 245, 235, .35) 0%, rgba(251, 245, 235, .9) 100%);
   pointer-events: none;
 }
-/* Aviso para el navegador de Samsung: una tira de papel arriba del sobre, con el botón para abrir en Chrome */
-.aviso-samsung {
-  position: absolute;
-  top: calc(env(safe-area-inset-top, 0px) + 14px);
-  left: 16px;
-  right: 16px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  padding: 10px 14px;
-  border: 1px solid var(--linea);
-  border-radius: 14px;
-  background: rgba(251, 245, 235, .92);
-  font-family: var(--f-sans);
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--tinta-suave);
+/* Sugerencia para el navegador de Samsung: tapa toda la pantalla antes del sobre; la cruz la cierra */
+.aviso-chrome {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: calc(env(safe-area-inset-top, 0px) + 28px) max(16px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 28px) max(16px, env(safe-area-inset-left, 0px));
+  background: var(--papel);
   text-align: center;
 }
-.aviso-samsung p { max-width: 30ch; }
+.aviso-cuerpo { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 32ch; }
+/* La cursiva trae su propio aire arriba y abajo: se descuenta para que queden 8px hasta el rótulo y 24px hasta el texto */
+.aviso-cuerpo .titulo { margin: calc(-8px - .2em) 0 calc(8px - .27em); }
+.aviso-cuerpo p:not(.ojo) { font-size: 18px; line-height: 1.5; color: var(--tinta-suave); text-wrap: pretty; }
+.aviso-cuerpo .btn { margin-top: 8px; }
+.aviso-cerrar {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 14px);
+  right: calc(env(safe-area-inset-right, 0px) + 14px);
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--linea);
+  border-radius: 50%;
+  background: rgba(251, 245, 235, .92);
+  color: var(--tinta-suave);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.aviso-cerrar svg { width: 18px; height: 18px; }
+.aviso-cerrar:hover { color: var(--tinta); }
 .sobre-caja { --w: min(340px, 84vw); position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; padding-top: calc(var(--w) * 0.2); }
 /* "Tenés una invitación", sobre, nombres y botón a 24px a la vista entre sí */
 .sobre-caja > .ojo { margin-bottom: -4px; transition: opacity .45s ease, transform .45s ease; }
@@ -864,13 +874,22 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
 </head>
 <body>
 
-<div id="sobre" class="sobre" hidden>
-  <!-- Solo en el navegador de Samsung: su "modo oscuro forzado" recolorea la invitación sin que la página pueda
-       evitarlo, y como no avisa cuándo lo hace, el aviso se muestra a todos los que usen ese navegador -->
-  <div class="aviso-samsung" id="aviso-samsung" hidden>
-    <p>Si la ves oscura, es el modo oscuro de este navegador.</p>
-    <a class="btn-linea chico" id="abrir-en-chrome" href="#">Abrir en Chrome</a>
+<!-- Solo en el navegador de Samsung, antes del sobre: su "modo oscuro forzado" recolorea la invitación sin que la
+     página pueda evitarlo, y como no avisa cuándo lo hace, la sugerencia se muestra a todos los que usen ese
+     navegador. La cruz la cierra y se recuerda, para no insistir en la próxima visita -->
+<div class="aviso-chrome" id="aviso-chrome" role="dialog" aria-modal="true" aria-labelledby="t-aviso-chrome" hidden>
+  <button type="button" class="aviso-cerrar" id="cerrar-aviso-chrome" aria-label="Cerrar y seguir en este navegador">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>
+  </button>
+  <div class="aviso-cuerpo">
+    <p class="ojo">Sugerencia</p>
+    <h2 id="t-aviso-chrome" class="titulo">Abrila en Chrome</h2>
+    <p>Este navegador puede mostrar la invitación con los colores cambiados. En Chrome se ve como es.</p>
+    <a class="btn" id="abrir-en-chrome" href="#">Abrir en Chrome</a>
   </div>
+</div>
+
+<div id="sobre" class="sobre" hidden>
   <div class="sobre-caja">
     <p class="ojo">Tenés una invitación</p>
     <button class="env" type="button" id="env" aria-label="Abrir la invitación">
@@ -1197,7 +1216,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   // Se muestra en el diagnóstico (?debug) para saber qué versión cargó el teléfono
-  const VERSION = '20';
+  const VERSION = '21';
 
   // ---- Pétalos en acuarela ----
   // Los de fondo están pegados a la pantalla, arriba de todo, y siguen cayendo mientras se baja. Son elementos con
@@ -1409,15 +1428,27 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     else if (quiereMusica && !btnMusica.hidden && audio.paused) { reanudarContexto(); audio.play().catch(function () {}); }
   });
 
-  // ---- Aviso para el navegador de Samsung ----
+  // ---- Sugerencia para el navegador de Samsung ----
   // Su "modo oscuro forzado" recolorea la página sin que se pueda evitar desde acá y sin avisar cuándo lo hace,
-  // así que a quien use ese navegador se le ofrece abrir la invitación en Chrome. El enlace es un "intent" de
-  // Android: abre esta misma dirección en Chrome y, si Chrome no está, deja la página donde está
-  if (/SamsungBrowser\//.test(navigator.userAgent)) {
+  // así que a quien use ese navegador se le sugiere, antes del sobre, abrir la invitación en Chrome. El enlace es
+  // un "intent" de Android: abre esta misma dirección en Chrome y, si Chrome no está, deja la página donde está.
+  // Cerrarla con la cruz se recuerda en este teléfono, para no insistir en la próxima visita
+  const AVISO_CERRADO = 'invitacion-natalia-matias-aviso-chrome';
+  let avisoCerrado = false;
+  try { avisoCerrado = !!localStorage.getItem(AVISO_CERRADO); } catch (e) {}
+  if (/SamsungBrowser\//.test(navigator.userAgent) && !avisoCerrado) {
+    const aviso = $('#aviso-chrome');
     const direccion = location.href.split('#')[0];
     $('#abrir-en-chrome').href = 'intent://' + location.host + location.pathname + location.search +
       '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(direccion) + ';end';
-    $('#aviso-samsung').hidden = false;
+    aviso.hidden = false;
+    function cerrarAviso() {
+      aviso.hidden = true;
+      try { localStorage.setItem(AVISO_CERRADO, '1'); } catch (e) {}
+    }
+    $('#cerrar-aviso-chrome').addEventListener('click', cerrarAviso);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !aviso.hidden) cerrarAviso(); });
+    try { $('#cerrar-aviso-chrome').focus({ preventScroll: true }); } catch (e) {}
   }
 
   // ---- Sobre ----
