@@ -727,7 +727,8 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
 /* Regalos y cierre */
 .regalos { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; margin-top: 56px; }
 .regalos > p { max-width: 34ch; }
-.alias {
+/* Datos de la cuenta para transferir: banco y moneda como rótulo, el número grande y copiable, el titular debajo */
+.cuenta-banco {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -737,8 +738,9 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   border-radius: 14px;
   margin-top: 6px;
 }
-.alias-valor { font-family: var(--f-sans); font-size: 20px; font-weight: 500; letter-spacing: .08em; color: var(--tinta); overflow-wrap: anywhere; }
-.alias .btn-linea { margin-top: 6px; }
+.cuenta-numero { font-family: var(--f-sans); font-size: 26px; font-weight: 500; letter-spacing: .12em; color: var(--tinta); font-variant-numeric: tabular-nums lining-nums; }
+.cuenta-titular { font-size: 19px; font-style: italic; color: var(--tinta-suave); }
+.cuenta-banco .btn-linea { margin-top: 8px; }
 .cierre { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .cierre .ojo { margin-top: 46px; }
 /* La cursiva deja aire de sobra arriba y abajo: lo descontamos para que queden 8px a la vista de cada lado */
@@ -953,13 +955,14 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     <img class="lugar-arte salon-medio" src="salon.jpg" width="860" height="1147" alt="Acuarela del salón de Chacra San José: mesas largas con manteles a rayas, flores y velas, bajo lámparas de mimbre con guirnaldas verdes">
   </section>
 
-  <section class="regalos rv" aria-labelledby="t-regalos" hidden>
+  <section class="regalos rv" aria-labelledby="t-regalos">
     <h2 id="t-regalos" class="titulo">Regalos</h2>
     <p>Lo más lindo es que nos acompañes. Si además querés hacernos un regalo, podés transferir a esta cuenta.</p>
-    <div class="alias">
-      <span class="ojo">Alias</span>
-      <span class="alias-valor" id="alias">ALIAS-PENDIENTE</span>
-      <button type="button" class="btn-linea chico" id="copiar-alias">Copiar alias</button>
+    <div class="cuenta-banco">
+      <span class="ojo">Cuenta Itaú en dólares</span>
+      <span class="cuenta-numero" id="cuenta-numero">3315460</span>
+      <span class="cuenta-titular">Natalia Michelini Merino</span>
+      <button type="button" class="btn-linea chico" id="copiar-cuenta">Copiar número de cuenta</button>
     </div>
   </section>
 
@@ -1112,8 +1115,8 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     // Como se los nombra en el mensaje de WhatsApp
     novios: 'Nati y Mati',
     fecha: new Date('2026-12-18T19:00:00-03:00'),
-    // Número de WhatsApp de los novios con código de país, sin + ni espacios: 098 324 005 de Uruguay (598, sin el 0)
-    whatsapp: '59898324005',
+    // Número de WhatsApp de los novios con código de país, sin + ni espacios: 098 893 163 de Uruguay (598, sin el 0)
+    whatsapp: '59898893163',
     // Dirección de la planilla de Google que anota las confirmaciones (la "Aplicación web" de planilla/Codigo.gs).
     // Vacía: las respuestas solo se mandan por WhatsApp.
     planilla: '',
@@ -1125,7 +1128,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   // Se muestra en el diagnóstico (?debug) para saber qué versión cargó el teléfono
-  const VERSION = '10';
+  const VERSION = '11';
 
   // ---- Pétalos en acuarela ----
   // Los de fondo están pegados a la pantalla, arriba de todo, y siguen cayendo mientras se baja. Son elementos con
@@ -1527,8 +1530,8 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
       navigator.clipboard.writeText(texto).then(function () { boton.textContent = 'Copiado'; volver(); }, fallo);
     } catch (e) { fallo(); }
   }
-  $('#copiar-alias').addEventListener('click', function () {
-    const el = $('#alias');
+  $('#copiar-cuenta').addEventListener('click', function () {
+    const el = $('#cuenta-numero');
     copiar(el.textContent.trim(), this, function () {
       const sel = window.getSelection(); sel.removeAllRanges(); const r = document.createRange(); r.selectNodeContents(el); sel.addRange(r);
     });
