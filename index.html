@@ -1,0 +1,1620 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Nati y Mati se casan el viernes 18 de diciembre de 2026. Abrí la invitación y confirmá tu asistencia.">
+<meta property="og:title" content="Nati &amp; Mati · 18.12.2026">
+<meta property="og:description" content="Tenés una invitación. Abrila y confirmá tu asistencia.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#FBF5EB">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2246%22 fill=%22%23A9483C%22/%3E%3C/svg%3E">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Casamiento de Natalia y Matías</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
+<style>
+/* Una sola columna de papel acuarelado: sobre que se abre, acuarela, cuenta regresiva, lugares, confirmación paso a paso y regalos. */
+:root {
+  --papel: #FBF5EB;
+  --papel-hondo: #F4EADA;
+  --rubor: #F3E0D6;
+  --tinta: #3A3029;
+  --tinta-suave: #6B5D50;
+  --ladrillo: #A9483C;
+  --ladrillo-hondo: #8B392F;
+  --verde: #B7C2A4;
+  --verde-hover: #A8B593;
+  --verde-texto: #3B4A2E;
+  --oliva: #5A6B45;
+  --oliva-hondo: #46553A;
+  --oliva-grande: #7A8A5C;
+  --salvia-tenue: #EEF1E6;
+  --salvia: #5E7352;
+  --dorado: #B08A4E;
+  --linea: #E2D3BC;
+  --sobre: #E9D9BF;
+  --sobre-lado: #E3D0B2;
+  --sobre-base: #DBC6A4;
+  --sobre-solapa: #D5BE99;
+  --forro: #6D8495;
+  --f-script: 'Pinyon Script', 'Snell Roundhand', 'Apple Chancery', cursive;
+  --f-serif: 'Cormorant Garamond', Garamond, 'Times New Roman', serif;
+  --f-sans: 'Jost', 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  color-scheme: light;
+}
+
+html { background: var(--papel); scroll-behavior: smooth; }
+body {
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--f-serif);
+  font-size: 19px;
+  line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing: antialiased;
+}
+body.con-sobre { overflow: hidden; }
+h1, h2, h3, p, dl, dd, figure { margin: 0; }
+h1, h2, h3 { text-wrap: balance; font-weight: 500; }
+p { text-wrap: pretty; }
+a { color: var(--oliva); }
+:focus-visible { outline: 2px solid var(--oliva); outline-offset: 3px; }
+fieldset:focus, main:focus { outline: none; }
+
+/* ---------- Piezas comunes ---------- */
+.ojo {
+  font-family: var(--f-sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  padding-left: 0.28em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+.titulo {
+  font-family: var(--f-script);
+  font-weight: 400;
+  font-size: clamp(46px, 13vw, 58px);
+  line-height: 1.15;
+  color: var(--oliva-grande);
+}
+.btn, .btn-linea, .btn-texto {
+  font-family: var(--f-sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  text-decoration: none;
+  border-radius: 999px;
+  min-height: 46px;
+  padding: 0 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color .25s ease, color .25s ease, transform .2s ease, box-shadow .25s ease;
+}
+.btn { background: var(--verde); color: var(--verde-texto); border: 1px solid var(--verde); }
+.btn:hover { background: var(--verde-hover); transform: translateY(-1px); box-shadow: 0 8px 18px -10px rgba(90, 107, 69, .35); }
+.btn-linea { background: transparent; color: var(--oliva); border: 1px solid var(--verde); }
+.btn-linea:hover { background: var(--salvia-tenue); }
+.btn-texto { background: transparent; color: var(--tinta-suave); border: 0; padding: 0 12px; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--linea); }
+.btn-texto:hover { color: var(--tinta); }
+.chico { min-height: 40px; padding: 0 18px; font-size: 12.5px; }
+
+/* ---------- Sobre de apertura ---------- */
+.sobre {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--papel);
+  padding: calc(env(safe-area-inset-top, 0px) + 28px) max(16px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 28px) max(16px, env(safe-area-inset-left, 0px));
+}
+.sobre::before {
+  content: "";
+  position: fixed;
+  inset: -80px;
+  background: url("acuarela.jpg") center 30% / cover no-repeat;
+  filter: blur(34px) saturate(1.1);
+  opacity: .14;
+  pointer-events: none;
+}
+.sobre::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(70% 55% at 50% 48%, rgba(251, 245, 235, .35) 0%, rgba(251, 245, 235, .9) 100%);
+  pointer-events: none;
+}
+.sobre-caja { --w: min(340px, 84vw); position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; padding-top: calc(var(--w) * 0.2); }
+/* "Tenés una invitación", sobre, nombres y botón a 24px a la vista entre sí */
+.sobre-caja > .ojo { margin-bottom: -4px; transition: opacity .45s ease, transform .45s ease; }
+.sobre.abriendo .sobre-caja > .ojo { opacity: 0; transform: translateY(-8px); }
+.env {
+  --w: min(340px, 84vw);
+  appearance: none;
+  border: 0;
+  padding: 0;
+  margin-top: 0;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  display: block;
+  width: var(--w);
+  aspect-ratio: 1.42;
+  perspective: 1100px;
+  border-radius: 6px;
+  animation: flotar 5s ease-in-out infinite;
+}
+.env > * { position: absolute; display: block; }
+.env-sombra {
+  left: 6%; right: 6%; bottom: -18px; height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(74, 48, 26, .34), rgba(74, 48, 26, 0));
+  filter: blur(4px);
+}
+.env-fondo { inset: 0; border-radius: 6px; background: #E2CFB0; overflow: hidden; }
+.env-fondo::before {
+  content: "";
+  position: absolute;
+  left: 4.2%; right: 4.2%; top: 0; bottom: 40%;
+  /* Forro de papel: sombra del pliegue de la solapa arriba, bordes apenas más oscuros, un brillo leve y la textura del papel */
+  background:
+    linear-gradient(to bottom, rgba(24, 34, 44, .4) 0%, rgba(24, 34, 44, .12) 9%, rgba(24, 34, 44, 0) 26%),
+    linear-gradient(to right, rgba(24, 34, 44, .16), rgba(24, 34, 44, 0) 14%, rgba(24, 34, 44, 0) 86%, rgba(24, 34, 44, .16)),
+    linear-gradient(115deg, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, .07) 50%, rgba(255, 255, 255, 0) 65%),
+    url("forro.jpg") center / 360px auto,
+    var(--forro);
+  box-shadow: inset .5px 0 0 rgba(24, 34, 44, .45), inset -.5px 0 0 rgba(24, 34, 44, .45);
+}
+.env-carta {
+  left: 5.5%; right: 5.5%; top: 5%; height: 90%;
+  z-index: 1;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 6% 7% 0;
+  background: #FDF9F2;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 5px #FDF9F2, inset 0 0 0 6px #D9C49B, 0 2px 6px rgba(74, 48, 26, .2);
+  transition: transform 1s cubic-bezier(.3, .7, .2, 1) .95s;
+}
+.carta-arte {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  background: url("carta-chacra.jpg") center / cover no-repeat;
+  border-radius: 2px;
+  mix-blend-mode: multiply;
+}
+.carta-ini { font-family: var(--f-script); font-size: calc(var(--w) * 0.075); line-height: 1; color: var(--tinta); }
+/* Nombres y fecha centrados entre el dibujo y el borde de abajo de la tarjeta */
+.carta-pie { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding-bottom: 8px; }
+.carta-txt { font-family: var(--f-sans); font-size: 9px; letter-spacing: .3em; padding-left: .3em; color: var(--tinta-suave); }
+.env-bolsillo { inset: 0; z-index: 2; width: 100%; height: 100%; clip-path: inset(0 round 6px); }
+.env-solapa {
+  left: 0; top: 0; width: 100%; height: 58%;
+  z-index: 3;
+  transform-origin: 50% 0;
+  transform-style: preserve-3d;
+  transition: transform .85s cubic-bezier(.45, .05, .25, 1) .3s, z-index 0s linear .72s;
+}
+.solapa-cara {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.solapa-dorso { transform: rotateX(180deg); }
+.env-sello {
+  left: 50%; top: 55%;
+  width: 86px; height: 86px;
+  margin: -43px 0 0 -43px;
+  z-index: 4;
+  overflow: visible;
+  transition: transform .3s ease;
+}
+.env:hover .env-sello { transform: scale(1.05) rotate(-2deg); }
+.sello-mitad, .sello-ramita {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform .6s cubic-bezier(.3, .6, .3, 1), opacity .6s ease;
+}
+/* La cursiva deja aire de sobra debajo: lo compensamos para que el botón quede a la misma distancia que el resto */
+.sobre-nombres { font-family: var(--f-script); font-size: clamp(44px, 12vw, 58px); line-height: 1.1; color: var(--tinta); margin-bottom: calc(-.27em - 5px); }
+.sobre-nombres .amp { color: var(--ladrillo); }
+.sobre-fecha { font-family: var(--f-sans); font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: var(--tinta-suave); }
+.sobre .btn {
+  margin-top: 4px;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  min-height: 48px;
+  color: var(--papel);
+  background: radial-gradient(130% 180% at 32% 18%, #BF5D50 0%, var(--ladrillo) 42%, #7F3329 100%);
+  border-color: #7F3329;
+  box-shadow: inset 0 1px 0 rgba(255, 220, 205, .25), inset 0 -2px 4px rgba(70, 20, 12, .25), 0 4px 10px -4px rgba(60, 25, 15, .5);
+}
+.sobre .btn:hover { background: radial-gradient(130% 180% at 32% 18%, #B35548 0%, #9C4136 42%, #722C23 100%); }
+.sobre.abriendo .env-sello { transform: none; }
+.sobre.abriendo .sello-izq { transform: translate(-9px, 7px) rotate(-18deg); opacity: 0; }
+.sobre.abriendo .sello-der { transform: translate(9px, 8px) rotate(16deg); opacity: 0; }
+.sobre.abriendo .sello-ramita { transform: translateY(12px) rotate(8deg); opacity: 0; }
+.sobre.abriendo .env-solapa { transform: rotateX(180deg); z-index: 0; }
+.sobre.abriendo .env-carta { transform: translateY(-60%); }
+.sobre.saliendo { opacity: 0; transition: opacity .7s ease .1s; }
+.sobre.saliendo .sobre-caja { transform: translateY(-12px) scale(1.06); transition: transform .8s cubic-bezier(.3, .6, .3, 1); }
+@keyframes flotar {
+  0%, 100% { transform: translateY(0) rotate(-.5deg); }
+  50% { transform: translateY(-6px) rotate(.4deg); }
+}
+
+/* ---------- Hoja de confirmación ---------- */
+/* Sube desde abajo como una hoja de papel, con las puntas redondeadas que se aplanan al llegar;
+   detrás, la invitación se aleja un poco y se vela. Al volver, todo al revés. */
+.hoja {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: radial-gradient(130% 60% at 50% 0%, #FFFCF6 0%, var(--papel) 70%) var(--papel);
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) max(16px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 74px) max(16px, env(safe-area-inset-left, 0px));
+  border-radius: 28px 28px 0 0;
+  box-shadow: 0 -16px 36px -22px rgba(74, 48, 26, .5);
+  transform: translateY(104%);
+  /* Al bajar: un poco más rápida */
+  transition: transform .8s cubic-bezier(.55, 0, .35, 1), border-radius .8s cubic-bezier(.55, 0, .35, 1);
+}
+/* Al subir: arranca despacio, se desliza y se asienta suave */
+.hoja.arriba { transform: none; border-radius: 0; transition-duration: 1.15s; transition-timing-function: cubic-bezier(.5, 0, .15, 1); }
+.hoja:focus { outline: none; }
+.hoja-dentro { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; }
+.hoja-volver {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  margin-left: -8px;
+  padding: 0 12px 0 6px;
+  border: 0;
+  border-radius: 20px;
+  background: none;
+  font-family: var(--f-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  cursor: pointer;
+}
+.hoja-volver svg { width: 16px; height: 16px; }
+.hoja-volver:hover { color: var(--oliva); }
+/* El contenido llega un poco después que la hoja */
+.hoja .hoja-volver, .hoja .tarjeta, .hoja .cierre { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .9s cubic-bezier(.22, .8, .24, 1); }
+.hoja.arriba .tarjeta, .hoja.arriba .cierre { opacity: 1; transform: none; transition-delay: .5s; }
+.hoja .cierre .rama { margin-top: 52px; }
+.hoja.arriba .hoja-volver { opacity: 1; transform: none; transition-delay: .75s; }
+.pagina { transition: transform .8s cubic-bezier(.55, 0, .35, 1), opacity .8s ease; }
+body.con-hoja { overflow: hidden; }
+body.con-hoja .pagina { transform: scale(.94); opacity: .55; transition-duration: 1.15s; transition-timing-function: cubic-bezier(.5, 0, .15, 1), ease; }
+body::after { content: ""; position: fixed; inset: 0; z-index: 24; background: rgba(62, 42, 24, .14); opacity: 0; pointer-events: none; transition: opacity .8s ease; }
+body.con-hoja::after { opacity: 1; transition-duration: 1.15s; }
+
+/* ---------- Flecha para bajar ---------- */
+/* Aparece dos segundos después de que terminó de llegar la fecha (a los 4,6s): fina, apenas marcada, respirando despacio */
+.flecha-bajar {
+  position: fixed;
+  left: 50%;
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  margin-left: -22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  /* La tinta suave, apenas transparente: así la flecha es sutil sin bajar la opacidad del circulito */
+  color: rgba(107, 93, 80, .8);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .6s ease, visibility 0s linear .6s;
+}
+.flecha-bajar svg { width: 24px; height: 24px; }
+.abierta .flecha-bajar { animation: flecha-llega 1.2s ease 6.6s both; }
+.abierta .flecha-bajar svg { animation: flecha-respira 2.8s ease-in-out 7.8s infinite; }
+/* En pantallas chicas queda sobre el texto: un circulito de papel la separa de las letras */
+.flecha-bajar.sobre-texto { width: 36px; height: 36px; margin-left: -18px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); background: var(--papel); box-shadow: 0 0 0 1px rgba(226, 211, 188, .9); }
+.flecha-bajar.sobre-texto svg { width: 20px; height: 20px; }
+.flecha-bajar.se-fue { visibility: hidden; opacity: 0 !important; }
+@keyframes flecha-llega { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@keyframes flecha-respira { 0%, 100% { transform: none; opacity: 1; } 50% { transform: translateY(5px); opacity: .55; } }
+
+/* ---------- Pétalos ---------- */
+.petalos { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 30; }
+
+/* ---------- Música ---------- */
+.musica {
+  position: fixed;
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 35;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--linea);
+  background: rgba(251, 245, 235, .92);
+  box-shadow: 0 6px 16px -8px rgba(74, 48, 26, .45);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--oliva);
+  transition: transform .2s ease;
+}
+.musica:hover { transform: scale(1.06); }
+.barras { display: flex; align-items: flex-end; gap: 3px; height: 18px; }
+.barras span { display: block; width: 3px; height: 6px; border-radius: 2px; background: currentColor; opacity: .6; }
+.musica.sonando .barras span { opacity: 1; animation: ecualizador 1s ease-in-out infinite; }
+.musica.sonando .barras span:nth-child(2) { animation-delay: -.3s; }
+.musica.sonando .barras span:nth-child(3) { animation-delay: -.6s; }
+.musica.sonando .barras span:nth-child(4) { animation-delay: -.15s; }
+@keyframes ecualizador { 0%, 100% { height: 5px; } 50% { height: 18px; } }
+
+/* ---------- Página ---------- */
+/* Ritmo vertical: todos los espacios salen de una sola escala y se miden a la vista, de tinta a tinta.
+   56px  aire de cada adorno (rama de olivo, sello): el mismo arriba y abajo, así separa las secciones
+   32px  entre un encabezado y su contenido
+   24px  entre piezas de un mismo bloque (nombres, frase, fecha y botón; datos y botón)
+   16px  entre una imagen o un rótulo y lo que acompaña
+    8px  entre un título y su bajada (nombre y dirección, título y fecha)
+   Cada letra trae su propio aire arriba y abajo (la cursiva mucho más), por eso los márgenes de abajo
+   no son los números redondos: son lo que falta para llegar a ese espacio a la vista. */
+.pagina {
+  max-width: 560px;
+  margin: 0 auto;
+  padding-block: 20px 74px;
+  display: flex;
+  flex-direction: column;
+}
+.hero { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.arte {
+  display: block;
+  width: 100%;
+  max-width: 430px;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+.hero-texto { display: flex; flex-direction: column; align-items: center; }
+.bendicion { font-family: var(--f-sans); font-size: 12px; font-weight: 500; letter-spacing: .24em; line-height: 1.8; text-transform: uppercase; color: var(--tinta-suave); max-width: 32ch; }
+.nombres {
+  font-family: var(--f-script);
+  font-weight: 400;
+  font-size: clamp(42px, 12vw, 80px);
+  line-height: 1.12;
+  color: var(--oliva-grande);
+  padding-inline: 8px;
+  /* La cursiva deja aire de sobra debajo: lo descontamos para que queden 24px a la vista hasta la frase */
+  margin-bottom: calc(18.5px - .33em);
+}
+.nombres .amp { color: #A8A955; }
+/* Los nombres son un dibujo de la misma letra (Pinyon Script) con un trazo por letra, para poder escribirlos letra por letra */
+.nombres-svg { display: block; width: 6.315em; max-width: 100%; height: auto; margin: 0 auto; overflow: visible; }
+.nombres-svg path { fill: currentColor; stroke: currentColor; stroke-width: 0; stroke-linejoin: round; stroke-dasharray: 1 1; }
+.lead { font-family: var(--f-sans); font-weight: 300; font-size: 17px; letter-spacing: .02em; line-height: 1.6; max-width: 30ch; }
+.fecha-grande {
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: .07em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-wrap: balance;
+  font-variant-numeric: lining-nums;
+  margin-top: 13px;
+}
+
+.rama { display: block; width: min(240px, 68%); height: auto; margin: 0 auto; }
+.cuenta .rama { margin-top: 43px; }
+.lugares .rama { margin-top: 42px; }
+.cierre .rama { margin-top: 49px; }
+
+/* Cuenta regresiva */
+.cuenta { display: flex; flex-direction: column; align-items: center; text-align: center; }
+#t-cuenta { margin-top: 46px; }
+.cuenta-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; max-width: 440px; margin-top: -3px; }
+.unidad { display: flex; flex-direction: column; align-items: center; gap: 2px; padding-block: 4px; }
+.num {
+  display: block;
+  font-size: clamp(38px, 11vw, 50px);
+  font-weight: 500;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--tinta);
+}
+.num.tic { animation: tic .45s cubic-bezier(.2, .7, .2, 1); }
+.lbl { font-family: var(--f-sans); font-size: 11.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--tinta-suave); }
+.llego { font-family: var(--f-script); font-size: 46px; color: var(--oliva-grande); }
+
+/* Lugares */
+.lugares { display: flex; flex-direction: column; align-items: center; text-align: center; }
+#t-lugares { margin-top: 47px; }
+.lugares-fecha { margin-top: 6px; }
+/* Ceremonia y fiesta, una al lado de la otra; con subgrid las filas (foto, título, hora, lugar, botón) quedan alineadas entre las dos */
+.lugares-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; width: 100%; margin-top: 25px; }
+.lugar { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0; justify-items: center; align-content: start; min-width: 0; }
+.lugar-arte { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
+.lugar .lugar-arte { align-self: end; margin-bottom: 12px; }
+.lugar-arte.chico { width: 74%; }
+.lugares-confirmar { margin-top: 31px; }
+.lugar-arte.salon-medio { width: min(100%, 400px); margin-top: 52px; }
+/* Iglesia y chacra como cuadritos: el difuminado leve del borde ya viene en la imagen */
+.lugar-arte.plana { mix-blend-mode: normal; -webkit-mask-image: none; mask-image: none; }
+/* Bordes difuminados: la acuarela se funde con el papel de la página */
+.arte, .lugar-arte {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 11%, #000 89%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 11%, #000 89%, transparent 100%);
+  mask-composite: intersect;
+}
+/* La acuarela de la portada ya trae el cielo de arriba lavado en el papel: arriba solo un difuminado corto,
+   así la estatua queda entera */
+.arte {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 3%, #000 89%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 3%, #000 89%, transparent 100%);
+}
+/* Los novios aparecen parados en el camino, bajo el arco */
+.arte-marco { position: relative; width: 100%; max-width: 430px; }
+.novios {
+  position: absolute;
+  left: 34.7%;
+  bottom: 6.1%;
+  width: 30.6%;
+  height: auto;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+}
+/* Los novios aparecen despacio justo cuando termina de escribirse la última letra (a los 3s) */
+.abierta .novios { animation: aparecen-novios 4.6s cubic-bezier(.25, .45, .3, 1) 3s both; }
+@keyframes aparecen-novios {
+  0% { opacity: 0; transform: translateY(14px) scale(.96); filter: blur(6px); }
+  55% { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: none; filter: none; }
+}
+.lugar .icono { width: 46px; height: 46px; color: var(--salvia); margin-bottom: 6px; }
+.lugar h3 { font-family: var(--f-script); font-weight: 400; font-size: clamp(34px, 9.5vw, 46px); line-height: 1.1; color: var(--oliva-grande); margin-bottom: calc(6.4px - .44em); }
+.detalle { font-size: 18px; font-weight: 500; letter-spacing: .07em; line-height: 1.55; text-transform: uppercase; font-variant-numeric: lining-nums; }
+.hora { font-size: 30px; font-weight: 500; line-height: 1.2; font-variant-numeric: lining-nums; }
+.lugar .detalle { font-size: clamp(14px, 3.9vw, 17px); }
+.sitio { margin-top: -3px; display: flex; flex-direction: column; gap: 4px; font-size: clamp(17px, 4.6vw, 20px); font-style: italic; line-height: 1.2; text-wrap: balance; }
+.dir { font-family: var(--f-sans); font-size: 13px; font-style: normal; letter-spacing: .02em; color: var(--tinta-suave); }
+.lugar .btn-linea { align-self: start; margin-top: 20px; }
+.dress { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 22px; }
+
+/* Confirmación */
+.confirmar { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.tarjeta-cabeza { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.tarjeta-cabeza .titulo { margin-bottom: calc(2px - .27em); }
+.tarjeta-cabeza .sub { color: var(--tinta-suave); }
+/* Texto que solo leen los lectores de pantalla */
+.solo-lectores { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+/* La tarjeta del cuestionario como papelería: papel con grano, filete dorado doble y un sello de lacre arriba, como el del sobre */
+.tarjeta {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  /* 56px a la vista entre "Volver a la invitación" y el sello, que sobresale 35px del borde */
+  margin-top: 89px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .32 0 0 0 0 .2 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E"),
+    linear-gradient(165deg, rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, 0) 40%, rgba(120, 90, 50, .05) 100%),
+    var(--papel-hondo);
+  border: 1px solid #E8DBC4;
+  border-radius: 4px;
+  padding: 49px clamp(26px, 7vw, 42px) 38px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  box-shadow: 0 1px 1px rgba(74, 48, 26, .06), 0 8px 16px -10px rgba(74, 48, 26, .28), 0 32px 44px -30px rgba(74, 48, 26, .5);
+}
+.tarjeta::before, .tarjeta::after { content: ""; position: absolute; border-radius: 2px; pointer-events: none; }
+.tarjeta::before { inset: 10px; border: 1px solid rgba(176, 138, 78, .5); }
+.tarjeta::after { inset: 14px; border: 1px solid rgba(176, 138, 78, .22); }
+.tarjeta-sello { position: absolute; top: 0; left: 50%; z-index: 1; width: 70px; height: 70px; overflow: visible; transform: translate(-50%, -50%); pointer-events: none; }
+.progreso { margin-top: 19px; display: flex; align-items: center; gap: 14px; font-family: var(--f-sans); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--tinta-suave); }
+.progreso #progreso-texto { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.barra { flex: 1; height: 3px; background: var(--linea); border-radius: 3px; overflow: hidden; }
+.barra > span { display: block; height: 100%; width: 0; background: var(--verde); border-radius: 3px; transition: width .5s cubic-bezier(.2, .7, .2, 1); }
+.paso { border: 0; margin: 15px 0 0; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+/* El primer paso no muestra título: las opciones quedan a 24px de la barra */
+#p-asistencia { margin-top: 19px; }
+.paso.entra-adelante { animation: entra-adelante .45s cubic-bezier(.2, .7, .2, 1); }
+.paso.entra-atras { animation: entra-atras .45s cubic-bezier(.2, .7, .2, 1); }
+.titulo-paso { padding: 0; margin-bottom: 20px; font-size: 30px; line-height: 1.15; font-weight: 500; color: var(--tinta); }
+.ayuda { font-size: 17px; color: var(--tinta-suave); margin-top: -17px; }
+
+.opciones-grandes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.opcion { position: relative; display: block; cursor: pointer; }
+.opcion input, .chip input, .ilustrada input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.opcion-cuerpo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 100%;
+  min-height: 112px;
+  padding: 16px 12px;
+  box-sizing: border-box;
+  text-align: center;
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+  transition: border-color .2s ease, background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.opcion:hover .opcion-cuerpo { transform: translateY(-2px); box-shadow: 0 10px 20px -16px rgba(74, 48, 26, .6); }
+.opcion input:checked + .opcion-cuerpo { border-color: var(--verde); background: var(--salvia-tenue); }
+.opcion input:focus-visible + .opcion-cuerpo, .chip input:focus-visible + span, .ilustrada input:focus-visible + span { outline: 2px solid var(--oliva); outline-offset: 3px; }
+.opcion-titulo { font-size: 24px; font-weight: 600; line-height: 1.15; }
+.opcion-icono { width: 30px; height: 30px; color: var(--oliva); }
+.opcion-icono.corazon { width: 34px; height: 34px; }
+.opcion input:checked + .opcion-cuerpo .corazon { animation: latido .7s ease; }
+@keyframes latido { 0%, 100% { transform: scale(1); } 30% { transform: scale(1.28); } 55% { transform: scale(.94); } }
+
+.campo { display: flex; flex-direction: column; gap: 4px; }
+.campo label, .etiqueta { font-family: var(--f-sans); font-size: 13px; font-weight: 500; letter-spacing: .06em; color: var(--tinta-suave); }
+.campo input, .campo textarea {
+  font-family: var(--f-serif);
+  font-size: 20px;
+  color: var(--tinta);
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: 10px;
+  padding: 10px 14px;
+  min-height: 48px;
+  box-sizing: border-box;
+  width: 100%;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.campo textarea { resize: vertical; line-height: 1.4; }
+.campo input::placeholder, .campo textarea::placeholder { color: #9A8B7C; font-style: italic; }
+.campo input:focus, .campo textarea:focus { outline: none; border-color: var(--oliva); box-shadow: 0 0 0 3px rgba(122, 138, 92, .3); }
+.error { font-family: var(--f-sans); font-size: 13px; color: #9B3B2F; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip { position: relative; cursor: pointer; }
+.chip > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 16px 0 12px;
+  box-sizing: border-box;
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+  font-size: 19px;
+  transition: border-color .2s ease, background-color .2s ease, transform .2s ease;
+}
+.chip svg { width: 24px; height: 24px; flex: none; color: var(--tinta-suave); }
+.chip:hover > span { transform: translateY(-1px); border-color: #CDB89A; }
+.chip input:checked + span { border-color: var(--verde); background: var(--salvia-tenue); }
+.chip input:checked + span svg { color: var(--oliva); }
+.chip input:checked + span { animation: elegir .35s cubic-bezier(.3, 1.5, .5, 1); }
+.chip-sin-icono > span { padding: 0 18px; }
+
+/* Bebidas y comida: tarjetas con una acuarela de cada opción */
+.ilustradas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.ilustrada { position: relative; display: block; cursor: pointer; }
+.ilustrada > span {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  height: 100%;
+  padding: 10px 8px 14px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 19px;
+  line-height: 1.2;
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+  transition: border-color .2s ease, background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.ilustrada img { display: block; width: min(100%, 118px); height: auto; margin-bottom: 4px; transition: transform .4s cubic-bezier(.3, 1.4, .5, 1); }
+.ilustrada small { font-family: var(--f-sans); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--tinta-suave); }
+.ilustrada > span::after {
+  content: "";
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--oliva) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FBF5EB' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4L18 8'/%3E%3C/svg%3E") center / 15px no-repeat;
+  opacity: 0;
+  transform: scale(.4);
+  transition: opacity .2s ease, transform .3s cubic-bezier(.3, 1.5, .5, 1);
+}
+.ilustrada:hover > span { transform: translateY(-2px); box-shadow: 0 10px 20px -16px rgba(74, 48, 26, .6); }
+.ilustrada input:checked + span { border-color: var(--verde); background: var(--salvia-tenue); animation: elegir .35s cubic-bezier(.3, 1.5, .5, 1); }
+.ilustrada input:checked + span::after { opacity: 1; transform: none; }
+.ilustrada input:checked + span img { transform: scale(1.06) rotate(-3deg); }
+/* Si queda una tarjeta sola en la última fila, va centrada */
+.ilustradas > .ilustrada:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 6px); }
+.ilustradas .chip { grid-column: 1 / -1; }
+.ilustradas .chip > span { width: 100%; justify-content: center; }
+
+.lista-resumen { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 18px; padding: 16px 18px; background: var(--papel); border: 1px solid var(--linea); border-radius: 8px; }
+.lista-resumen dt { font-family: var(--f-sans); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--tinta-suave); padding-top: 4px; }
+.lista-resumen dd { font-size: 19px; overflow-wrap: anywhere; }
+.acciones-resumen { display: flex; margin-top: 3px; }
+/* El botón para mandar la respuesta ocupa todo el ancho y cada tanto se mueve para llamar la atención */
+.btn-wa { width: 100%; min-height: 56px; padding: 10px 22px; gap: 10px; font-size: 15px; line-height: 1.3; text-align: center; animation: llamar 3.2s ease-in-out 1s infinite; }
+.btn-wa .icono-wa { width: 22px; height: 22px; flex: none; }
+@keyframes llamar {
+  0%, 62% { transform: none; box-shadow: 0 0 0 0 rgba(122, 138, 92, .5); }
+  66% { transform: scale(1.04) rotate(-1.5deg); }
+  70% { transform: scale(1.04) rotate(1.5deg); }
+  74% { transform: scale(1.04) rotate(-1deg); }
+  78% { transform: scale(1.02) rotate(.5deg); }
+  84% { transform: none; }
+  90%, 100% { transform: none; box-shadow: 0 0 0 14px rgba(122, 138, 92, 0); }
+}
+
+.nav-pasos { margin-top: 31px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.nav-pasos .btn { margin-left: auto; }
+/* En el primer paso no hay botones: la fila no ocupa lugar */
+.nav-pasos:not(:has(> :not([hidden]))) { display: none; }
+
+/* Regalos y cierre */
+.regalos { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; margin-top: 56px; }
+.regalos > p { max-width: 34ch; }
+.alias {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 18px 26px 20px;
+  border: 1px dashed #CDB89A;
+  border-radius: 14px;
+  margin-top: 6px;
+}
+.alias-valor { font-family: var(--f-sans); font-size: 20px; font-weight: 500; letter-spacing: .08em; color: var(--tinta); overflow-wrap: anywhere; }
+.alias .btn-linea { margin-top: 6px; }
+.cierre { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.cierre .ojo { margin-top: 46px; }
+/* La cursiva deja aire de sobra arriba y abajo: lo descontamos para que queden 8px a la vista de cada lado */
+.te-esperamos { font-family: var(--f-script); font-size: clamp(44px, 12vw, 58px); line-height: 1.15; color: var(--oliva-grande); margin: calc(17.5px - .27em) 0 calc(-.27em); }
+/* El espaciado entre letras deja un espacio extra al final: el mismo espacio al principio la deja bien centrada */
+.firma { font-family: var(--f-sans); font-size: 13px; letter-spacing: .26em; padding-left: .26em; text-transform: uppercase; color: var(--tinta-suave); }
+
+/* ---------- Animaciones ---------- */
+.abierta .arte { animation: aparecer-arte 2s cubic-bezier(.2, .7, .2, 1) both; }
+/* Los nombres se escriben letra por letra, como con pluma: primero el contorno de cada letra y enseguida la tinta.
+   La pluma avanza pareja de izquierda a derecha; la frase, la fecha y el botón llegan después */
+.nombres { --inicio: .6s; }
+.abierta .nombres .nombres-svg path, .te-esperamos.visto .nombres-svg path {
+  animation: trazo .55s cubic-bezier(.45, .05, .55, .95) calc(var(--inicio) + var(--t)) both, entintar .45s ease calc(var(--inicio) + var(--t) + .35s) both;
+}
+/* La firma del cierre se escribe con la misma pluma cuando el invitado llega al final */
+.te-esperamos { --inicio: .35s; }
+.te-esperamos.espera:not(.visto) .nombres-svg path { fill-opacity: 0; }
+.abierta .hero .sube { animation: subir .9s cubic-bezier(.2, .7, .2, 1) both; animation-delay: var(--d, 0s); }
+.rv.visto { animation: subir .9s cubic-bezier(.2, .7, .2, 1) backwards; }
+@keyframes aparecer-arte { from { opacity: 0; transform: scale(1.06); filter: blur(5px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes trazo { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+/* Al entintarse, el trazo de la pluma se afina hasta desaparecer y queda la letra tal cual */
+@keyframes entintar { from { fill-opacity: 0; stroke-width: 28px; } to { fill-opacity: 1; stroke-width: 0; } }
+@keyframes subir { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+/* Al llegar a cada parte: la rama se agranda desde chiquita hasta su tamaño.
+   La cuenta regresiva hace lo mismo: primero "Faltan" y después los números, uno tras otro */
+.rama.espera, #t-cuenta.espera, .cuenta-grid.espera .unidad { opacity: 0; transform: scale(.2); }
+.rama.espera.visto { animation: agrandar 1.2s cubic-bezier(.3, .7, .35, 1) both; }
+#t-cuenta.espera.visto { animation: agrandar 1.2s cubic-bezier(.3, .7, .35, 1) .1s both; }
+.cuenta-grid.espera.visto .unidad { animation: agrandar 1.2s cubic-bezier(.3, .7, .35, 1) calc(.2s + var(--i) * .12s) both; }
+/* "Dónde y cuándo": el título y la fecha se agrandan igual */
+.agranda.espera { opacity: 0; transform: scale(.2); }
+.agranda.espera.visto { animation: agrandar 1.2s cubic-bezier(.3, .7, .35, 1) var(--d, 0s) both; }
+@keyframes agrandar { 0% { opacity: 0; transform: scale(.2); } 35% { opacity: 1; } 100% { opacity: 1; transform: none; } }
+/* El sello baja, se aplasta sobre el papel y queda apoyado */
+/* Cada vez que se abre la hoja, el sello se estampa cuando la tarjeta ya llegó */
+.tarjeta-sello.estampa { animation: estampar .85s cubic-bezier(.3, .7, .4, 1) 1.05s both; }
+@keyframes estampar {
+  0% { opacity: 0; transform: translate(-50%, -50%) translateY(-28px) scale(1.45) rotate(-14deg); filter: drop-shadow(0 18px 12px rgba(58, 23, 15, .28)); }
+  55% { opacity: 1; transform: translate(-50%, -50%) scale(.92) rotate(2deg); filter: drop-shadow(0 1px 1px rgba(58, 23, 15, .3)); }
+  78% { transform: translate(-50%, -50%) scale(1.03) rotate(-.6deg); }
+  100% { opacity: 1; transform: translate(-50%, -50%); filter: none; }
+}
+@keyframes tic { from { opacity: 0; transform: translateY(-35%); } to { opacity: 1; transform: none; } }
+@keyframes entra-adelante { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+@keyframes entra-atras { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+@keyframes elegir { 0% { transform: scale(.94); } 100% { transform: scale(1); } }
+
+@media (max-width: 460px) {
+  .titulo-paso { font-size: 27px; }
+  .lista-resumen { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .lista-resumen dd + dt { margin-top: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; transition-delay: 0s !important; }
+}
+</style>
+</head>
+<body>
+
+<div id="sobre" class="sobre" hidden>
+  <div class="sobre-caja">
+    <p class="ojo">Tenés una invitación</p>
+    <button class="env" type="button" id="env" aria-label="Abrir la invitación">
+      <span class="env-sombra" aria-hidden="true"></span>
+      <span class="env-fondo" aria-hidden="true"></span>
+      <span class="env-carta" aria-hidden="true">
+        <span class="carta-arte"></span>
+        <span class="carta-pie">
+          <span class="carta-ini">Nati &amp; Mati</span>
+          <span class="carta-txt">18 · 12 · 2026</span>
+        </span>
+      </span>
+      <svg class="env-bolsillo" viewBox="0 0 142 100" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="g-lado-izq" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E7D7BB"></stop><stop offset="1" stop-color="#DDCAA9"></stop></linearGradient>
+          <linearGradient id="g-lado-der" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#E3D2B5"></stop><stop offset="1" stop-color="#D8C4A2"></stop></linearGradient>
+          <linearGradient id="g-base" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ECDEC5"></stop><stop offset="1" stop-color="#E1CFB1"></stop></linearGradient>
+          <filter id="f-sombra-base" x="-10%" y="-30%" width="120%" height="150%"><feDropShadow dx="0" dy="-0.6" stdDeviation="1" flood-color="#5A3E22" flood-opacity=".22"></feDropShadow></filter>
+          <filter id="f-grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.36  0 0 0 0 0.26  0 0 0 0 0.16  0 0 0 0.2 0"></feColorMatrix></filter>
+          <clipPath id="c-bolsillo"><path d="M0,0 L65,53 Q71,57.5 77,53 L142,0 V100 H0 Z"></path></clipPath>
+        </defs>
+        <path d="M0,0 L65,53.5 Q68.5,56.2 65,59 L0,100 Z" fill="url(#g-lado-izq)"></path>
+        <path d="M142,0 L77,53.5 Q73.5,56.2 77,59 L142,100 Z" fill="url(#g-lado-der)"></path>
+        <path d="M0,100 L62,51 Q71,44 80,51 L142,100 Z" fill="url(#g-base)" filter="url(#f-sombra-base)"></path>
+        <rect width="142" height="100" filter="url(#f-grano)" clip-path="url(#c-bolsillo)"></rect>
+        <path d="M0,0 L65,53.5 M142,0 L77,53.5" fill="none" stroke="#CDB794" stroke-width=".3"></path>
+      </svg>
+      <span class="env-solapa" aria-hidden="true">
+        <svg class="solapa-cara solapa-frente" viewBox="0 0 142 58" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="g-solapa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCC7A3"></stop><stop offset="1" stop-color="#E8D9BE"></stop></linearGradient>
+            <filter id="f-sombra-solapa" x="-5%" y="-10%" width="110%" height="150%"><feDropShadow dx="0" dy="1.6" stdDeviation="1.4" flood-color="#5A3E22" flood-opacity=".28"></feDropShadow></filter>
+            <clipPath id="c-solapa"><path d="M0,0 H142 L78,52 Q71,57.5 64,52 Z"></path></clipPath>
+          </defs>
+          <path d="M0,0 H142 L78,52 Q71,57.5 64,52 Z" fill="url(#g-solapa)" filter="url(#f-sombra-solapa)"></path>
+          <rect width="142" height="58" filter="url(#f-grano)" clip-path="url(#c-solapa)"></rect>
+          <path d="M0,0 L64,52 Q71,57.5 78,52 L142,0" fill="none" stroke="#C7B08B" stroke-width=".35"></path>
+        </svg>
+        <svg class="solapa-cara solapa-dorso" viewBox="0 0 142 58" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="g-solapa-dorso" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#18222C" stop-opacity=".34"></stop><stop offset=".22" stop-color="#18222C" stop-opacity=".08"></stop><stop offset=".7" stop-color="#FFFFFF" stop-opacity="0"></stop><stop offset="1" stop-color="#FFFFFF" stop-opacity=".08"></stop></linearGradient>
+            <clipPath id="c-solapa-dorso"><path d="M6,58 H136 L77.5,9.5 Q71,4.6 64.5,9.5 Z"></path></clipPath>
+          </defs>
+          <path d="M0,58 H142 L78,6 Q71,0.5 64,6 Z" fill="#E3D1B3"></path>
+          <image href="forro.jpg" x="-24" y="-1" width="190" height="60" preserveAspectRatio="none" clip-path="url(#c-solapa-dorso)"></image>
+          <path d="M6,58 H136 L77.5,9.5 Q71,4.6 64.5,9.5 Z" fill="url(#g-solapa-dorso)"></path>
+          <path d="M8,57.3 H134" stroke="#FFFFFF" stroke-opacity=".16" stroke-width=".5"></path>
+          <path d="M6,58 L64.5,9.5 Q71,4.6 77.5,9.5 L136,58" fill="none" stroke="#18222C" stroke-opacity=".4" stroke-width=".35"></path>
+        </svg>
+      </span>
+      <svg class="env-sello" viewBox="0 0 90 90" aria-hidden="true">
+        <defs>
+          <radialGradient id="g-lacre" cx="40%" cy="34%" r="72%"><stop offset="0" stop-color="#D47766"></stop><stop offset=".5" stop-color="#A9483C"></stop><stop offset="1" stop-color="#74281F"></stop></radialGradient>
+          <radialGradient id="g-lacre-centro" cx="60%" cy="64%" r="75%"><stop offset="0" stop-color="#B85649"></stop><stop offset="1" stop-color="#8A372C"></stop></radialGradient>
+          <filter id="f-lacre" x="-25%" y="-25%" width="150%" height="150%">
+            <feTurbulence type="fractalNoise" baseFrequency=".07" numOctaves="2" seed="11" result="t"></feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="t" scale="8" xChannelSelector="R" yChannelSelector="G" result="d"></feDisplacementMap>
+            <feDropShadow in="d" dx="0" dy="2" stdDeviation="1.6" flood-color="#3A170F" flood-opacity=".38"></feDropShadow>
+          </filter>
+          <g id="sello-dibujo">
+            <circle cx="45" cy="45" r="32" fill="url(#g-lacre)" filter="url(#f-lacre)"></circle>
+            <circle cx="45" cy="45" r="22.5" fill="url(#g-lacre-centro)"></circle>
+            <circle cx="45" cy="45" r="22.5" fill="none" stroke="#5E2018" stroke-opacity=".4" stroke-width="1.6"></circle>
+            <circle cx="45" cy="45" r="19.5" fill="none" stroke="#E7A394" stroke-opacity=".28" stroke-width=".6"></circle>
+            <path d="M26.5,37 A20,20 0 0 1 50,23.5" fill="none" stroke="#F3B9AC" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round"></path>
+            <text x="45.7" y="52.7" text-anchor="middle" font-family="'Pinyon Script', cursive" font-size="20" fill="#5E2018" fill-opacity=".75">N&amp;M</text>
+            <text x="44.5" y="51.5" text-anchor="middle" font-family="'Pinyon Script', cursive" font-size="20" fill="#EFA898" fill-opacity=".55">N&amp;M</text>
+            <text x="45" y="52" text-anchor="middle" font-family="'Pinyon Script', cursive" font-size="20" fill="#A14336">N&amp;M</text>
+          </g>
+          <clipPath id="c-sello-izq"><path d="M-10,-10 H47 L43,28 L49,50 L44,100 H-10 Z"></path></clipPath>
+          <clipPath id="c-sello-der"><path d="M100,-10 H47 L43,28 L49,50 L44,100 H100 Z"></path></clipPath>
+        </defs>
+        <g class="sello-ramita"><image href="ramita-sello.webp" x="-22.5" y="-22.5" width="135" height="135"></image></g>
+        <g class="sello-mitad sello-izq" clip-path="url(#c-sello-izq)"><use href="#sello-dibujo"></use></g>
+        <g class="sello-mitad sello-der" clip-path="url(#c-sello-der)"><use href="#sello-dibujo"></use></g>
+      </svg>
+    </button>
+    <p class="sobre-nombres">Nati <span class="amp">&amp;</span> Mati</p>
+    <button class="btn" type="button" id="abrir">Abrir invitación</button>
+  </div>
+</div>
+<script>
+  try { document.getElementById('sobre').hidden = false; document.body.classList.add('con-sobre'); } catch (e) {}
+</script>
+
+<canvas id="petalos" class="petalos" aria-hidden="true"></canvas>
+
+<audio id="musica" src="musica.mp3" loop preload="none"></audio>
+<button class="musica" id="btn-musica" type="button" aria-label="Pausar la música" aria-pressed="false" hidden>
+  <span class="barras" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+</button>
+
+<!-- Una flechita fina que invita a bajar; se va apenas se empieza a bajar -->
+<div class="flecha-bajar" id="flecha-bajar" aria-hidden="true">
+  <svg viewBox="0 0 24 24"><path d="M6.5 9.5 12 15l5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+
+<main class="pagina" id="contenido" tabindex="-1">
+  <header class="hero">
+    <div class="arte-marco">
+      <img class="arte" src="acuarela.jpg" width="1024" height="1436" alt="Acuarela del arco de mármol con la estatua en lo alto y, al fondo, la iglesia de ladrillo con su torre y campanario entre palmeras">
+      <img class="novios" src="novios.webp" width="600" height="805" alt="Acuarela de los novios, ella con su ramo y él de traje gris, mirándose bajo el arco">
+    </div>
+    <div class="hero-texto">
+      <h1 class="nombres"><span class="solo-lectores">Natalia &amp; Matías</span><svg class="nombres-svg" viewBox="0 -1637 12934 2294" aria-hidden="true"><path pathLength="1" style="--t: 0.00s" d="M954 19Q940 19 940 5Q940 -3 948 -8Q952 -12 957.5 -16.5Q963 -21 967 -26Q992 -57 1012.0 -100.5Q1032 -144 1054.5 -213.0Q1077 -282 1108 -388Q1161 -565 1260.5 -783.0Q1360 -1001 1481 -1209Q1405 -1114 1341.0 -1034.5Q1277 -955 1213.0 -878.0Q1149 -801 1074.5 -715.5Q1000 -630 902 -522Q668 -267 497.0 -132.5Q326 2 201 2Q99 2 49.5 -38.0Q0 -78 0 -133Q0 -178 31.0 -197.5Q62 -217 93 -217Q110 -217 127.0 -206.0Q144 -195 144 -171Q144 -152 127.0 -136.5Q110 -121 88 -121Q75 -121 62.5 -123.0Q50 -125 40 -131V-125Q40 -82 78.5 -53.5Q117 -25 199 -25Q261 -25 356.5 -76.5Q452 -128 589.0 -249.0Q726 -370 911 -578Q1225 -932 1390.5 -1138.0Q1556 -1344 1572 -1368Q1590 -1390 1597 -1390Q1606 -1390 1606 -1381Q1606 -1375 1602 -1368L1588 -1342Q1563 -1300 1549.0 -1261.5Q1535 -1223 1523 -1181Q1508 -1129 1493.5 -1073.5Q1479 -1018 1457.0 -946.5Q1435 -875 1398 -774Q1358 -664 1317.0 -578.0Q1276 -492 1224.5 -400.0Q1173 -308 1099 -178Q1146 -235 1225.0 -329.5Q1304 -424 1401.5 -537.5Q1499 -651 1604.0 -767.5Q1709 -884 1808 -986Q1985 -1170 2127.0 -1281.5Q2269 -1393 2389.5 -1444.0Q2510 -1495 2623 -1496Q2728 -1496 2782.0 -1449.5Q2836 -1403 2837 -1318Q2838 -1256 2793.5 -1180.5Q2749 -1105 2669.5 -1034.0Q2590 -963 2485 -912Q2448 -895 2429 -895Q2418 -895 2418 -902Q2418 -910 2435 -918Q2516 -949 2594.0 -1010.0Q2672 -1071 2723.0 -1147.5Q2774 -1224 2774 -1301Q2774 -1380 2731.5 -1423.5Q2689 -1467 2612 -1467Q2500 -1467 2368.5 -1403.0Q2237 -1339 2073.0 -1199.0Q1909 -1059 1700 -830Q1534 -648 1399.0 -489.5Q1264 -331 1165.5 -212.0Q1067 -93 1010 -28Q984 3 972.0 11.0Q960 19 954 19ZM508 -815Q431 -815 363.0 -845.0Q295 -875 253.5 -936.5Q212 -998 212 -1091Q212 -1185 269.0 -1260.5Q326 -1336 427.5 -1380.0Q529 -1424 662 -1424Q735 -1424 800.0 -1413.5Q865 -1403 943 -1371Q994 -1350 1039.0 -1328.5Q1084 -1307 1141 -1281Q1175 -1267 1211.0 -1258.0Q1247 -1249 1280 -1249Q1317 -1249 1356.5 -1264.0Q1396 -1279 1424 -1303Q1441 -1319 1447 -1319Q1455 -1319 1455 -1311Q1455 -1303 1441 -1288Q1414 -1262 1371.0 -1241.5Q1328 -1221 1283.5 -1209.5Q1239 -1198 1208 -1198Q1146 -1198 1065.0 -1220.5Q984 -1243 922 -1280Q843 -1326 789.5 -1348.0Q736 -1370 695.0 -1377.5Q654 -1385 612 -1385Q513 -1385 429.0 -1346.0Q345 -1307 294.5 -1239.0Q244 -1171 244 -1085Q244 -979 315.0 -909.0Q386 -839 504 -839Q573 -839 639.0 -868.5Q705 -898 748.5 -952.0Q792 -1006 792 -1081Q792 -1121 765 -1150Q758 -1142 748.5 -1135.5Q739 -1129 726 -1129Q707 -1129 692.0 -1141.5Q677 -1154 677 -1174Q677 -1191 689.5 -1205.0Q702 -1219 726 -1219Q763 -1219 793.0 -1182.5Q823 -1146 823 -1085Q823 -1004 777.0 -943.5Q731 -883 659.0 -849.0Q587 -815 508 -815Z"></path><path pathLength="1" style="--t: 0.21s" d="M1586 2Q1522 2 1492.5 -33.0Q1463 -68 1463 -129Q1463 -196 1491.5 -272.0Q1520 -348 1586 -423Q1721 -580 1838.5 -632.5Q1956 -685 2059 -685Q2111 -685 2147.0 -663.0Q2183 -641 2183 -603Q2183 -574 2171 -544Q2203 -582 2225.5 -610.5Q2248 -639 2269 -665Q2295 -657 2329 -657Q2343 -657 2367.0 -658.0Q2391 -659 2404 -661L2067 -255Q2003 -179 1975.0 -131.5Q1947 -84 1947 -58Q1947 -26 1978 -26Q2032 -26 2090.0 -57.5Q2148 -89 2204.0 -138.5Q2260 -188 2309.0 -241.5Q2358 -295 2395.5 -340.5Q2433 -386 2453 -408L2473 -391Q2451 -366 2411.0 -319.0Q2371 -272 2319.5 -217.0Q2268 -162 2208.5 -112.0Q2149 -62 2086.5 -30.0Q2024 2 1963 2Q1863 2 1863 -60Q1863 -83 1871.5 -106.5Q1880 -130 1906.0 -167.5Q1932 -205 1984 -268L1974 -272Q1852 -122 1748.5 -60.0Q1645 2 1586 2ZM1590 -28Q1654 -28 1759.0 -102.5Q1864 -177 2011 -351Q2035 -380 2055.5 -405.0Q2076 -430 2095 -452Q2118 -487 2136.5 -525.0Q2155 -563 2155 -594Q2155 -625 2133.0 -639.5Q2111 -654 2085 -654Q2036 -654 1926.5 -583.5Q1817 -513 1686 -358Q1611 -268 1578.0 -198.0Q1545 -128 1545 -80Q1545 -28 1590 -28Z"></path><path pathLength="1" style="--t: 0.33s" d="M2381 2Q2326 2 2298.5 -20.0Q2271 -42 2271 -76Q2271 -103 2278.0 -129.5Q2285 -156 2308.0 -197.0Q2331 -238 2378.0 -307.5Q2425 -377 2505 -490L2763 -853H2684Q2654 -853 2654 -866Q2654 -882 2692 -882H2783L2968 -1142Q2981 -1140 3002.5 -1138.5Q3024 -1137 3064 -1138Q3084 -1138 3107 -1142L2914 -882H3172Q3200 -882 3200 -868Q3200 -853 3175 -853H2892L2628 -497Q2534 -371 2477.0 -290.0Q2420 -209 2390.5 -162.0Q2361 -115 2350.5 -92.0Q2340 -69 2340 -58Q2340 -28 2390 -26Q2459 -27 2532.5 -71.5Q2606 -116 2674.0 -180.5Q2742 -245 2796.0 -307.5Q2850 -370 2880 -406L2902 -389Q2873 -355 2817.0 -291.0Q2761 -227 2688.5 -159.5Q2616 -92 2537.0 -45.0Q2458 2 2381 2Z"></path><path pathLength="1" style="--t: 0.40s" d="M2871 2Q2807 2 2777.5 -33.0Q2748 -68 2748 -129Q2748 -196 2776.5 -272.0Q2805 -348 2871 -423Q3006 -580 3123.5 -632.5Q3241 -685 3344 -685Q3396 -685 3432.0 -663.0Q3468 -641 3468 -603Q3468 -574 3456 -544Q3488 -582 3510.5 -610.5Q3533 -639 3554 -665Q3580 -657 3614 -657Q3628 -657 3652.0 -658.0Q3676 -659 3689 -661L3352 -255Q3288 -179 3260.0 -131.5Q3232 -84 3232 -58Q3232 -26 3263 -26Q3317 -26 3375.0 -57.5Q3433 -89 3489.0 -138.5Q3545 -188 3594.0 -241.5Q3643 -295 3680.5 -340.5Q3718 -386 3738 -408L3758 -391Q3736 -366 3696.0 -319.0Q3656 -272 3604.5 -217.0Q3553 -162 3493.5 -112.0Q3434 -62 3371.5 -30.0Q3309 2 3248 2Q3148 2 3148 -60Q3148 -83 3156.5 -106.5Q3165 -130 3191.0 -167.5Q3217 -205 3269 -268L3259 -272Q3137 -122 3033.5 -60.0Q2930 2 2871 2ZM2875 -28Q2939 -28 3044.0 -102.5Q3149 -177 3296 -351Q3320 -380 3340.5 -405.0Q3361 -430 3380 -452Q3403 -487 3421.5 -525.0Q3440 -563 3440 -594Q3440 -625 3418.0 -639.5Q3396 -654 3370 -654Q3321 -654 3211.5 -583.5Q3102 -513 2971 -358Q2896 -268 2863.0 -198.0Q2830 -128 2830 -80Q2830 -28 2875 -28Z"></path><path pathLength="1" style="--t: 0.52s" d="M3664 2Q3622 2 3594.5 -21.5Q3567 -45 3567 -79Q3567 -106 3573.5 -131.5Q3580 -157 3602.5 -197.5Q3625 -238 3671.0 -307.0Q3717 -376 3796 -490L4569 -1595Q4583 -1594 4604.5 -1592.0Q4626 -1590 4666 -1591Q4674 -1591 4684.5 -1592.5Q4695 -1594 4708 -1595L3886 -454Q3796 -328 3745.0 -254.5Q3694 -181 3670.0 -142.5Q3646 -104 3640.0 -87.5Q3634 -71 3634 -59Q3634 -26 3681 -26Q3740 -26 3805.5 -61.0Q3871 -96 3935.0 -148.5Q3999 -201 4053.0 -256.0Q4107 -311 4144.5 -353.0Q4182 -395 4194 -406L4214 -389Q4201 -376 4162.0 -333.0Q4123 -290 4066.0 -233.5Q4009 -177 3941.5 -123.0Q3874 -69 3802.5 -33.5Q3731 2 3664 2Z"></path><path pathLength="1" style="--t: 0.59s" d="M4647 -876Q4619 -876 4602.5 -893.5Q4586 -911 4586 -938Q4586 -973 4615.5 -1002.5Q4645 -1032 4686 -1032Q4714 -1032 4730.5 -1013.5Q4747 -995 4747 -969Q4747 -932 4715.5 -904.0Q4684 -876 4647 -876ZM4136 2Q4075 2 4037.5 -20.5Q4000 -43 4000 -81Q4000 -111 4015.0 -150.5Q4030 -190 4072.5 -254.0Q4115 -318 4196.5 -420.5Q4278 -523 4411 -678Q4420 -677 4454.0 -676.0Q4488 -675 4507 -675Q4524 -675 4532.5 -675.5Q4541 -676 4549 -677Q4403 -505 4310.5 -394.0Q4218 -283 4168.0 -217.0Q4118 -151 4099.0 -116.0Q4080 -81 4080 -60Q4080 -34 4108.0 -30.0Q4136 -26 4153 -26Q4207 -26 4271.0 -62.5Q4335 -99 4398.5 -153.5Q4462 -208 4516.5 -264.0Q4571 -320 4606.0 -360.5Q4641 -401 4647 -407L4667 -389Q4656 -377 4619.0 -334.0Q4582 -291 4527.0 -234.5Q4472 -178 4406.5 -124.0Q4341 -70 4271.5 -34.0Q4202 2 4136 2Z"></path><path pathLength="1" style="--t: 0.66s" d="M4637 2Q4573 2 4543.5 -33.0Q4514 -68 4514 -129Q4514 -196 4542.5 -272.0Q4571 -348 4637 -423Q4772 -580 4889.5 -632.5Q5007 -685 5110 -685Q5162 -685 5198.0 -663.0Q5234 -641 5234 -603Q5234 -574 5222 -544Q5254 -582 5276.5 -610.5Q5299 -639 5320 -665Q5346 -657 5380 -657Q5394 -657 5418.0 -658.0Q5442 -659 5455 -661L5118 -255Q5054 -179 5026.0 -131.5Q4998 -84 4998 -58Q4998 -26 5029 -26Q5083 -26 5141.0 -57.5Q5199 -89 5255.0 -138.5Q5311 -188 5360.0 -241.5Q5409 -295 5446.5 -340.5Q5484 -386 5504 -408L5524 -391Q5502 -366 5462.0 -319.0Q5422 -272 5370.5 -217.0Q5319 -162 5259.5 -112.0Q5200 -62 5137.5 -30.0Q5075 2 5014 2Q4914 2 4914 -60Q4914 -83 4922.5 -106.5Q4931 -130 4957.0 -167.5Q4983 -205 5035 -268L5025 -272Q4903 -122 4799.5 -60.0Q4696 2 4637 2ZM4641 -28Q4705 -28 4810.0 -102.5Q4915 -177 5062 -351Q5086 -380 5106.5 -405.0Q5127 -430 5146 -452Q5169 -487 5187.5 -525.0Q5206 -563 5206 -594Q5206 -625 5184.0 -639.5Q5162 -654 5136 -654Q5087 -654 4977.5 -583.5Q4868 -513 4737 -358Q4662 -268 4629.0 -198.0Q4596 -128 4596 -80Q4596 -28 4641 -28Z"></path><path class="amp" pathLength="1" style="--t: 0.93s" d="M6574 -18Q6559 -21 6531.5 -22.5Q6504 -24 6483 -24Q6472 -24 6454.5 -23.0Q6437 -22 6413 -19Q6436 -56 6457.0 -91.0Q6478 -126 6497 -159Q6420 -221 6371.5 -314.0Q6323 -407 6323 -513Q6323 -627 6378.0 -703.0Q6433 -779 6515 -779Q6574 -779 6623.5 -723.5Q6673 -668 6673 -564Q6673 -507 6643.0 -415.0Q6613 -323 6563 -224Q6691 -422 6803.0 -562.0Q6915 -702 7012.5 -803.0Q7110 -904 7196 -984Q7213 -1000 7224 -1000Q7236 -1000 7236 -991Q7236 -984 7204 -953Q7101 -853 6996.0 -720.0Q6891 -587 6794.5 -434.0Q6698 -281 6620 -119Q6683 -93 6753 -93Q6880 -93 6975 -174Q7016 -211 7040.5 -257.0Q7065 -303 7065 -353Q7065 -356 7063 -368Q7023 -370 7023 -404Q7023 -415 7032.0 -424.0Q7041 -433 7054 -433Q7100 -433 7100 -367Q7100 -306 7070.5 -249.5Q7041 -193 6991 -152Q6886 -66 6747 -66Q6678 -66 6608 -94ZM6512 -188Q6580 -313 6611.5 -410.5Q6643 -508 6643 -575Q6643 -652 6606.5 -695.5Q6570 -739 6526 -739Q6490 -739 6456.5 -707.0Q6423 -675 6401.5 -623.0Q6380 -571 6380 -511Q6380 -413 6415.5 -329.5Q6451 -246 6512 -188Z"></path><path pathLength="1" style="--t: 1.15s" d="M9316 2Q9255 2 9225.0 -25.5Q9195 -53 9195 -93Q9195 -122 9221.0 -185.0Q9247 -248 9329 -372Q9425 -515 9545.0 -660.5Q9665 -806 9790.5 -943.0Q9916 -1080 10032.5 -1199.0Q10149 -1318 10239 -1407Q10194 -1375 10139.0 -1329.0Q10084 -1283 10004.0 -1210.5Q9924 -1138 9807.0 -1028.0Q9690 -918 9522 -757Q9438 -677 9278.5 -512.0Q9119 -347 8904 -96Q8852 -35 8832.5 -21.0Q8813 -7 8802 -7Q8795 -7 8787.5 -17.0Q8780 -27 8780 -49Q8780 -133 8838.0 -269.5Q8896 -406 9002.5 -578.5Q9109 -751 9255.0 -944.0Q9401 -1137 9576 -1335Q9520 -1284 9371.5 -1130.0Q9223 -976 8960 -687Q8732 -437 8550.0 -283.5Q8368 -130 8228 -59Q8108 1 8016 1Q7922 1 7875.0 -35.0Q7828 -71 7828 -127Q7828 -173 7859.0 -195.5Q7890 -218 7921 -218Q7937 -218 7954.5 -207.0Q7972 -196 7972 -172Q7972 -153 7955.0 -137.5Q7938 -122 7915 -122Q7902 -122 7889.5 -124.0Q7877 -126 7867 -133Q7867 -129 7866.5 -126.0Q7866 -123 7866 -121Q7866 -78 7904.0 -52.0Q7942 -26 8015 -26Q8089 -26 8185.5 -70.0Q8282 -114 8413.5 -216.5Q8545 -319 8723.0 -493.0Q8901 -667 9138 -926Q9337 -1143 9464.5 -1264.5Q9592 -1386 9656.5 -1435.0Q9721 -1484 9730 -1484Q9737 -1484 9747.0 -1481.5Q9757 -1479 9757 -1474Q9757 -1468 9742 -1455Q9732 -1446 9717.5 -1433.0Q9703 -1420 9682 -1399Q9656 -1371 9602.5 -1295.5Q9549 -1220 9478.5 -1113.5Q9408 -1007 9328.5 -883.0Q9249 -759 9171.0 -633.0Q9093 -507 9024.5 -394.0Q8956 -281 8906.5 -194.5Q8857 -108 8836 -65Q8945 -191 9033.5 -291.0Q9122 -391 9203.5 -478.5Q9285 -566 9370.5 -653.0Q9456 -740 9558.0 -838.5Q9660 -937 9790 -1060Q9963 -1221 10078.5 -1314.5Q10194 -1408 10263.0 -1447.5Q10332 -1487 10363 -1487Q10373 -1487 10373 -1479Q10373 -1472 10347.0 -1454.0Q10321 -1436 10291 -1410Q10192 -1323 10076.5 -1187.5Q9961 -1052 9840.0 -891.0Q9719 -730 9601.0 -564.0Q9483 -398 9379 -250Q9332 -181 9309.5 -145.5Q9287 -110 9281.0 -94.5Q9275 -79 9275 -67Q9275 -25 9333 -25Q9362 -25 9411.5 -39.5Q9461 -54 9515.0 -81.5Q9569 -109 9609 -148Q9614 -146 9614 -135Q9614 -120 9609 -112Q9566 -76 9510.0 -50.5Q9454 -25 9402.0 -11.5Q9350 2 9316 2Z"></path><path pathLength="1" style="--t: 1.43s" d="M9846 2Q9782 2 9752.5 -33.0Q9723 -68 9723 -129Q9723 -196 9751.5 -272.0Q9780 -348 9846 -423Q9981 -580 10098.5 -632.5Q10216 -685 10319 -685Q10371 -685 10407.0 -663.0Q10443 -641 10443 -603Q10443 -574 10431 -544Q10463 -582 10485.5 -610.5Q10508 -639 10529 -665Q10555 -657 10589 -657Q10603 -657 10627.0 -658.0Q10651 -659 10664 -661L10327 -255Q10263 -179 10235.0 -131.5Q10207 -84 10207 -58Q10207 -26 10238 -26Q10292 -26 10350.0 -57.5Q10408 -89 10464.0 -138.5Q10520 -188 10569.0 -241.5Q10618 -295 10655.5 -340.5Q10693 -386 10713 -408L10733 -391Q10711 -366 10671.0 -319.0Q10631 -272 10579.5 -217.0Q10528 -162 10468.5 -112.0Q10409 -62 10346.5 -30.0Q10284 2 10223 2Q10123 2 10123 -60Q10123 -83 10131.5 -106.5Q10140 -130 10166.0 -167.5Q10192 -205 10244 -268L10234 -272Q10112 -122 10008.5 -60.0Q9905 2 9846 2ZM9850 -28Q9914 -28 10019.0 -102.5Q10124 -177 10271 -351Q10295 -380 10315.5 -405.0Q10336 -430 10355 -452Q10378 -487 10396.5 -525.0Q10415 -563 10415 -594Q10415 -625 10393.0 -639.5Q10371 -654 10345 -654Q10296 -654 10186.5 -583.5Q10077 -513 9946 -358Q9871 -268 9838.0 -198.0Q9805 -128 9805 -80Q9805 -28 9850 -28Z"></path><path pathLength="1" style="--t: 1.55s" d="M10641 2Q10586 2 10558.5 -20.0Q10531 -42 10531 -76Q10531 -103 10538.0 -129.5Q10545 -156 10568.0 -197.0Q10591 -238 10638.0 -307.5Q10685 -377 10765 -490L11023 -853H10944Q10914 -853 10914 -866Q10914 -882 10952 -882H11043L11228 -1142Q11241 -1140 11262.5 -1138.5Q11284 -1137 11324 -1138Q11344 -1138 11367 -1142L11174 -882H11432Q11460 -882 11460 -868Q11460 -853 11435 -853H11152L10888 -497Q10794 -371 10737.0 -290.0Q10680 -209 10650.5 -162.0Q10621 -115 10610.5 -92.0Q10600 -69 10600 -58Q10600 -28 10650 -26Q10719 -27 10792.5 -71.5Q10866 -116 10934.0 -180.5Q11002 -245 11056.0 -307.5Q11110 -370 11140 -406L11162 -389Q11133 -355 11077.0 -291.0Q11021 -227 10948.5 -159.5Q10876 -92 10797.0 -45.0Q10718 2 10641 2Z"></path><path pathLength="1" style="--t: 1.61s" d="M11084 2Q11023 2 10985.5 -20.5Q10948 -43 10948 -81Q10948 -111 10963.0 -150.5Q10978 -190 11020.5 -254.0Q11063 -318 11144.5 -420.5Q11226 -523 11359 -678Q11368 -677 11402.0 -676.0Q11436 -675 11455 -675Q11472 -675 11480.5 -675.5Q11489 -676 11497 -677Q11351 -505 11258.5 -394.0Q11166 -283 11116.0 -217.0Q11066 -151 11047.0 -116.0Q11028 -81 11028 -60Q11028 -34 11056.0 -30.0Q11084 -26 11101 -26Q11155 -26 11219.0 -62.5Q11283 -99 11346.5 -153.5Q11410 -208 11464.5 -264.0Q11519 -320 11554.0 -360.5Q11589 -401 11595 -407L11615 -389Q11604 -377 11567.0 -334.0Q11530 -291 11475.0 -234.5Q11420 -178 11354.5 -124.0Q11289 -70 11219.5 -34.0Q11150 2 11084 2ZM11590 -808Q11578 -808 11578 -818Q11578 -824 11584.0 -827.5Q11590 -831 11603 -840Q11632 -857 11668.0 -886.5Q11704 -916 11728 -954Q11742 -978 11751.0 -1010.0Q11760 -1042 11768 -1098Q11777 -1169 11821 -1169Q11864 -1169 11864 -1114Q11864 -1077 11834.5 -1025.5Q11805 -974 11754.5 -922.0Q11704 -870 11639 -831Q11602 -808 11590 -808Z"></path><path pathLength="1" style="--t: 1.68s" d="M11585 2Q11521 2 11491.5 -33.0Q11462 -68 11462 -129Q11462 -196 11490.5 -272.0Q11519 -348 11585 -423Q11720 -580 11837.5 -632.5Q11955 -685 12058 -685Q12110 -685 12146.0 -663.0Q12182 -641 12182 -603Q12182 -574 12170 -544Q12202 -582 12224.5 -610.5Q12247 -639 12268 -665Q12294 -657 12328 -657Q12342 -657 12366.0 -658.0Q12390 -659 12403 -661L12066 -255Q12002 -179 11974.0 -131.5Q11946 -84 11946 -58Q11946 -26 11977 -26Q12031 -26 12089.0 -57.5Q12147 -89 12203.0 -138.5Q12259 -188 12308.0 -241.5Q12357 -295 12394.5 -340.5Q12432 -386 12452 -408L12472 -391Q12450 -366 12410.0 -319.0Q12370 -272 12318.5 -217.0Q12267 -162 12207.5 -112.0Q12148 -62 12085.5 -30.0Q12023 2 11962 2Q11862 2 11862 -60Q11862 -83 11870.5 -106.5Q11879 -130 11905.0 -167.5Q11931 -205 11983 -268L11973 -272Q11851 -122 11747.5 -60.0Q11644 2 11585 2ZM11589 -28Q11653 -28 11758.0 -102.5Q11863 -177 12010 -351Q12034 -380 12054.5 -405.0Q12075 -430 12094 -452Q12117 -487 12135.5 -525.0Q12154 -563 12154 -594Q12154 -625 12132.0 -639.5Q12110 -654 12084 -654Q12035 -654 11925.5 -583.5Q11816 -513 11685 -358Q11610 -268 11577.0 -198.0Q11544 -128 11544 -80Q11544 -28 11589 -28Z"></path><path pathLength="1" style="--t: 1.79s" d="M12394 23Q12363 23 12314.0 15.0Q12265 7 12226.5 -19.0Q12188 -45 12188 -100Q12188 -150 12218.5 -182.5Q12249 -215 12286.0 -231.0Q12323 -247 12341 -247Q12382 -247 12382 -209Q12381 -193 12359.5 -179.5Q12338 -166 12312 -166Q12300 -166 12288.5 -174.5Q12277 -183 12270 -187Q12259 -176 12236.5 -154.5Q12214 -133 12214 -99Q12214 -61 12244.5 -42.5Q12275 -24 12313.0 -18.5Q12351 -13 12371 -13Q12413 -13 12476.0 -46.5Q12539 -80 12593.5 -159.0Q12648 -238 12664 -374Q12669 -422 12673.5 -507.0Q12678 -592 12705 -670Q12706 -673 12706 -679Q12668 -632 12624.0 -578.0Q12580 -524 12539.5 -474.0Q12499 -424 12470 -389Q12450 -365 12441.0 -358.0Q12432 -351 12433 -351Q12432 -351 12425.5 -350.5Q12419 -350 12415 -357Q12413 -362 12424.5 -376.0Q12436 -390 12449 -406Q12472 -432 12520.0 -489.0Q12568 -546 12621.5 -611.0Q12675 -676 12714 -726Q12720 -756 12732.0 -780.0Q12744 -804 12766 -804Q12806 -804 12806 -771Q12805 -752 12760 -700Q12733 -668 12731.0 -658.5Q12729 -649 12729 -634Q12728 -598 12736.5 -544.5Q12745 -491 12755.0 -432.5Q12765 -374 12768 -321Q12771 -242 12750 -184Q12766 -182 12777 -182Q12809 -182 12850.5 -211.0Q12892 -240 12933.0 -280.0Q12974 -320 13004.5 -356.0Q13035 -392 13045 -406L13067 -389Q13050 -371 13017.0 -333.5Q12984 -296 12942.0 -255.5Q12900 -215 12856.5 -186.5Q12813 -158 12774 -158Q12765 -158 12757.0 -158.5Q12749 -159 12741 -160Q12694 -56 12602.0 -16.5Q12510 23 12394 23Z"></path></svg></h1>
+      <p class="lead sube" style="--d: 3.4s">queremos que seas parte del comienzo de nuestra historia juntos</p>
+      <p class="fecha-grande sube" style="--d: 3.7s">Viernes 18 de diciembre de 2026</p>
+    </div>
+  </header>
+
+  <section class="cuenta rv" aria-labelledby="t-cuenta">
+    <img class="rama al-ver" src="rama-1.webp" width="670" height="129" alt="">
+    <h2 id="t-cuenta" class="ojo al-ver">Faltan</h2>
+    <div id="cuenta" class="cuenta-grid al-ver" role="timer">
+      <div class="unidad" style="--i: 0"><span class="num" id="cd-d">–</span><span class="lbl">días</span></div>
+      <div class="unidad" style="--i: 1"><span class="num" id="cd-h">–</span><span class="lbl">horas</span></div>
+      <div class="unidad" style="--i: 2"><span class="num" id="cd-m">–</span><span class="lbl">min</span></div>
+      <div class="unidad" style="--i: 3"><span class="num" id="cd-s">–</span><span class="lbl">seg</span></div>
+    </div>
+    <p id="llego" class="llego" hidden>¡Hoy es el gran día!</p>
+  </section>
+
+  <section class="lugares" aria-labelledby="t-lugares">
+    <img class="rama al-ver" src="rama-2.webp" width="652" height="129" alt="">
+    <h2 id="t-lugares" class="titulo al-ver agranda" style="--d: .1s">Dónde y cuándo</h2>
+    <p class="ojo lugares-fecha al-ver agranda" style="--d: .25s">Viernes 18 de diciembre</p>
+    <div class="lugares-grid">
+      <article class="lugar">
+        <img class="lugar-arte chico plana" src="iglesia.webp" width="560" height="747" alt="Acuarela del Santuario Nacional de María Auxiliadora visto a través del arco de entrada">
+        <h3>Ceremonia</h3>
+        <p class="detalle">19:00 h</p>
+        <p class="sitio">Santuario Nacional de María Auxiliadora<span class="dir">Av. Lezica 6375</span></p>
+        <a class="btn-linea chico" href="https://maps.app.goo.gl/kPSYms4JwHcHZjpC7" target="_blank" rel="noopener">Cómo llegar</a>
+      </article>
+      <article class="lugar">
+        <img class="lugar-arte plana" src="chacra.webp" width="640" height="429" alt="Acuarela de Chacra San José: la casa con techo de tejas, una enredadera violeta y el jardín">
+        <h3>Fiesta</h3>
+        <p class="detalle">A continuación</p>
+        <p class="sitio">Chacra San José<span class="dir">Cno. de la Redención 7095</span></p>
+        <a class="btn-linea chico" href="https://maps.app.goo.gl/ye5DgcywNNtm7GA38" target="_blank" rel="noopener">Cómo llegar</a>
+      </article>
+    </div>
+    <a class="btn lugares-confirmar" href="#confirmar">Confirmar asistencia</a>
+    <img class="lugar-arte salon-medio" src="salon.jpg" width="860" height="1147" alt="Acuarela del salón de Chacra San José: mesas largas con manteles a rayas, flores y velas, bajo lámparas de mimbre con guirnaldas verdes">
+  </section>
+
+  <section class="regalos rv" aria-labelledby="t-regalos" hidden>
+    <h2 id="t-regalos" class="titulo">Regalos</h2>
+    <p>Lo más lindo es que nos acompañes. Si además querés hacernos un regalo, podés transferir a esta cuenta.</p>
+    <div class="alias">
+      <span class="ojo">Alias</span>
+      <span class="alias-valor" id="alias">ALIAS-PENDIENTE</span>
+      <button type="button" class="btn-linea chico" id="copiar-alias">Copiar alias</button>
+    </div>
+  </section>
+
+  <footer class="cierre rv">
+    <img class="rama al-ver" src="rama-5.webp" width="652" height="129" alt="">
+    <p class="ojo">Te esperamos para celebrar juntos</p>
+    <p class="te-esperamos al-ver"><span class="solo-lectores">Natalia &amp; Matías</span><svg class="nombres-svg" viewBox="0 -1668 12934 2355" aria-hidden="true"><path pathLength="1" style="--t: 0.00s" d="M954 19Q940 19 940 5Q940 -3 948 -8Q952 -12 957.5 -16.5Q963 -21 967 -26Q992 -57 1012.0 -100.5Q1032 -144 1054.5 -213.0Q1077 -282 1108 -388Q1161 -565 1260.5 -783.0Q1360 -1001 1481 -1209Q1405 -1114 1341.0 -1034.5Q1277 -955 1213.0 -878.0Q1149 -801 1074.5 -715.5Q1000 -630 902 -522Q668 -267 497.0 -132.5Q326 2 201 2Q99 2 49.5 -38.0Q0 -78 0 -133Q0 -178 31.0 -197.5Q62 -217 93 -217Q110 -217 127.0 -206.0Q144 -195 144 -171Q144 -152 127.0 -136.5Q110 -121 88 -121Q75 -121 62.5 -123.0Q50 -125 40 -131V-125Q40 -82 78.5 -53.5Q117 -25 199 -25Q261 -25 356.5 -76.5Q452 -128 589.0 -249.0Q726 -370 911 -578Q1225 -932 1390.5 -1138.0Q1556 -1344 1572 -1368Q1590 -1390 1597 -1390Q1606 -1390 1606 -1381Q1606 -1375 1602 -1368L1588 -1342Q1563 -1300 1549.0 -1261.5Q1535 -1223 1523 -1181Q1508 -1129 1493.5 -1073.5Q1479 -1018 1457.0 -946.5Q1435 -875 1398 -774Q1358 -664 1317.0 -578.0Q1276 -492 1224.5 -400.0Q1173 -308 1099 -178Q1146 -235 1225.0 -329.5Q1304 -424 1401.5 -537.5Q1499 -651 1604.0 -767.5Q1709 -884 1808 -986Q1985 -1170 2127.0 -1281.5Q2269 -1393 2389.5 -1444.0Q2510 -1495 2623 -1496Q2728 -1496 2782.0 -1449.5Q2836 -1403 2837 -1318Q2838 -1256 2793.5 -1180.5Q2749 -1105 2669.5 -1034.0Q2590 -963 2485 -912Q2448 -895 2429 -895Q2418 -895 2418 -902Q2418 -910 2435 -918Q2516 -949 2594.0 -1010.0Q2672 -1071 2723.0 -1147.5Q2774 -1224 2774 -1301Q2774 -1380 2731.5 -1423.5Q2689 -1467 2612 -1467Q2500 -1467 2368.5 -1403.0Q2237 -1339 2073.0 -1199.0Q1909 -1059 1700 -830Q1534 -648 1399.0 -489.5Q1264 -331 1165.5 -212.0Q1067 -93 1010 -28Q984 3 972.0 11.0Q960 19 954 19ZM508 -815Q431 -815 363.0 -845.0Q295 -875 253.5 -936.5Q212 -998 212 -1091Q212 -1185 269.0 -1260.5Q326 -1336 427.5 -1380.0Q529 -1424 662 -1424Q735 -1424 800.0 -1413.5Q865 -1403 943 -1371Q994 -1350 1039.0 -1328.5Q1084 -1307 1141 -1281Q1175 -1267 1211.0 -1258.0Q1247 -1249 1280 -1249Q1317 -1249 1356.5 -1264.0Q1396 -1279 1424 -1303Q1441 -1319 1447 -1319Q1455 -1319 1455 -1311Q1455 -1303 1441 -1288Q1414 -1262 1371.0 -1241.5Q1328 -1221 1283.5 -1209.5Q1239 -1198 1208 -1198Q1146 -1198 1065.0 -1220.5Q984 -1243 922 -1280Q843 -1326 789.5 -1348.0Q736 -1370 695.0 -1377.5Q654 -1385 612 -1385Q513 -1385 429.0 -1346.0Q345 -1307 294.5 -1239.0Q244 -1171 244 -1085Q244 -979 315.0 -909.0Q386 -839 504 -839Q573 -839 639.0 -868.5Q705 -898 748.5 -952.0Q792 -1006 792 -1081Q792 -1121 765 -1150Q758 -1142 748.5 -1135.5Q739 -1129 726 -1129Q707 -1129 692.0 -1141.5Q677 -1154 677 -1174Q677 -1191 689.5 -1205.0Q702 -1219 726 -1219Q763 -1219 793.0 -1182.5Q823 -1146 823 -1085Q823 -1004 777.0 -943.5Q731 -883 659.0 -849.0Q587 -815 508 -815Z"></path><path pathLength="1" style="--t: 0.21s" d="M1586 2Q1522 2 1492.5 -33.0Q1463 -68 1463 -129Q1463 -196 1491.5 -272.0Q1520 -348 1586 -423Q1721 -580 1838.5 -632.5Q1956 -685 2059 -685Q2111 -685 2147.0 -663.0Q2183 -641 2183 -603Q2183 -574 2171 -544Q2203 -582 2225.5 -610.5Q2248 -639 2269 -665Q2295 -657 2329 -657Q2343 -657 2367.0 -658.0Q2391 -659 2404 -661L2067 -255Q2003 -179 1975.0 -131.5Q1947 -84 1947 -58Q1947 -26 1978 -26Q2032 -26 2090.0 -57.5Q2148 -89 2204.0 -138.5Q2260 -188 2309.0 -241.5Q2358 -295 2395.5 -340.5Q2433 -386 2453 -408L2473 -391Q2451 -366 2411.0 -319.0Q2371 -272 2319.5 -217.0Q2268 -162 2208.5 -112.0Q2149 -62 2086.5 -30.0Q2024 2 1963 2Q1863 2 1863 -60Q1863 -83 1871.5 -106.5Q1880 -130 1906.0 -167.5Q1932 -205 1984 -268L1974 -272Q1852 -122 1748.5 -60.0Q1645 2 1586 2ZM1590 -28Q1654 -28 1759.0 -102.5Q1864 -177 2011 -351Q2035 -380 2055.5 -405.0Q2076 -430 2095 -452Q2118 -487 2136.5 -525.0Q2155 -563 2155 -594Q2155 -625 2133.0 -639.5Q2111 -654 2085 -654Q2036 -654 1926.5 -583.5Q1817 -513 1686 -358Q1611 -268 1578.0 -198.0Q1545 -128 1545 -80Q1545 -28 1590 -28Z"></path><path pathLength="1" style="--t: 0.33s" d="M2381 2Q2326 2 2298.5 -20.0Q2271 -42 2271 -76Q2271 -103 2278.0 -129.5Q2285 -156 2308.0 -197.0Q2331 -238 2378.0 -307.5Q2425 -377 2505 -490L2763 -853H2684Q2654 -853 2654 -866Q2654 -882 2692 -882H2783L2968 -1142Q2981 -1140 3002.5 -1138.5Q3024 -1137 3064 -1138Q3084 -1138 3107 -1142L2914 -882H3172Q3200 -882 3200 -868Q3200 -853 3175 -853H2892L2628 -497Q2534 -371 2477.0 -290.0Q2420 -209 2390.5 -162.0Q2361 -115 2350.5 -92.0Q2340 -69 2340 -58Q2340 -28 2390 -26Q2459 -27 2532.5 -71.5Q2606 -116 2674.0 -180.5Q2742 -245 2796.0 -307.5Q2850 -370 2880 -406L2902 -389Q2873 -355 2817.0 -291.0Q2761 -227 2688.5 -159.5Q2616 -92 2537.0 -45.0Q2458 2 2381 2Z"></path><path pathLength="1" style="--t: 0.40s" d="M2871 2Q2807 2 2777.5 -33.0Q2748 -68 2748 -129Q2748 -196 2776.5 -272.0Q2805 -348 2871 -423Q3006 -580 3123.5 -632.5Q3241 -685 3344 -685Q3396 -685 3432.0 -663.0Q3468 -641 3468 -603Q3468 -574 3456 -544Q3488 -582 3510.5 -610.5Q3533 -639 3554 -665Q3580 -657 3614 -657Q3628 -657 3652.0 -658.0Q3676 -659 3689 -661L3352 -255Q3288 -179 3260.0 -131.5Q3232 -84 3232 -58Q3232 -26 3263 -26Q3317 -26 3375.0 -57.5Q3433 -89 3489.0 -138.5Q3545 -188 3594.0 -241.5Q3643 -295 3680.5 -340.5Q3718 -386 3738 -408L3758 -391Q3736 -366 3696.0 -319.0Q3656 -272 3604.5 -217.0Q3553 -162 3493.5 -112.0Q3434 -62 3371.5 -30.0Q3309 2 3248 2Q3148 2 3148 -60Q3148 -83 3156.5 -106.5Q3165 -130 3191.0 -167.5Q3217 -205 3269 -268L3259 -272Q3137 -122 3033.5 -60.0Q2930 2 2871 2ZM2875 -28Q2939 -28 3044.0 -102.5Q3149 -177 3296 -351Q3320 -380 3340.5 -405.0Q3361 -430 3380 -452Q3403 -487 3421.5 -525.0Q3440 -563 3440 -594Q3440 -625 3418.0 -639.5Q3396 -654 3370 -654Q3321 -654 3211.5 -583.5Q3102 -513 2971 -358Q2896 -268 2863.0 -198.0Q2830 -128 2830 -80Q2830 -28 2875 -28Z"></path><path pathLength="1" style="--t: 0.52s" d="M3664 2Q3622 2 3594.5 -21.5Q3567 -45 3567 -79Q3567 -106 3573.5 -131.5Q3580 -157 3602.5 -197.5Q3625 -238 3671.0 -307.0Q3717 -376 3796 -490L4569 -1595Q4583 -1594 4604.5 -1592.0Q4626 -1590 4666 -1591Q4674 -1591 4684.5 -1592.5Q4695 -1594 4708 -1595L3886 -454Q3796 -328 3745.0 -254.5Q3694 -181 3670.0 -142.5Q3646 -104 3640.0 -87.5Q3634 -71 3634 -59Q3634 -26 3681 -26Q3740 -26 3805.5 -61.0Q3871 -96 3935.0 -148.5Q3999 -201 4053.0 -256.0Q4107 -311 4144.5 -353.0Q4182 -395 4194 -406L4214 -389Q4201 -376 4162.0 -333.0Q4123 -290 4066.0 -233.5Q4009 -177 3941.5 -123.0Q3874 -69 3802.5 -33.5Q3731 2 3664 2Z"></path><path pathLength="1" style="--t: 0.59s" d="M4647 -876Q4619 -876 4602.5 -893.5Q4586 -911 4586 -938Q4586 -973 4615.5 -1002.5Q4645 -1032 4686 -1032Q4714 -1032 4730.5 -1013.5Q4747 -995 4747 -969Q4747 -932 4715.5 -904.0Q4684 -876 4647 -876ZM4136 2Q4075 2 4037.5 -20.5Q4000 -43 4000 -81Q4000 -111 4015.0 -150.5Q4030 -190 4072.5 -254.0Q4115 -318 4196.5 -420.5Q4278 -523 4411 -678Q4420 -677 4454.0 -676.0Q4488 -675 4507 -675Q4524 -675 4532.5 -675.5Q4541 -676 4549 -677Q4403 -505 4310.5 -394.0Q4218 -283 4168.0 -217.0Q4118 -151 4099.0 -116.0Q4080 -81 4080 -60Q4080 -34 4108.0 -30.0Q4136 -26 4153 -26Q4207 -26 4271.0 -62.5Q4335 -99 4398.5 -153.5Q4462 -208 4516.5 -264.0Q4571 -320 4606.0 -360.5Q4641 -401 4647 -407L4667 -389Q4656 -377 4619.0 -334.0Q4582 -291 4527.0 -234.5Q4472 -178 4406.5 -124.0Q4341 -70 4271.5 -34.0Q4202 2 4136 2Z"></path><path pathLength="1" style="--t: 0.66s" d="M4637 2Q4573 2 4543.5 -33.0Q4514 -68 4514 -129Q4514 -196 4542.5 -272.0Q4571 -348 4637 -423Q4772 -580 4889.5 -632.5Q5007 -685 5110 -685Q5162 -685 5198.0 -663.0Q5234 -641 5234 -603Q5234 -574 5222 -544Q5254 -582 5276.5 -610.5Q5299 -639 5320 -665Q5346 -657 5380 -657Q5394 -657 5418.0 -658.0Q5442 -659 5455 -661L5118 -255Q5054 -179 5026.0 -131.5Q4998 -84 4998 -58Q4998 -26 5029 -26Q5083 -26 5141.0 -57.5Q5199 -89 5255.0 -138.5Q5311 -188 5360.0 -241.5Q5409 -295 5446.5 -340.5Q5484 -386 5504 -408L5524 -391Q5502 -366 5462.0 -319.0Q5422 -272 5370.5 -217.0Q5319 -162 5259.5 -112.0Q5200 -62 5137.5 -30.0Q5075 2 5014 2Q4914 2 4914 -60Q4914 -83 4922.5 -106.5Q4931 -130 4957.0 -167.5Q4983 -205 5035 -268L5025 -272Q4903 -122 4799.5 -60.0Q4696 2 4637 2ZM4641 -28Q4705 -28 4810.0 -102.5Q4915 -177 5062 -351Q5086 -380 5106.5 -405.0Q5127 -430 5146 -452Q5169 -487 5187.5 -525.0Q5206 -563 5206 -594Q5206 -625 5184.0 -639.5Q5162 -654 5136 -654Q5087 -654 4977.5 -583.5Q4868 -513 4737 -358Q4662 -268 4629.0 -198.0Q4596 -128 4596 -80Q4596 -28 4641 -28Z"></path><path pathLength="1" style="--t: 0.93s" d="M6574 -18Q6559 -21 6531.5 -22.5Q6504 -24 6483 -24Q6472 -24 6454.5 -23.0Q6437 -22 6413 -19Q6436 -56 6457.0 -91.0Q6478 -126 6497 -159Q6420 -221 6371.5 -314.0Q6323 -407 6323 -513Q6323 -627 6378.0 -703.0Q6433 -779 6515 -779Q6574 -779 6623.5 -723.5Q6673 -668 6673 -564Q6673 -507 6643.0 -415.0Q6613 -323 6563 -224Q6691 -422 6803.0 -562.0Q6915 -702 7012.5 -803.0Q7110 -904 7196 -984Q7213 -1000 7224 -1000Q7236 -1000 7236 -991Q7236 -984 7204 -953Q7101 -853 6996.0 -720.0Q6891 -587 6794.5 -434.0Q6698 -281 6620 -119Q6683 -93 6753 -93Q6880 -93 6975 -174Q7016 -211 7040.5 -257.0Q7065 -303 7065 -353Q7065 -356 7063 -368Q7023 -370 7023 -404Q7023 -415 7032.0 -424.0Q7041 -433 7054 -433Q7100 -433 7100 -367Q7100 -306 7070.5 -249.5Q7041 -193 6991 -152Q6886 -66 6747 -66Q6678 -66 6608 -94ZM6512 -188Q6580 -313 6611.5 -410.5Q6643 -508 6643 -575Q6643 -652 6606.5 -695.5Q6570 -739 6526 -739Q6490 -739 6456.5 -707.0Q6423 -675 6401.5 -623.0Q6380 -571 6380 -511Q6380 -413 6415.5 -329.5Q6451 -246 6512 -188Z"></path><path pathLength="1" style="--t: 1.15s" d="M9316 2Q9255 2 9225.0 -25.5Q9195 -53 9195 -93Q9195 -122 9221.0 -185.0Q9247 -248 9329 -372Q9425 -515 9545.0 -660.5Q9665 -806 9790.5 -943.0Q9916 -1080 10032.5 -1199.0Q10149 -1318 10239 -1407Q10194 -1375 10139.0 -1329.0Q10084 -1283 10004.0 -1210.5Q9924 -1138 9807.0 -1028.0Q9690 -918 9522 -757Q9438 -677 9278.5 -512.0Q9119 -347 8904 -96Q8852 -35 8832.5 -21.0Q8813 -7 8802 -7Q8795 -7 8787.5 -17.0Q8780 -27 8780 -49Q8780 -133 8838.0 -269.5Q8896 -406 9002.5 -578.5Q9109 -751 9255.0 -944.0Q9401 -1137 9576 -1335Q9520 -1284 9371.5 -1130.0Q9223 -976 8960 -687Q8732 -437 8550.0 -283.5Q8368 -130 8228 -59Q8108 1 8016 1Q7922 1 7875.0 -35.0Q7828 -71 7828 -127Q7828 -173 7859.0 -195.5Q7890 -218 7921 -218Q7937 -218 7954.5 -207.0Q7972 -196 7972 -172Q7972 -153 7955.0 -137.5Q7938 -122 7915 -122Q7902 -122 7889.5 -124.0Q7877 -126 7867 -133Q7867 -129 7866.5 -126.0Q7866 -123 7866 -121Q7866 -78 7904.0 -52.0Q7942 -26 8015 -26Q8089 -26 8185.5 -70.0Q8282 -114 8413.5 -216.5Q8545 -319 8723.0 -493.0Q8901 -667 9138 -926Q9337 -1143 9464.5 -1264.5Q9592 -1386 9656.5 -1435.0Q9721 -1484 9730 -1484Q9737 -1484 9747.0 -1481.5Q9757 -1479 9757 -1474Q9757 -1468 9742 -1455Q9732 -1446 9717.5 -1433.0Q9703 -1420 9682 -1399Q9656 -1371 9602.5 -1295.5Q9549 -1220 9478.5 -1113.5Q9408 -1007 9328.5 -883.0Q9249 -759 9171.0 -633.0Q9093 -507 9024.5 -394.0Q8956 -281 8906.5 -194.5Q8857 -108 8836 -65Q8945 -191 9033.5 -291.0Q9122 -391 9203.5 -478.5Q9285 -566 9370.5 -653.0Q9456 -740 9558.0 -838.5Q9660 -937 9790 -1060Q9963 -1221 10078.5 -1314.5Q10194 -1408 10263.0 -1447.5Q10332 -1487 10363 -1487Q10373 -1487 10373 -1479Q10373 -1472 10347.0 -1454.0Q10321 -1436 10291 -1410Q10192 -1323 10076.5 -1187.5Q9961 -1052 9840.0 -891.0Q9719 -730 9601.0 -564.0Q9483 -398 9379 -250Q9332 -181 9309.5 -145.5Q9287 -110 9281.0 -94.5Q9275 -79 9275 -67Q9275 -25 9333 -25Q9362 -25 9411.5 -39.5Q9461 -54 9515.0 -81.5Q9569 -109 9609 -148Q9614 -146 9614 -135Q9614 -120 9609 -112Q9566 -76 9510.0 -50.5Q9454 -25 9402.0 -11.5Q9350 2 9316 2Z"></path><path pathLength="1" style="--t: 1.43s" d="M9846 2Q9782 2 9752.5 -33.0Q9723 -68 9723 -129Q9723 -196 9751.5 -272.0Q9780 -348 9846 -423Q9981 -580 10098.5 -632.5Q10216 -685 10319 -685Q10371 -685 10407.0 -663.0Q10443 -641 10443 -603Q10443 -574 10431 -544Q10463 -582 10485.5 -610.5Q10508 -639 10529 -665Q10555 -657 10589 -657Q10603 -657 10627.0 -658.0Q10651 -659 10664 -661L10327 -255Q10263 -179 10235.0 -131.5Q10207 -84 10207 -58Q10207 -26 10238 -26Q10292 -26 10350.0 -57.5Q10408 -89 10464.0 -138.5Q10520 -188 10569.0 -241.5Q10618 -295 10655.5 -340.5Q10693 -386 10713 -408L10733 -391Q10711 -366 10671.0 -319.0Q10631 -272 10579.5 -217.0Q10528 -162 10468.5 -112.0Q10409 -62 10346.5 -30.0Q10284 2 10223 2Q10123 2 10123 -60Q10123 -83 10131.5 -106.5Q10140 -130 10166.0 -167.5Q10192 -205 10244 -268L10234 -272Q10112 -122 10008.5 -60.0Q9905 2 9846 2ZM9850 -28Q9914 -28 10019.0 -102.5Q10124 -177 10271 -351Q10295 -380 10315.5 -405.0Q10336 -430 10355 -452Q10378 -487 10396.5 -525.0Q10415 -563 10415 -594Q10415 -625 10393.0 -639.5Q10371 -654 10345 -654Q10296 -654 10186.5 -583.5Q10077 -513 9946 -358Q9871 -268 9838.0 -198.0Q9805 -128 9805 -80Q9805 -28 9850 -28Z"></path><path pathLength="1" style="--t: 1.55s" d="M10641 2Q10586 2 10558.5 -20.0Q10531 -42 10531 -76Q10531 -103 10538.0 -129.5Q10545 -156 10568.0 -197.0Q10591 -238 10638.0 -307.5Q10685 -377 10765 -490L11023 -853H10944Q10914 -853 10914 -866Q10914 -882 10952 -882H11043L11228 -1142Q11241 -1140 11262.5 -1138.5Q11284 -1137 11324 -1138Q11344 -1138 11367 -1142L11174 -882H11432Q11460 -882 11460 -868Q11460 -853 11435 -853H11152L10888 -497Q10794 -371 10737.0 -290.0Q10680 -209 10650.5 -162.0Q10621 -115 10610.5 -92.0Q10600 -69 10600 -58Q10600 -28 10650 -26Q10719 -27 10792.5 -71.5Q10866 -116 10934.0 -180.5Q11002 -245 11056.0 -307.5Q11110 -370 11140 -406L11162 -389Q11133 -355 11077.0 -291.0Q11021 -227 10948.5 -159.5Q10876 -92 10797.0 -45.0Q10718 2 10641 2Z"></path><path pathLength="1" style="--t: 1.61s" d="M11084 2Q11023 2 10985.5 -20.5Q10948 -43 10948 -81Q10948 -111 10963.0 -150.5Q10978 -190 11020.5 -254.0Q11063 -318 11144.5 -420.5Q11226 -523 11359 -678Q11368 -677 11402.0 -676.0Q11436 -675 11455 -675Q11472 -675 11480.5 -675.5Q11489 -676 11497 -677Q11351 -505 11258.5 -394.0Q11166 -283 11116.0 -217.0Q11066 -151 11047.0 -116.0Q11028 -81 11028 -60Q11028 -34 11056.0 -30.0Q11084 -26 11101 -26Q11155 -26 11219.0 -62.5Q11283 -99 11346.5 -153.5Q11410 -208 11464.5 -264.0Q11519 -320 11554.0 -360.5Q11589 -401 11595 -407L11615 -389Q11604 -377 11567.0 -334.0Q11530 -291 11475.0 -234.5Q11420 -178 11354.5 -124.0Q11289 -70 11219.5 -34.0Q11150 2 11084 2ZM11590 -808Q11578 -808 11578 -818Q11578 -824 11584.0 -827.5Q11590 -831 11603 -840Q11632 -857 11668.0 -886.5Q11704 -916 11728 -954Q11742 -978 11751.0 -1010.0Q11760 -1042 11768 -1098Q11777 -1169 11821 -1169Q11864 -1169 11864 -1114Q11864 -1077 11834.5 -1025.5Q11805 -974 11754.5 -922.0Q11704 -870 11639 -831Q11602 -808 11590 -808Z"></path><path pathLength="1" style="--t: 1.68s" d="M11585 2Q11521 2 11491.5 -33.0Q11462 -68 11462 -129Q11462 -196 11490.5 -272.0Q11519 -348 11585 -423Q11720 -580 11837.5 -632.5Q11955 -685 12058 -685Q12110 -685 12146.0 -663.0Q12182 -641 12182 -603Q12182 -574 12170 -544Q12202 -582 12224.5 -610.5Q12247 -639 12268 -665Q12294 -657 12328 -657Q12342 -657 12366.0 -658.0Q12390 -659 12403 -661L12066 -255Q12002 -179 11974.0 -131.5Q11946 -84 11946 -58Q11946 -26 11977 -26Q12031 -26 12089.0 -57.5Q12147 -89 12203.0 -138.5Q12259 -188 12308.0 -241.5Q12357 -295 12394.5 -340.5Q12432 -386 12452 -408L12472 -391Q12450 -366 12410.0 -319.0Q12370 -272 12318.5 -217.0Q12267 -162 12207.5 -112.0Q12148 -62 12085.5 -30.0Q12023 2 11962 2Q11862 2 11862 -60Q11862 -83 11870.5 -106.5Q11879 -130 11905.0 -167.5Q11931 -205 11983 -268L11973 -272Q11851 -122 11747.5 -60.0Q11644 2 11585 2ZM11589 -28Q11653 -28 11758.0 -102.5Q11863 -177 12010 -351Q12034 -380 12054.5 -405.0Q12075 -430 12094 -452Q12117 -487 12135.5 -525.0Q12154 -563 12154 -594Q12154 -625 12132.0 -639.5Q12110 -654 12084 -654Q12035 -654 11925.5 -583.5Q11816 -513 11685 -358Q11610 -268 11577.0 -198.0Q11544 -128 11544 -80Q11544 -28 11589 -28Z"></path><path pathLength="1" style="--t: 1.79s" d="M12394 23Q12363 23 12314.0 15.0Q12265 7 12226.5 -19.0Q12188 -45 12188 -100Q12188 -150 12218.5 -182.5Q12249 -215 12286.0 -231.0Q12323 -247 12341 -247Q12382 -247 12382 -209Q12381 -193 12359.5 -179.5Q12338 -166 12312 -166Q12300 -166 12288.5 -174.5Q12277 -183 12270 -187Q12259 -176 12236.5 -154.5Q12214 -133 12214 -99Q12214 -61 12244.5 -42.5Q12275 -24 12313.0 -18.5Q12351 -13 12371 -13Q12413 -13 12476.0 -46.5Q12539 -80 12593.5 -159.0Q12648 -238 12664 -374Q12669 -422 12673.5 -507.0Q12678 -592 12705 -670Q12706 -673 12706 -679Q12668 -632 12624.0 -578.0Q12580 -524 12539.5 -474.0Q12499 -424 12470 -389Q12450 -365 12441.0 -358.0Q12432 -351 12433 -351Q12432 -351 12425.5 -350.5Q12419 -350 12415 -357Q12413 -362 12424.5 -376.0Q12436 -390 12449 -406Q12472 -432 12520.0 -489.0Q12568 -546 12621.5 -611.0Q12675 -676 12714 -726Q12720 -756 12732.0 -780.0Q12744 -804 12766 -804Q12806 -804 12806 -771Q12805 -752 12760 -700Q12733 -668 12731.0 -658.5Q12729 -649 12729 -634Q12728 -598 12736.5 -544.5Q12745 -491 12755.0 -432.5Q12765 -374 12768 -321Q12771 -242 12750 -184Q12766 -182 12777 -182Q12809 -182 12850.5 -211.0Q12892 -240 12933.0 -280.0Q12974 -320 13004.5 -356.0Q13035 -392 13045 -406L13067 -389Q13050 -371 13017.0 -333.5Q12984 -296 12942.0 -255.5Q12900 -215 12856.5 -186.5Q12813 -158 12774 -158Q12765 -158 12757.0 -158.5Q12749 -159 12741 -160Q12694 -56 12602.0 -16.5Q12510 23 12394 23Z"></path></svg></p>
+    <p class="firma">18 · 12 · 2026</p>
+  </footer>
+</main>
+
+<!-- Confirmación: otra página que sube sobre la invitación (así la música sigue sonando) -->
+<div class="hoja" id="hoja-confirmar" role="dialog" aria-modal="true" aria-labelledby="t-confirmar" tabindex="-1" hidden>
+  <div class="hoja-dentro">
+    <button type="button" class="hoja-volver" id="volver-invitacion">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      Volver a la invitación
+    </button>
+    <section class="confirmar" id="confirmar">
+      <form id="rsvp" class="tarjeta" novalidate>
+        <svg class="tarjeta-sello" viewBox="0 0 90 90" aria-hidden="true">
+          <defs>
+            <radialGradient id="g-lacre-t" cx="40%" cy="34%" r="72%"><stop offset="0" stop-color="#D47766"></stop><stop offset=".5" stop-color="#A9483C"></stop><stop offset="1" stop-color="#74281F"></stop></radialGradient>
+            <radialGradient id="g-lacre-centro-t" cx="60%" cy="64%" r="75%"><stop offset="0" stop-color="#B85649"></stop><stop offset="1" stop-color="#8A372C"></stop></radialGradient>
+            <filter id="f-lacre-t" x="-25%" y="-25%" width="150%" height="150%">
+              <feTurbulence type="fractalNoise" baseFrequency=".07" numOctaves="2" seed="11" result="t"></feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="t" scale="8" xChannelSelector="R" yChannelSelector="G" result="d"></feDisplacementMap>
+              <feDropShadow in="d" dx="0" dy="2" stdDeviation="1.6" flood-color="#3A170F" flood-opacity=".38"></feDropShadow>
+            </filter>
+          </defs>
+          <image href="ramita-sello.webp" x="-22.5" y="-22.5" width="135" height="135"></image>
+          <g>
+              <circle cx="45" cy="45" r="32" fill="url(#g-lacre-t)" filter="url(#f-lacre-t)"></circle>
+              <circle cx="45" cy="45" r="22.5" fill="url(#g-lacre-centro-t)"></circle>
+              <circle cx="45" cy="45" r="22.5" fill="none" stroke="#5E2018" stroke-opacity=".4" stroke-width="1.6"></circle>
+              <circle cx="45" cy="45" r="19.5" fill="none" stroke="#E7A394" stroke-opacity=".28" stroke-width=".6"></circle>
+              <path d="M26.5,37 A20,20 0 0 1 50,23.5" fill="none" stroke="#F3B9AC" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round"></path>
+              <text x="45.7" y="52.7" text-anchor="middle" font-family="'Pinyon Script', cursive" font-size="20" fill="#5E2018" fill-opacity=".75">N&amp;M</text>
+              <text x="44.5" y="51.5" text-anchor="middle" font-family="'Pinyon Script', cursive" font-size="20" fill="#EFA898" fill-opacity=".55">N&amp;M</text>
+              <text x="45" y="52" text-anchor="middle" font-family="'Pinyon Script', cursive" font-size="20" fill="#A14336">N&amp;M</text>
+            </g>
+        </svg>
+        <div class="tarjeta-cabeza">
+          <h2 id="t-confirmar" class="titulo">¿Venís?</h2>
+          <p class="sub">Confirmá tu asistencia.</p>
+        </div>
+        <div class="progreso" aria-live="polite">
+          <span id="progreso-texto">Paso 1 de 5</span>
+          <span class="barra"><span id="progreso-barra"></span></span>
+        </div>
+
+        <fieldset class="paso" id="p-asistencia" tabindex="-1">
+          <legend class="solo-lectores">¿Vas a venir?</legend>
+          <div class="opciones-grandes">
+            <label class="opcion">
+              <input type="radio" name="asiste" value="si" id="asiste-si">
+              <span class="opcion-cuerpo">
+                <svg class="opcion-icono corazon" viewBox="0 0 24 24" fill="none" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="#E9A99B" fill-opacity=".8" stroke="#A9483C"></path></svg>
+                <span class="opcion-titulo">¡Sí, voy!</span>
+              </span>
+            </label>
+            <label class="opcion">
+              <input type="radio" name="asiste" value="no" id="asiste-no">
+              <span class="opcion-cuerpo">
+                <svg class="opcion-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v11H4zM4 7l8 6 8-6"></path></svg>
+                <span class="opcion-titulo">No voy a poder</span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="paso" id="p-datos" tabindex="-1" hidden>
+          <legend class="titulo-paso" id="leg-datos">¿Quién confirma?</legend>
+          <div class="campo">
+            <label for="nombre">Tu nombre y apellido</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Ej.: Lucía Fernández">
+            <p class="error" id="error-nombre" hidden>Escribí tu nombre para que los novios sepan quién responde.</p>
+          </div>
+        </fieldset>
+
+        <fieldset class="paso" id="p-bebidas" tabindex="-1" hidden>
+          <legend class="titulo-paso">¿Qué vas a tomar?</legend>
+          <p class="ayuda">Elegí lo que vas a tomar. Podés elegir más de una opción.</p>
+          <div class="ilustradas">
+            <label class="ilustrada"><input type="checkbox" name="bebida" value="Fernet" id="b-fernet"><span><img src="bebida-fernet.webp" width="240" height="240" alt="" decoding="async">Fernet</span></label>
+            <label class="ilustrada"><input type="checkbox" name="bebida" value="Gin tonic" id="b-gin"><span><img src="bebida-gin.webp" width="240" height="240" alt="" decoding="async">Gin tonic</span></label>
+            <label class="ilustrada"><input type="checkbox" name="bebida" value="Cerveza" id="b-cerveza"><span><img src="bebida-cerveza.webp" width="240" height="240" alt="" decoding="async">Cerveza</span></label>
+            <label class="ilustrada"><input type="checkbox" name="bebida" value="Champagne" id="b-champagne"><span><img src="bebida-champagne.webp" width="240" height="240" alt="" decoding="async">Champagne</span></label>
+            <label class="ilustrada"><input type="checkbox" name="bebida" value="Aperol" id="b-aperol"><span><img src="bebida-aperol.webp" width="240" height="240" alt="" decoding="async">Aperol</span></label>
+            <label class="ilustrada"><input type="checkbox" name="bebida" value="Whiskey" id="b-whiskey"><span><img src="bebida-whiskey.webp" width="240" height="240" alt="" decoding="async">Whiskey</span></label>
+            <label class="ilustrada"><input type="checkbox" name="bebida" value="Sin alcohol" id="b-sin"><span><img src="bebida-sin-alcohol.webp" width="240" height="240" alt="" decoding="async">Sin alcohol</span></label>
+          </div>
+          <p class="error" id="error-bebidas" hidden>Elegí al menos una opción.</p>
+        </fieldset>
+
+        <fieldset class="paso" id="p-comida" tabindex="-1" hidden>
+          <legend class="titulo-paso">¿Tenés alguna restricción con la comida?</legend>
+          <div class="ilustradas">
+            <label class="ilustrada"><input type="checkbox" name="comida" value="Ninguna" id="c-ninguna"><span><img src="plato-ninguna.webp" width="240" height="240" alt="" decoding="async">Ninguna</span></label>
+            <label class="ilustrada"><input type="checkbox" name="comida" value="Vegetariano" id="c-vegetariano"><span><img src="plato-vegetariano.webp" width="240" height="240" alt="" decoding="async">Vegetariano</span></label>
+            <label class="ilustrada"><input type="checkbox" name="comida" value="Vegano" id="c-vegano"><span><img src="plato-vegano.webp" width="240" height="240" alt="" decoding="async">Vegano</span></label>
+            <label class="ilustrada"><input type="checkbox" name="comida" value="Sin TACC" id="c-celiaco"><span><img src="plato-sintacc.webp" width="240" height="240" alt="" decoding="async">Sin TACC<small>Celíaco</small></span></label>
+            <label class="chip chip-sin-icono"><input type="checkbox" name="comida" value="Otra" id="c-otra"><span>Otra</span></label>
+          </div>
+          <div class="campo" id="fila-otra" hidden>
+            <label for="comida-otra">Contanos cuál</label>
+            <input id="comida-otra" name="comida-otra" type="text" placeholder="Ej.: alergia a los frutos secos">
+          </div>
+        </fieldset>
+
+        <fieldset class="paso" id="p-extras" tabindex="-1" hidden>
+          <legend class="titulo-paso" id="leg-extras">Para terminar</legend>
+          <div class="campo" id="fila-cancion">
+            <label for="cancion">¿Qué canción no puede faltar en la fiesta? (opcional)</label>
+            <input id="cancion" name="cancion" type="text" placeholder="Tema y artista" autocomplete="off">
+          </div>
+          <div class="campo">
+            <label for="mensaje" id="lbl-mensaje">¿Querés dejarles un mensaje a los novios? (opcional)</label>
+            <textarea id="mensaje" name="mensaje" rows="3" placeholder="Opcional"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset class="paso" id="p-resumen" tabindex="-1" hidden>
+          <legend class="titulo-paso" id="resumen-titulo">¡Te esperamos!</legend>
+          <dl class="lista-resumen" id="lista-resumen"></dl>
+          <div class="acciones-resumen">
+            <a class="btn btn-wa" id="enviar-wa" href="https://wa.me/" target="_blank" rel="noopener"><svg class="icono-wa" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>Compartí tu respuesta con los novios por WhatsApp</a>
+          </div>
+        </fieldset>
+
+        <div class="nav-pasos">
+          <button type="button" class="btn-texto" id="atras" hidden>Atrás</button>
+          <button type="submit" class="btn" id="siguiente" hidden>Siguiente</button>
+        </div>
+      </form>
+    </section>
+    <footer class="cierre">
+      <img class="rama al-ver" src="rama-5.webp" width="652" height="129" alt="">
+      <p class="ojo">Te esperamos para celebrar juntos</p>
+      <p class="te-esperamos al-ver"><span class="solo-lectores">Natalia &amp; Matías</span><svg class="nombres-svg" viewBox="0 -1668 12934 2355" aria-hidden="true"><path pathLength="1" style="--t: 0.00s" d="M954 19Q940 19 940 5Q940 -3 948 -8Q952 -12 957.5 -16.5Q963 -21 967 -26Q992 -57 1012.0 -100.5Q1032 -144 1054.5 -213.0Q1077 -282 1108 -388Q1161 -565 1260.5 -783.0Q1360 -1001 1481 -1209Q1405 -1114 1341.0 -1034.5Q1277 -955 1213.0 -878.0Q1149 -801 1074.5 -715.5Q1000 -630 902 -522Q668 -267 497.0 -132.5Q326 2 201 2Q99 2 49.5 -38.0Q0 -78 0 -133Q0 -178 31.0 -197.5Q62 -217 93 -217Q110 -217 127.0 -206.0Q144 -195 144 -171Q144 -152 127.0 -136.5Q110 -121 88 -121Q75 -121 62.5 -123.0Q50 -125 40 -131V-125Q40 -82 78.5 -53.5Q117 -25 199 -25Q261 -25 356.5 -76.5Q452 -128 589.0 -249.0Q726 -370 911 -578Q1225 -932 1390.5 -1138.0Q1556 -1344 1572 -1368Q1590 -1390 1597 -1390Q1606 -1390 1606 -1381Q1606 -1375 1602 -1368L1588 -1342Q1563 -1300 1549.0 -1261.5Q1535 -1223 1523 -1181Q1508 -1129 1493.5 -1073.5Q1479 -1018 1457.0 -946.5Q1435 -875 1398 -774Q1358 -664 1317.0 -578.0Q1276 -492 1224.5 -400.0Q1173 -308 1099 -178Q1146 -235 1225.0 -329.5Q1304 -424 1401.5 -537.5Q1499 -651 1604.0 -767.5Q1709 -884 1808 -986Q1985 -1170 2127.0 -1281.5Q2269 -1393 2389.5 -1444.0Q2510 -1495 2623 -1496Q2728 -1496 2782.0 -1449.5Q2836 -1403 2837 -1318Q2838 -1256 2793.5 -1180.5Q2749 -1105 2669.5 -1034.0Q2590 -963 2485 -912Q2448 -895 2429 -895Q2418 -895 2418 -902Q2418 -910 2435 -918Q2516 -949 2594.0 -1010.0Q2672 -1071 2723.0 -1147.5Q2774 -1224 2774 -1301Q2774 -1380 2731.5 -1423.5Q2689 -1467 2612 -1467Q2500 -1467 2368.5 -1403.0Q2237 -1339 2073.0 -1199.0Q1909 -1059 1700 -830Q1534 -648 1399.0 -489.5Q1264 -331 1165.5 -212.0Q1067 -93 1010 -28Q984 3 972.0 11.0Q960 19 954 19ZM508 -815Q431 -815 363.0 -845.0Q295 -875 253.5 -936.5Q212 -998 212 -1091Q212 -1185 269.0 -1260.5Q326 -1336 427.5 -1380.0Q529 -1424 662 -1424Q735 -1424 800.0 -1413.5Q865 -1403 943 -1371Q994 -1350 1039.0 -1328.5Q1084 -1307 1141 -1281Q1175 -1267 1211.0 -1258.0Q1247 -1249 1280 -1249Q1317 -1249 1356.5 -1264.0Q1396 -1279 1424 -1303Q1441 -1319 1447 -1319Q1455 -1319 1455 -1311Q1455 -1303 1441 -1288Q1414 -1262 1371.0 -1241.5Q1328 -1221 1283.5 -1209.5Q1239 -1198 1208 -1198Q1146 -1198 1065.0 -1220.5Q984 -1243 922 -1280Q843 -1326 789.5 -1348.0Q736 -1370 695.0 -1377.5Q654 -1385 612 -1385Q513 -1385 429.0 -1346.0Q345 -1307 294.5 -1239.0Q244 -1171 244 -1085Q244 -979 315.0 -909.0Q386 -839 504 -839Q573 -839 639.0 -868.5Q705 -898 748.5 -952.0Q792 -1006 792 -1081Q792 -1121 765 -1150Q758 -1142 748.5 -1135.5Q739 -1129 726 -1129Q707 -1129 692.0 -1141.5Q677 -1154 677 -1174Q677 -1191 689.5 -1205.0Q702 -1219 726 -1219Q763 -1219 793.0 -1182.5Q823 -1146 823 -1085Q823 -1004 777.0 -943.5Q731 -883 659.0 -849.0Q587 -815 508 -815Z"></path><path pathLength="1" style="--t: 0.21s" d="M1586 2Q1522 2 1492.5 -33.0Q1463 -68 1463 -129Q1463 -196 1491.5 -272.0Q1520 -348 1586 -423Q1721 -580 1838.5 -632.5Q1956 -685 2059 -685Q2111 -685 2147.0 -663.0Q2183 -641 2183 -603Q2183 -574 2171 -544Q2203 -582 2225.5 -610.5Q2248 -639 2269 -665Q2295 -657 2329 -657Q2343 -657 2367.0 -658.0Q2391 -659 2404 -661L2067 -255Q2003 -179 1975.0 -131.5Q1947 -84 1947 -58Q1947 -26 1978 -26Q2032 -26 2090.0 -57.5Q2148 -89 2204.0 -138.5Q2260 -188 2309.0 -241.5Q2358 -295 2395.5 -340.5Q2433 -386 2453 -408L2473 -391Q2451 -366 2411.0 -319.0Q2371 -272 2319.5 -217.0Q2268 -162 2208.5 -112.0Q2149 -62 2086.5 -30.0Q2024 2 1963 2Q1863 2 1863 -60Q1863 -83 1871.5 -106.5Q1880 -130 1906.0 -167.5Q1932 -205 1984 -268L1974 -272Q1852 -122 1748.5 -60.0Q1645 2 1586 2ZM1590 -28Q1654 -28 1759.0 -102.5Q1864 -177 2011 -351Q2035 -380 2055.5 -405.0Q2076 -430 2095 -452Q2118 -487 2136.5 -525.0Q2155 -563 2155 -594Q2155 -625 2133.0 -639.5Q2111 -654 2085 -654Q2036 -654 1926.5 -583.5Q1817 -513 1686 -358Q1611 -268 1578.0 -198.0Q1545 -128 1545 -80Q1545 -28 1590 -28Z"></path><path pathLength="1" style="--t: 0.33s" d="M2381 2Q2326 2 2298.5 -20.0Q2271 -42 2271 -76Q2271 -103 2278.0 -129.5Q2285 -156 2308.0 -197.0Q2331 -238 2378.0 -307.5Q2425 -377 2505 -490L2763 -853H2684Q2654 -853 2654 -866Q2654 -882 2692 -882H2783L2968 -1142Q2981 -1140 3002.5 -1138.5Q3024 -1137 3064 -1138Q3084 -1138 3107 -1142L2914 -882H3172Q3200 -882 3200 -868Q3200 -853 3175 -853H2892L2628 -497Q2534 -371 2477.0 -290.0Q2420 -209 2390.5 -162.0Q2361 -115 2350.5 -92.0Q2340 -69 2340 -58Q2340 -28 2390 -26Q2459 -27 2532.5 -71.5Q2606 -116 2674.0 -180.5Q2742 -245 2796.0 -307.5Q2850 -370 2880 -406L2902 -389Q2873 -355 2817.0 -291.0Q2761 -227 2688.5 -159.5Q2616 -92 2537.0 -45.0Q2458 2 2381 2Z"></path><path pathLength="1" style="--t: 0.40s" d="M2871 2Q2807 2 2777.5 -33.0Q2748 -68 2748 -129Q2748 -196 2776.5 -272.0Q2805 -348 2871 -423Q3006 -580 3123.5 -632.5Q3241 -685 3344 -685Q3396 -685 3432.0 -663.0Q3468 -641 3468 -603Q3468 -574 3456 -544Q3488 -582 3510.5 -610.5Q3533 -639 3554 -665Q3580 -657 3614 -657Q3628 -657 3652.0 -658.0Q3676 -659 3689 -661L3352 -255Q3288 -179 3260.0 -131.5Q3232 -84 3232 -58Q3232 -26 3263 -26Q3317 -26 3375.0 -57.5Q3433 -89 3489.0 -138.5Q3545 -188 3594.0 -241.5Q3643 -295 3680.5 -340.5Q3718 -386 3738 -408L3758 -391Q3736 -366 3696.0 -319.0Q3656 -272 3604.5 -217.0Q3553 -162 3493.5 -112.0Q3434 -62 3371.5 -30.0Q3309 2 3248 2Q3148 2 3148 -60Q3148 -83 3156.5 -106.5Q3165 -130 3191.0 -167.5Q3217 -205 3269 -268L3259 -272Q3137 -122 3033.5 -60.0Q2930 2 2871 2ZM2875 -28Q2939 -28 3044.0 -102.5Q3149 -177 3296 -351Q3320 -380 3340.5 -405.0Q3361 -430 3380 -452Q3403 -487 3421.5 -525.0Q3440 -563 3440 -594Q3440 -625 3418.0 -639.5Q3396 -654 3370 -654Q3321 -654 3211.5 -583.5Q3102 -513 2971 -358Q2896 -268 2863.0 -198.0Q2830 -128 2830 -80Q2830 -28 2875 -28Z"></path><path pathLength="1" style="--t: 0.52s" d="M3664 2Q3622 2 3594.5 -21.5Q3567 -45 3567 -79Q3567 -106 3573.5 -131.5Q3580 -157 3602.5 -197.5Q3625 -238 3671.0 -307.0Q3717 -376 3796 -490L4569 -1595Q4583 -1594 4604.5 -1592.0Q4626 -1590 4666 -1591Q4674 -1591 4684.5 -1592.5Q4695 -1594 4708 -1595L3886 -454Q3796 -328 3745.0 -254.5Q3694 -181 3670.0 -142.5Q3646 -104 3640.0 -87.5Q3634 -71 3634 -59Q3634 -26 3681 -26Q3740 -26 3805.5 -61.0Q3871 -96 3935.0 -148.5Q3999 -201 4053.0 -256.0Q4107 -311 4144.5 -353.0Q4182 -395 4194 -406L4214 -389Q4201 -376 4162.0 -333.0Q4123 -290 4066.0 -233.5Q4009 -177 3941.5 -123.0Q3874 -69 3802.5 -33.5Q3731 2 3664 2Z"></path><path pathLength="1" style="--t: 0.59s" d="M4647 -876Q4619 -876 4602.5 -893.5Q4586 -911 4586 -938Q4586 -973 4615.5 -1002.5Q4645 -1032 4686 -1032Q4714 -1032 4730.5 -1013.5Q4747 -995 4747 -969Q4747 -932 4715.5 -904.0Q4684 -876 4647 -876ZM4136 2Q4075 2 4037.5 -20.5Q4000 -43 4000 -81Q4000 -111 4015.0 -150.5Q4030 -190 4072.5 -254.0Q4115 -318 4196.5 -420.5Q4278 -523 4411 -678Q4420 -677 4454.0 -676.0Q4488 -675 4507 -675Q4524 -675 4532.5 -675.5Q4541 -676 4549 -677Q4403 -505 4310.5 -394.0Q4218 -283 4168.0 -217.0Q4118 -151 4099.0 -116.0Q4080 -81 4080 -60Q4080 -34 4108.0 -30.0Q4136 -26 4153 -26Q4207 -26 4271.0 -62.5Q4335 -99 4398.5 -153.5Q4462 -208 4516.5 -264.0Q4571 -320 4606.0 -360.5Q4641 -401 4647 -407L4667 -389Q4656 -377 4619.0 -334.0Q4582 -291 4527.0 -234.5Q4472 -178 4406.5 -124.0Q4341 -70 4271.5 -34.0Q4202 2 4136 2Z"></path><path pathLength="1" style="--t: 0.66s" d="M4637 2Q4573 2 4543.5 -33.0Q4514 -68 4514 -129Q4514 -196 4542.5 -272.0Q4571 -348 4637 -423Q4772 -580 4889.5 -632.5Q5007 -685 5110 -685Q5162 -685 5198.0 -663.0Q5234 -641 5234 -603Q5234 -574 5222 -544Q5254 -582 5276.5 -610.5Q5299 -639 5320 -665Q5346 -657 5380 -657Q5394 -657 5418.0 -658.0Q5442 -659 5455 -661L5118 -255Q5054 -179 5026.0 -131.5Q4998 -84 4998 -58Q4998 -26 5029 -26Q5083 -26 5141.0 -57.5Q5199 -89 5255.0 -138.5Q5311 -188 5360.0 -241.5Q5409 -295 5446.5 -340.5Q5484 -386 5504 -408L5524 -391Q5502 -366 5462.0 -319.0Q5422 -272 5370.5 -217.0Q5319 -162 5259.5 -112.0Q5200 -62 5137.5 -30.0Q5075 2 5014 2Q4914 2 4914 -60Q4914 -83 4922.5 -106.5Q4931 -130 4957.0 -167.5Q4983 -205 5035 -268L5025 -272Q4903 -122 4799.5 -60.0Q4696 2 4637 2ZM4641 -28Q4705 -28 4810.0 -102.5Q4915 -177 5062 -351Q5086 -380 5106.5 -405.0Q5127 -430 5146 -452Q5169 -487 5187.5 -525.0Q5206 -563 5206 -594Q5206 -625 5184.0 -639.5Q5162 -654 5136 -654Q5087 -654 4977.5 -583.5Q4868 -513 4737 -358Q4662 -268 4629.0 -198.0Q4596 -128 4596 -80Q4596 -28 4641 -28Z"></path><path pathLength="1" style="--t: 0.93s" d="M6574 -18Q6559 -21 6531.5 -22.5Q6504 -24 6483 -24Q6472 -24 6454.5 -23.0Q6437 -22 6413 -19Q6436 -56 6457.0 -91.0Q6478 -126 6497 -159Q6420 -221 6371.5 -314.0Q6323 -407 6323 -513Q6323 -627 6378.0 -703.0Q6433 -779 6515 -779Q6574 -779 6623.5 -723.5Q6673 -668 6673 -564Q6673 -507 6643.0 -415.0Q6613 -323 6563 -224Q6691 -422 6803.0 -562.0Q6915 -702 7012.5 -803.0Q7110 -904 7196 -984Q7213 -1000 7224 -1000Q7236 -1000 7236 -991Q7236 -984 7204 -953Q7101 -853 6996.0 -720.0Q6891 -587 6794.5 -434.0Q6698 -281 6620 -119Q6683 -93 6753 -93Q6880 -93 6975 -174Q7016 -211 7040.5 -257.0Q7065 -303 7065 -353Q7065 -356 7063 -368Q7023 -370 7023 -404Q7023 -415 7032.0 -424.0Q7041 -433 7054 -433Q7100 -433 7100 -367Q7100 -306 7070.5 -249.5Q7041 -193 6991 -152Q6886 -66 6747 -66Q6678 -66 6608 -94ZM6512 -188Q6580 -313 6611.5 -410.5Q6643 -508 6643 -575Q6643 -652 6606.5 -695.5Q6570 -739 6526 -739Q6490 -739 6456.5 -707.0Q6423 -675 6401.5 -623.0Q6380 -571 6380 -511Q6380 -413 6415.5 -329.5Q6451 -246 6512 -188Z"></path><path pathLength="1" style="--t: 1.15s" d="M9316 2Q9255 2 9225.0 -25.5Q9195 -53 9195 -93Q9195 -122 9221.0 -185.0Q9247 -248 9329 -372Q9425 -515 9545.0 -660.5Q9665 -806 9790.5 -943.0Q9916 -1080 10032.5 -1199.0Q10149 -1318 10239 -1407Q10194 -1375 10139.0 -1329.0Q10084 -1283 10004.0 -1210.5Q9924 -1138 9807.0 -1028.0Q9690 -918 9522 -757Q9438 -677 9278.5 -512.0Q9119 -347 8904 -96Q8852 -35 8832.5 -21.0Q8813 -7 8802 -7Q8795 -7 8787.5 -17.0Q8780 -27 8780 -49Q8780 -133 8838.0 -269.5Q8896 -406 9002.5 -578.5Q9109 -751 9255.0 -944.0Q9401 -1137 9576 -1335Q9520 -1284 9371.5 -1130.0Q9223 -976 8960 -687Q8732 -437 8550.0 -283.5Q8368 -130 8228 -59Q8108 1 8016 1Q7922 1 7875.0 -35.0Q7828 -71 7828 -127Q7828 -173 7859.0 -195.5Q7890 -218 7921 -218Q7937 -218 7954.5 -207.0Q7972 -196 7972 -172Q7972 -153 7955.0 -137.5Q7938 -122 7915 -122Q7902 -122 7889.5 -124.0Q7877 -126 7867 -133Q7867 -129 7866.5 -126.0Q7866 -123 7866 -121Q7866 -78 7904.0 -52.0Q7942 -26 8015 -26Q8089 -26 8185.5 -70.0Q8282 -114 8413.5 -216.5Q8545 -319 8723.0 -493.0Q8901 -667 9138 -926Q9337 -1143 9464.5 -1264.5Q9592 -1386 9656.5 -1435.0Q9721 -1484 9730 -1484Q9737 -1484 9747.0 -1481.5Q9757 -1479 9757 -1474Q9757 -1468 9742 -1455Q9732 -1446 9717.5 -1433.0Q9703 -1420 9682 -1399Q9656 -1371 9602.5 -1295.5Q9549 -1220 9478.5 -1113.5Q9408 -1007 9328.5 -883.0Q9249 -759 9171.0 -633.0Q9093 -507 9024.5 -394.0Q8956 -281 8906.5 -194.5Q8857 -108 8836 -65Q8945 -191 9033.5 -291.0Q9122 -391 9203.5 -478.5Q9285 -566 9370.5 -653.0Q9456 -740 9558.0 -838.5Q9660 -937 9790 -1060Q9963 -1221 10078.5 -1314.5Q10194 -1408 10263.0 -1447.5Q10332 -1487 10363 -1487Q10373 -1487 10373 -1479Q10373 -1472 10347.0 -1454.0Q10321 -1436 10291 -1410Q10192 -1323 10076.5 -1187.5Q9961 -1052 9840.0 -891.0Q9719 -730 9601.0 -564.0Q9483 -398 9379 -250Q9332 -181 9309.5 -145.5Q9287 -110 9281.0 -94.5Q9275 -79 9275 -67Q9275 -25 9333 -25Q9362 -25 9411.5 -39.5Q9461 -54 9515.0 -81.5Q9569 -109 9609 -148Q9614 -146 9614 -135Q9614 -120 9609 -112Q9566 -76 9510.0 -50.5Q9454 -25 9402.0 -11.5Q9350 2 9316 2Z"></path><path pathLength="1" style="--t: 1.43s" d="M9846 2Q9782 2 9752.5 -33.0Q9723 -68 9723 -129Q9723 -196 9751.5 -272.0Q9780 -348 9846 -423Q9981 -580 10098.5 -632.5Q10216 -685 10319 -685Q10371 -685 10407.0 -663.0Q10443 -641 10443 -603Q10443 -574 10431 -544Q10463 -582 10485.5 -610.5Q10508 -639 10529 -665Q10555 -657 10589 -657Q10603 -657 10627.0 -658.0Q10651 -659 10664 -661L10327 -255Q10263 -179 10235.0 -131.5Q10207 -84 10207 -58Q10207 -26 10238 -26Q10292 -26 10350.0 -57.5Q10408 -89 10464.0 -138.5Q10520 -188 10569.0 -241.5Q10618 -295 10655.5 -340.5Q10693 -386 10713 -408L10733 -391Q10711 -366 10671.0 -319.0Q10631 -272 10579.5 -217.0Q10528 -162 10468.5 -112.0Q10409 -62 10346.5 -30.0Q10284 2 10223 2Q10123 2 10123 -60Q10123 -83 10131.5 -106.5Q10140 -130 10166.0 -167.5Q10192 -205 10244 -268L10234 -272Q10112 -122 10008.5 -60.0Q9905 2 9846 2ZM9850 -28Q9914 -28 10019.0 -102.5Q10124 -177 10271 -351Q10295 -380 10315.5 -405.0Q10336 -430 10355 -452Q10378 -487 10396.5 -525.0Q10415 -563 10415 -594Q10415 -625 10393.0 -639.5Q10371 -654 10345 -654Q10296 -654 10186.5 -583.5Q10077 -513 9946 -358Q9871 -268 9838.0 -198.0Q9805 -128 9805 -80Q9805 -28 9850 -28Z"></path><path pathLength="1" style="--t: 1.55s" d="M10641 2Q10586 2 10558.5 -20.0Q10531 -42 10531 -76Q10531 -103 10538.0 -129.5Q10545 -156 10568.0 -197.0Q10591 -238 10638.0 -307.5Q10685 -377 10765 -490L11023 -853H10944Q10914 -853 10914 -866Q10914 -882 10952 -882H11043L11228 -1142Q11241 -1140 11262.5 -1138.5Q11284 -1137 11324 -1138Q11344 -1138 11367 -1142L11174 -882H11432Q11460 -882 11460 -868Q11460 -853 11435 -853H11152L10888 -497Q10794 -371 10737.0 -290.0Q10680 -209 10650.5 -162.0Q10621 -115 10610.5 -92.0Q10600 -69 10600 -58Q10600 -28 10650 -26Q10719 -27 10792.5 -71.5Q10866 -116 10934.0 -180.5Q11002 -245 11056.0 -307.5Q11110 -370 11140 -406L11162 -389Q11133 -355 11077.0 -291.0Q11021 -227 10948.5 -159.5Q10876 -92 10797.0 -45.0Q10718 2 10641 2Z"></path><path pathLength="1" style="--t: 1.61s" d="M11084 2Q11023 2 10985.5 -20.5Q10948 -43 10948 -81Q10948 -111 10963.0 -150.5Q10978 -190 11020.5 -254.0Q11063 -318 11144.5 -420.5Q11226 -523 11359 -678Q11368 -677 11402.0 -676.0Q11436 -675 11455 -675Q11472 -675 11480.5 -675.5Q11489 -676 11497 -677Q11351 -505 11258.5 -394.0Q11166 -283 11116.0 -217.0Q11066 -151 11047.0 -116.0Q11028 -81 11028 -60Q11028 -34 11056.0 -30.0Q11084 -26 11101 -26Q11155 -26 11219.0 -62.5Q11283 -99 11346.5 -153.5Q11410 -208 11464.5 -264.0Q11519 -320 11554.0 -360.5Q11589 -401 11595 -407L11615 -389Q11604 -377 11567.0 -334.0Q11530 -291 11475.0 -234.5Q11420 -178 11354.5 -124.0Q11289 -70 11219.5 -34.0Q11150 2 11084 2ZM11590 -808Q11578 -808 11578 -818Q11578 -824 11584.0 -827.5Q11590 -831 11603 -840Q11632 -857 11668.0 -886.5Q11704 -916 11728 -954Q11742 -978 11751.0 -1010.0Q11760 -1042 11768 -1098Q11777 -1169 11821 -1169Q11864 -1169 11864 -1114Q11864 -1077 11834.5 -1025.5Q11805 -974 11754.5 -922.0Q11704 -870 11639 -831Q11602 -808 11590 -808Z"></path><path pathLength="1" style="--t: 1.68s" d="M11585 2Q11521 2 11491.5 -33.0Q11462 -68 11462 -129Q11462 -196 11490.5 -272.0Q11519 -348 11585 -423Q11720 -580 11837.5 -632.5Q11955 -685 12058 -685Q12110 -685 12146.0 -663.0Q12182 -641 12182 -603Q12182 -574 12170 -544Q12202 -582 12224.5 -610.5Q12247 -639 12268 -665Q12294 -657 12328 -657Q12342 -657 12366.0 -658.0Q12390 -659 12403 -661L12066 -255Q12002 -179 11974.0 -131.5Q11946 -84 11946 -58Q11946 -26 11977 -26Q12031 -26 12089.0 -57.5Q12147 -89 12203.0 -138.5Q12259 -188 12308.0 -241.5Q12357 -295 12394.5 -340.5Q12432 -386 12452 -408L12472 -391Q12450 -366 12410.0 -319.0Q12370 -272 12318.5 -217.0Q12267 -162 12207.5 -112.0Q12148 -62 12085.5 -30.0Q12023 2 11962 2Q11862 2 11862 -60Q11862 -83 11870.5 -106.5Q11879 -130 11905.0 -167.5Q11931 -205 11983 -268L11973 -272Q11851 -122 11747.5 -60.0Q11644 2 11585 2ZM11589 -28Q11653 -28 11758.0 -102.5Q11863 -177 12010 -351Q12034 -380 12054.5 -405.0Q12075 -430 12094 -452Q12117 -487 12135.5 -525.0Q12154 -563 12154 -594Q12154 -625 12132.0 -639.5Q12110 -654 12084 -654Q12035 -654 11925.5 -583.5Q11816 -513 11685 -358Q11610 -268 11577.0 -198.0Q11544 -128 11544 -80Q11544 -28 11589 -28Z"></path><path pathLength="1" style="--t: 1.79s" d="M12394 23Q12363 23 12314.0 15.0Q12265 7 12226.5 -19.0Q12188 -45 12188 -100Q12188 -150 12218.5 -182.5Q12249 -215 12286.0 -231.0Q12323 -247 12341 -247Q12382 -247 12382 -209Q12381 -193 12359.5 -179.5Q12338 -166 12312 -166Q12300 -166 12288.5 -174.5Q12277 -183 12270 -187Q12259 -176 12236.5 -154.5Q12214 -133 12214 -99Q12214 -61 12244.5 -42.5Q12275 -24 12313.0 -18.5Q12351 -13 12371 -13Q12413 -13 12476.0 -46.5Q12539 -80 12593.5 -159.0Q12648 -238 12664 -374Q12669 -422 12673.5 -507.0Q12678 -592 12705 -670Q12706 -673 12706 -679Q12668 -632 12624.0 -578.0Q12580 -524 12539.5 -474.0Q12499 -424 12470 -389Q12450 -365 12441.0 -358.0Q12432 -351 12433 -351Q12432 -351 12425.5 -350.5Q12419 -350 12415 -357Q12413 -362 12424.5 -376.0Q12436 -390 12449 -406Q12472 -432 12520.0 -489.0Q12568 -546 12621.5 -611.0Q12675 -676 12714 -726Q12720 -756 12732.0 -780.0Q12744 -804 12766 -804Q12806 -804 12806 -771Q12805 -752 12760 -700Q12733 -668 12731.0 -658.5Q12729 -649 12729 -634Q12728 -598 12736.5 -544.5Q12745 -491 12755.0 -432.5Q12765 -374 12768 -321Q12771 -242 12750 -184Q12766 -182 12777 -182Q12809 -182 12850.5 -211.0Q12892 -240 12933.0 -280.0Q12974 -320 13004.5 -356.0Q13035 -392 13045 -406L13067 -389Q13050 -371 13017.0 -333.5Q12984 -296 12942.0 -255.5Q12900 -215 12856.5 -186.5Q12813 -158 12774 -158Q12765 -158 12757.0 -158.5Q12749 -159 12741 -160Q12694 -56 12602.0 -16.5Q12510 23 12394 23Z"></path></svg></p>
+      <p class="firma">18 · 12 · 2026</p>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function () {
+  // ---- Datos de la boda ----
+  const BODA = {
+    // Como se los nombra en el mensaje de WhatsApp
+    novios: 'Nati y Mati',
+    fecha: new Date('2026-12-18T19:00:00-03:00'),
+    // Número de WhatsApp de los novios con código de país, sin + ni espacios: 098 324 005 de Uruguay (598, sin el 0)
+    whatsapp: '59898324005',
+    // Dirección de la planilla de Google que anota las confirmaciones (la "Aplicación web" de planilla/Codigo.gs).
+    // Vacía: las respuestas solo se mandan por WhatsApp.
+    planilla: ''
+  };
+
+  const reducir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+
+  // ---- Pétalos en acuarela ----
+  // Los que caen de fondo van pegados a la portada: llueven solo arriba y al bajar quedan atrás.
+  // Los de la ráfaga (al confirmar) se ubican respecto de la pantalla.
+  const petalos = (function () {
+    const cv = $('#petalos');
+    const ctx = cv.getContext && cv.getContext('2d');
+    const portada = $('.hero');
+    // Hoja con 12 pétalos pintados de formas distintas, de 140 × 140 px cada uno
+    const hoja = new Image();
+    const N = 12, PW = 140, PH = 140;
+    let listo = false;
+    let w = 0, h = 0, lista = [], corriendo = false, ambiente = false;
+    hoja.onload = function () { listo = true; arrancar(); };
+    hoja.src = "petalos.webp";
+    function medir() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth; h = window.innerHeight;
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function nuevo(x, y, rafaga) {
+      const a = Math.random() * Math.PI * 2, v = 2 + Math.random() * 3.5;
+      return {
+        x: x, y: y, i: (Math.random() * N) | 0,
+        tam: rafaga ? 16 + Math.random() * 10 : 21 + Math.random() * 12,
+        rot: Math.random() * Math.PI * 2, vr: (Math.random() - 0.5) * 0.02,
+        giro: Math.random() * Math.PI * 2, vg: 0.01 + Math.random() * 0.02,
+        vx: rafaga ? Math.cos(a) * v : 0,
+        vy: rafaga ? Math.sin(a) * v - 2.5 : 0.35 + Math.random() * 0.45,
+        fase: Math.random() * Math.PI * 2, amp: 0.35 + Math.random() * 0.55,
+        alfa: 0.92 + Math.random() * 0.08, rafaga: rafaga
+      };
+    }
+    function zona() { const r = portada.getBoundingClientRect(); return { arriba: r.top, alto: r.height }; }
+    function hayQueMover(z) { return (ambiente && z.arriba + z.alto > 0) || lista.some(function (p) { return p.rafaga; }); }
+    function cuadro() {
+      const z = zona();
+      ctx.clearRect(0, 0, w, h);
+      if (listo) {
+        for (const p of lista) {
+          if (p.rafaga) { p.vx *= 0.985; p.vy = p.vy * 0.985 + 0.05; }
+          p.fase += 0.012; p.giro += p.vg;
+          p.x += p.vx + Math.sin(p.fase) * p.amp; p.y += p.vy; p.rot += p.vr + Math.sin(p.fase) * 0.004;
+          if (!p.rafaga && p.y > z.alto + 30) { p.y = -30; p.x = Math.random() * w; }
+          // Los de fondo se desvanecen al llegar al final de la portada
+          const y = p.rafaga ? p.y : z.arriba + p.y;
+          const borde = p.rafaga ? 1 : Math.min(1, Math.max(0, (z.alto - p.y) / 140));
+          if (!borde || y < -40 || y > h + 40) continue;
+          // El pétalo se da vuelta despacio: se angosta y muestra el revés, apenas más pálido
+          const volteo = Math.cos(p.giro);
+          const ancho = p.tam * PW / PH;
+          ctx.save();
+          ctx.globalAlpha = p.alfa * borde * (volteo < 0 ? 0.85 : 1);
+          ctx.translate(p.x, y); ctx.rotate(p.rot);
+          ctx.scale(Math.max(0.15, Math.abs(volteo)) * (volteo < 0 ? -1 : 1), 1);
+          ctx.drawImage(hoja, p.i * PW, 0, PW, PH, -ancho / 2, -p.tam / 2, ancho, p.tam);
+          ctx.restore();
+        }
+        lista = lista.filter(function (p) { return !(p.rafaga && p.y > h + 40); });
+      }
+      if (!document.hidden && hayQueMover(z)) requestAnimationFrame(cuadro); else corriendo = false;
+    }
+    function arrancar() { if (ctx && w && !corriendo && !document.hidden && hayQueMover(zona())) { corriendo = true; requestAnimationFrame(cuadro); } }
+    window.addEventListener('resize', function () { if (w) medir(); });
+    window.addEventListener('scroll', arrancar, { passive: true });
+    document.addEventListener('visibilitychange', arrancar);
+    return {
+      iniciar: function () {
+        if (reducir || ambiente || !ctx) return;
+        ambiente = true; medir();
+        const n = w < 600 ? 9 : 13;
+        for (let i = 0; i < n; i++) lista.push(nuevo(Math.random() * w, Math.random() * -h, false));
+        arrancar();
+      },
+      rafaga: function (x, y) {
+        if (reducir || !ctx) return;
+        if (!w) medir();
+        for (let i = 0; i < 30; i++) lista.push(nuevo(x, y, true));
+        arrancar();
+      }
+    };
+  })();
+
+  // ---- Música ----
+  const audio = $('#musica');
+  const btnMusica = $('#btn-musica');
+  let quiereMusica = true;
+  function pintarMusica() {
+    const suena = !audio.paused;
+    btnMusica.classList.toggle('sonando', suena);
+    btnMusica.setAttribute('aria-pressed', suena ? 'true' : 'false');
+    btnMusica.setAttribute('aria-label', suena ? 'Pausar la música' : 'Poner la música');
+  }
+  function subirVolumen() {
+    let v = 0;
+    try { audio.volume = 0; } catch (e) {}
+    const t = setInterval(function () {
+      // El archivo ya viene grabado bajo, como música de fondo (en iPhone el volumen no se puede cambiar desde la página)
+      v = Math.min(1, v + 0.05);
+      try { audio.volume = v; } catch (e) {}
+      if (v >= 1) clearInterval(t);
+    }, 120);
+  }
+  let musicaArrancada = false;
+  // Los navegadores (sobre todo el iPhone) solo dejan sonar audio que se habilitó con un toque:
+  // al tocar "Abrir" se habilita en silencio y se pausa, así después puede arrancar sola, terminada la transición
+  function habilitarMusica() {
+    let p;
+    audio.muted = true;
+    try { p = audio.play(); } catch (e) { audio.muted = false; return; }
+    if (!p || !p.then) { audio.muted = false; return; }
+    p.then(function () { if (!musicaArrancada) { audio.pause(); audio.currentTime = 0; } audio.muted = false; }, function () { audio.muted = false; });
+  }
+  function arrancarMusica() {
+    let p;
+    musicaArrancada = true;
+    audio.muted = false;
+    try { p = audio.play(); } catch (e) { return; }
+    if (!p || !p.then) return;
+    subirVolumen();
+    p.then(function () { btnMusica.hidden = false; pintarMusica(); }, function (err) {
+      // Sin archivo de música el botón queda oculto; si el navegador la frena, se muestra para tocar play
+      btnMusica.hidden = !(err && err.name === 'NotAllowedError');
+      pintarMusica();
+    });
+  }
+  audio.addEventListener('play', pintarMusica);
+  audio.addEventListener('pause', pintarMusica);
+  btnMusica.addEventListener('click', function () {
+    if (audio.paused) { quiereMusica = true; arrancarMusica(); }
+    else { quiereMusica = false; audio.pause(); }
+  });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { if (!audio.paused) audio.pause(); }
+    else if (quiereMusica && !btnMusica.hidden && audio.paused) { audio.play().catch(function () {}); }
+  });
+
+  // ---- Sobre ----
+  // Al abrir el sobre la invitación arranca siempre desde arriba, aunque el navegador haya guardado otra posición
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+  function irArriba() {
+    const html = document.documentElement;
+    const antes = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    html.style.scrollBehavior = antes;
+  }
+  irArriba();
+  const sobre = $('#sobre');
+  function abrir() {
+    if (sobre.classList.contains('abriendo')) return;
+    sobre.classList.add('abriendo');
+    irArriba();
+    function terminar() {
+      irArriba();
+      sobre.hidden = true;
+      document.body.classList.remove('con-sobre');
+      document.body.classList.add('abierta');
+      try { $('#contenido').focus({ preventScroll: true }); } catch (e) {}
+      petalos.iniciar();
+      // La flecha llega a los 6,6s de abierta la invitación; se mide justo antes
+      setTimeout(ubicarFlecha, reducir ? 0 : 5600);
+    }
+    if (reducir) { terminar(); arrancarMusica(); return; }
+    habilitarMusica();
+    // La música arranca mientras la tarjeta está a la vista, 1,5s antes de que termine la transición
+    setTimeout(arrancarMusica, 2950);
+    // La tarjeta termina de salir del sobre a los 2s y queda a la vista un rato antes de pasar a la invitación
+    setTimeout(function () { irArriba(); sobre.classList.add('saliendo'); document.body.classList.add('abierta'); }, 3700);
+    setTimeout(terminar, 4450);
+  }
+  $('#env').addEventListener('click', abrir);
+  $('#abrir').addEventListener('click', abrir);
+
+  // ---- Flecha para bajar: se va apenas se empieza a bajar y no vuelve ----
+  const flecha = $('#flecha-bajar');
+  function sacarFlecha() {
+    if (window.scrollY < 40 || flecha.classList.contains('se-fue')) return;
+    // Se desvanece desde donde está (la animación de llegada manda sobre la opacidad hasta que se la quita)
+    flecha.style.opacity = getComputedStyle(flecha).opacity;
+    flecha.style.animation = 'none';
+    void flecha.offsetWidth;
+    flecha.classList.add('se-fue');
+    window.removeEventListener('scroll', sacarFlecha);
+  }
+  window.addEventListener('scroll', sacarFlecha, { passive: true });
+  // Si la portada no entra entera, la flecha cae sobre el texto y lleva su circulito de papel
+  function ubicarFlecha() {
+    const fecha = $('.fecha-grande').getBoundingClientRect();
+    flecha.classList.toggle('sobre-texto', fecha.bottom > flecha.getBoundingClientRect().top - 6);
+  }
+
+  // ---- Cuenta regresiva ----
+  const cd = { d: $('#cd-d'), h: $('#cd-h'), m: $('#cd-m'), s: $('#cd-s') };
+  function pintar(el, v) {
+    const t = String(v).padStart(2, '0');
+    if (el.textContent === t) return;
+    el.textContent = t;
+    if (!reducir) { el.classList.remove('tic'); void el.offsetWidth; el.classList.add('tic'); }
+  }
+  let reloj = null;
+  function tic() {
+    const ms = BODA.fecha.getTime() - Date.now();
+    if (ms <= 0) { $('#cuenta').hidden = true; $('#llego').hidden = false; clearInterval(reloj); return; }
+    const s = Math.floor(ms / 1000);
+    pintar(cd.d, Math.floor(s / 86400));
+    pintar(cd.h, Math.floor(s / 3600) % 24);
+    pintar(cd.m, Math.floor(s / 60) % 60);
+    pintar(cd.s, s % 60);
+  }
+  tic();
+  reloj = setInterval(tic, 1000);
+
+  // ---- Aparición al bajar ----
+  // Cada parte se anima cuando está entera a la vista y su borde de arriba ya cruzó una línea de la pantalla.
+  // "Entera a la vista" lo dice el IntersectionObserver, que sabe qué se ve de verdad aunque la invitación esté
+  // dentro de otra página (el visor de Claude). La línea se mide a mano en cada scroll, porque ahí el navegador
+  // ignora el margen del observador; y si ahí el alto de la pantalla viene mal, igual manda lo que de verdad se ve.
+  const pendientes = [];
+  let revisando = false;
+  const vigia = 'IntersectionObserver' in window ? new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) { const p = e.target.__pendiente; if (p) p.seVe = p.parcial ? e.intersectionRatio > 0 : e.intersectionRatio >= .97; });
+    pedirRevision();
+  }, { threshold: [0, .97] }) : null;
+  // entera: el elemento tiene que verse entero (si no, alcanza con la línea)
+  function esperar(el, o) {
+    const ya = pendientes.find(function (p) { return p.el === el; });
+    if (ya) { ya.noAntes = o.noAntes || 0; return; }
+    // parcial: alcanza con que asome (la firma al pie de la hoja se escribe al abrirla, aunque quede abajo de todo)
+    const p = { el: el, entera: o.entera || null, linea: o.linea, noAntes: o.noAntes || 0, parcial: !!o.parcial, seVe: !vigia || !o.entera };
+    pendientes.push(p);
+    if (vigia && p.entera) { p.entera.__pendiente = p; vigia.observe(p.entera); }
+  }
+  function revisar() {
+    revisando = false;
+    const alto = window.innerHeight, ahora = performance.now();
+    for (let i = pendientes.length - 1; i >= 0; i--) {
+      const p = pendientes[i];
+      if (!p.seVe || ahora < p.noAntes) continue;
+      const r = p.el.getBoundingClientRect();
+      if (!r.width && !r.height) continue; // todavía oculto (la hoja de confirmación cerrada)
+      if (r.top < alto * p.linea) {
+        p.el.classList.add('visto');
+        pendientes.splice(i, 1);
+        if (vigia && p.entera) { vigia.unobserve(p.entera); p.entera.__pendiente = null; }
+      }
+    }
+  }
+  function pedirRevision() { if (!revisando) { revisando = true; requestAnimationFrame(revisar); } }
+  // La firma y el olivo del final de la hoja se animan de nuevo cada vez que se abre, cuando ya llegó la tarjeta:
+  // sin tener que bajar, alcanza con que se asomen en la pantalla
+  function esperarDeNuevo(caja, demora) {
+    if (reducir) return;
+    $$('.al-ver', caja).forEach(function (el) {
+      el.classList.remove('visto');
+      esperar(el, { entera: el, parcial: true, linea: 10, noAntes: performance.now() + demora });
+    });
+  }
+  if (!reducir) {
+    // Las secciones suben apenas antes de entrar
+    $$('.rv').forEach(function (el) { if (el.getBoundingClientRect().top > window.innerHeight) esperar(el, { linea: 1.12 }); });
+    // Ramas, títulos, cuenta y firma, cuando ya están bien a la vista
+    // (Ceremonia, Fiesta y el botón de confirmar no se animan: están desde que carga la página)
+    $$('.al-ver').forEach(function (el) {
+      el.classList.add('espera');
+      if (el.closest('.hoja')) return; // los de la hoja se esperan al abrirla
+      esperar(el, { entera: el, linea: .88 });
+    });
+    document.addEventListener('scroll', pedirRevision, { capture: true, passive: true });
+    window.addEventListener('resize', pedirRevision);
+    pedirRevision();
+  }
+
+  // ---- Copiar ----
+  function copiar(texto, boton, respaldo) {
+    const original = boton.textContent;
+    function volver() { setTimeout(function () { boton.textContent = original; }, 2200); }
+    function fallo() {
+      if (respaldo) respaldo();
+      boton.textContent = 'Seleccionado, copialo';
+      volver();
+    }
+    try {
+      navigator.clipboard.writeText(texto).then(function () { boton.textContent = 'Copiado'; volver(); }, fallo);
+    } catch (e) { fallo(); }
+  }
+  $('#copiar-alias').addEventListener('click', function () {
+    const el = $('#alias');
+    copiar(el.textContent.trim(), this, function () {
+      const sel = window.getSelection(); sel.removeAllRanges(); const r = document.createRange(); r.selectNodeContents(el); sel.addRange(r);
+    });
+  });
+
+  // ---- Hoja de confirmación ----
+  // "Confirmar asistencia" abre la tarjeta en su propia página, que sube sobre la invitación.
+  // "Volver", la tecla Esc o el botón atrás del teléfono la bajan.
+  const hoja = $('#hoja-confirmar');
+  const pagina = $('#contenido');
+  const selloTarjeta = $('.tarjeta-sello');
+  let desde = null, conHistoria = false, ocultar = null, revisarHoja = null;
+  function abrirHoja(boton) {
+    if (hoja.classList.contains('arriba')) return;
+    clearTimeout(ocultar);
+    desde = boton || null;
+    // La invitación se aleja desde el centro de lo que se está viendo
+    pagina.style.transformOrigin = '50% ' + Math.round(window.innerHeight / 2 - pagina.getBoundingClientRect().top) + 'px';
+    hoja.hidden = false;
+    hoja.scrollTop = 0;
+    void hoja.offsetWidth;
+    hoja.classList.add('arriba');
+    document.body.classList.add('con-hoja');
+    pagina.inert = true;
+    selloTarjeta.classList.remove('estampa'); void selloTarjeta.getBoundingClientRect(); selloTarjeta.classList.add('estampa');
+    esperarDeNuevo(hoja, 1700);
+    clearTimeout(revisarHoja);
+    revisarHoja = setTimeout(pedirRevision, reducir ? 0 : 1720);
+    try { history.pushState({ hoja: 'confirmar' }, ''); conHistoria = true; } catch (e) { conHistoria = false; }
+    try { hoja.focus({ preventScroll: true }); } catch (e) {}
+  }
+  function cerrarHoja() {
+    if (!hoja.classList.contains('arriba')) return;
+    hoja.classList.remove('arriba');
+    document.body.classList.remove('con-hoja');
+    pagina.inert = false;
+    ocultar = setTimeout(function () { hoja.hidden = true; }, reducir ? 0 : 850);
+    if (desde) { try { desde.focus({ preventScroll: true }); } catch (e) {} }
+  }
+  $$('a[href="#confirmar"]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); abrirHoja(a); });
+  });
+  function bajarHoja() {
+    if (!conHistoria) { cerrarHoja(); return; }
+    history.back();
+    // Por si el navegador no avisa la vuelta atrás
+    setTimeout(function () { if (conHistoria) { conHistoria = false; cerrarHoja(); } }, 400);
+  }
+  $('#volver-invitacion').addEventListener('click', bajarHoja);
+  window.addEventListener('popstate', function () { if (conHistoria) { conHistoria = false; cerrarHoja(); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && hoja.classList.contains('arriba')) bajarHoja(); });
+
+  // ---- Confirmación paso a paso ----
+  const form = $('#rsvp');
+  const pasos = { asistencia: $('#p-asistencia'), datos: $('#p-datos'), bebidas: $('#p-bebidas'), comida: $('#p-comida'), extras: $('#p-extras'), resumen: $('#p-resumen') };
+  const RUTA = { si: ['asistencia', 'datos', 'bebidas', 'comida', 'extras', 'resumen'], no: ['asistencia', 'datos', 'extras', 'resumen'] };
+  const CLAVE = 'invitacion-natalia-matias';
+  let estado = { id: '', asiste: null, nombre: '', bebidas: [], comida: [], comidaOtra: '', cancion: '', mensaje: '' };
+  let actual = 'asistencia';
+
+  try {
+    const g = JSON.parse(localStorage.getItem(CLAVE) || 'null');
+    if (g && g.estado) { estado = Object.assign(estado, g.estado); if (g.paso && pasos[g.paso]) actual = g.paso; }
+  } catch (e) {}
+  if (!estado.asiste) actual = 'asistencia';
+
+  function guardar() { try { localStorage.setItem(CLAVE, JSON.stringify({ estado: estado, paso: actual })); } catch (e) {} }
+  function ruta() { return RUTA[estado.asiste || 'si']; }
+
+  // Volcar lo guardado en el formulario
+  if (estado.asiste) { const r = $('#asiste-' + estado.asiste); if (r) r.checked = true; }
+  $('#nombre').value = estado.nombre;
+  $$('input[name=bebida]').forEach(function (i) { i.checked = estado.bebidas.indexOf(i.value) !== -1; });
+  $$('input[name=comida]').forEach(function (i) { i.checked = estado.comida.indexOf(i.value) !== -1; });
+  $('#comida-otra').value = estado.comidaOtra;
+  $('#cancion').value = estado.cancion;
+  $('#mensaje').value = estado.mensaje;
+
+  function aplicarModo() {
+    const no = estado.asiste === 'no';
+    $('#fila-cancion').hidden = no;
+    $('#leg-datos').textContent = no ? '¿Quién nos escribe?' : '¿Quién confirma?';
+    $('#leg-extras').textContent = no ? 'Unas palabras' : 'Para terminar';
+    $('#fila-otra').hidden = estado.comida.indexOf('Otra') === -1;
+  }
+  function leer() {
+    const a = $('input[name=asiste]:checked', form);
+    estado.asiste = a ? a.value : null;
+    estado.nombre = $('#nombre').value;
+    estado.bebidas = $$('input[name=bebida]:checked').map(function (i) { return i.value; });
+    estado.comida = $$('input[name=comida]:checked').map(function (i) { return i.value; });
+    estado.comidaOtra = $('#comida-otra').value;
+    estado.cancion = $('#cancion').value;
+    estado.mensaje = $('#mensaje').value;
+    if (estado.nombre.trim().length >= 2) $('#error-nombre').hidden = true;
+    if (estado.bebidas.length) $('#error-bebidas').hidden = true;
+    aplicarModo();
+    guardar();
+  }
+
+
+  // "Ninguna" excluye al resto y viceversa
+  $$('input[name=comida]').forEach(function (i) {
+    i.addEventListener('change', function () {
+      if (!i.checked) return;
+      if (i.value === 'Ninguna') $$('input[name=comida]').forEach(function (o) { if (o !== i) o.checked = false; });
+      else $('#c-ninguna').checked = false;
+    });
+  });
+  form.addEventListener('input', leer);
+  form.addEventListener('change', leer);
+
+
+  $$('input[name=asiste]').forEach(function (i) {
+    i.addEventListener('change', function () {
+      leer();
+      setTimeout(function () { if (actual === 'asistencia') ir('datos', 1); }, reducir ? 0 : 380);
+    });
+  });
+
+  function primerNombre() { return estado.nombre.trim().split(/\s+/)[0] || ''; }
+  function comidaTexto() {
+    const lista = estado.comida.filter(function (c) { return c !== 'Otra'; });
+    if (estado.comida.indexOf('Otra') !== -1 && estado.comidaOtra.trim()) lista.push(estado.comidaOtra.trim());
+    return lista.length ? lista.join(', ') : 'Sin restricciones';
+  }
+  function filas() {
+    const f = [['Respuesta', estado.asiste === 'no' ? 'No voy a poder' : '¡Sí, voy!'], ['Nombre', estado.nombre.trim()]];
+    if (estado.asiste !== 'no') {
+      f.push(['Para tomar', estado.bebidas.length ? estado.bebidas.join(', ') : 'Ninguna en particular']);
+      f.push(['Comida', comidaTexto()]);
+      if (estado.cancion.trim()) f.push(['Canción', estado.cancion.trim()]);
+    }
+    if (estado.mensaje.trim()) f.push(['Mensaje', estado.mensaje.trim()]);
+    return f;
+  }
+  function mensajeWa() {
+    const n = estado.nombre.trim();
+    if (estado.asiste === 'no') {
+      return ['¡Hola! Soy ' + n + '.', 'Lamentablemente no voy a poder ir al casamiento de ' + BODA.novios + '.', estado.mensaje.trim() ? 'Mensaje: ' + estado.mensaje.trim() : '']
+        .filter(Boolean).join('\n');
+    }
+    return [
+      '¡Hola! Soy ' + n + ' y confirmo que voy al casamiento de ' + BODA.novios + '.',
+      'Para tomar: ' + (estado.bebidas.length ? estado.bebidas.join(', ') : 'ninguna en particular'),
+      'Comida: ' + comidaTexto(),
+      estado.cancion.trim() ? 'Canción que no puede faltar: ' + estado.cancion.trim() : '',
+      estado.mensaje.trim() ? 'Mensaje: ' + estado.mensaje.trim() : ''
+    ].filter(Boolean).join('\n');
+  }
+  function armarResumen() {
+    const nombre = primerNombre();
+    $('#resumen-titulo').textContent = (estado.asiste === 'no' ? '¡Gracias por avisar' : '¡Te esperamos') + (nombre ? ', ' + nombre : '') + '!';
+    const dl = $('#lista-resumen');
+    dl.textContent = '';
+    filas().forEach(function (par) {
+      const dt = document.createElement('dt'); dt.textContent = par[0];
+      const dd = document.createElement('dd'); dd.textContent = par[1];
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    const texto = mensajeWa();
+    $('#enviar-wa').href = 'https://wa.me/' + BODA.whatsapp + '?text=' + encodeURIComponent(texto);
+  }
+
+  function ir(paso, dir) {
+    actual = paso;
+    Object.keys(pasos).forEach(function (k) {
+      pasos[k].hidden = k !== paso;
+      pasos[k].classList.remove('entra-adelante', 'entra-atras');
+    });
+    const el = pasos[paso];
+    if (dir && !reducir) { void el.offsetWidth; el.classList.add(dir > 0 ? 'entra-adelante' : 'entra-atras'); }
+    const r = ruta();
+    const i = Math.max(0, r.indexOf(paso));
+    const total = r.length - 1;
+    $('#progreso-texto').textContent = paso === 'resumen' ? '¡Listo!' : 'Paso ' + (i + 1) + ' de ' + total;
+    $('#progreso-barra').style.width = (paso === 'resumen' ? 100 : (i / total) * 100) + '%';
+    $('#atras').hidden = i === 0 || paso === 'resumen';
+    $('#siguiente').hidden = paso === 'asistencia' || paso === 'resumen';
+    // En el último paso antes del resumen el botón confirma
+    $('#siguiente').textContent = r[i + 1] === 'resumen' ? 'Confirmar' : 'Siguiente';
+    if (paso === 'resumen') armarResumen();
+    if (paso === 'resumen' && dir) anotarEnPlanilla();
+    guardar();
+    if (dir) {
+      try { el.focus({ preventScroll: true }); } catch (e) {}
+      // Si la tarjeta quedó arriba de la pantalla, la hoja vuelve al principio (con el sello a la vista)
+      if (form.getBoundingClientRect().top < 0) hoja.scrollTo({ top: 0, behavior: reducir ? 'auto' : 'smooth' });
+      if (paso === 'resumen' && estado.asiste === 'si') {
+        const t = $('#resumen-titulo').getBoundingClientRect();
+        petalos.rafaga(t.left + t.width / 2, t.top + t.height / 2);
+      }
+    }
+  }
+
+  // Cada confirmación se anota también en la planilla de los novios. Si la misma persona vuelve a confirmar
+  // desde este celular, lleva el mismo código y la planilla reemplaza su respuesta en vez de duplicarla.
+  function anotarEnPlanilla() {
+    if (!BODA.planilla || !window.fetch) return;
+    if (!estado.id) { estado.id = Date.now().toString(36) + Math.random().toString(36).slice(2, 8); guardar(); }
+    const va = estado.asiste !== 'no';
+    const datos = {
+      boda: 'nati-y-mati', id: estado.id, asiste: estado.asiste, nombre: estado.nombre.trim(),
+      bebidas: va ? estado.bebidas : [], comida: va ? estado.comida : [], comidaOtra: va ? estado.comidaOtra.trim() : '',
+      cancion: va ? estado.cancion.trim() : '', mensaje: estado.mensaje.trim()
+    };
+    // Google no deja leer la respuesta desde otra página; alcanza con que el pedido llegue
+    fetch(BODA.planilla, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(datos) }).catch(function () {});
+  }
+
+  function siguiente() {
+    leer();
+    if (actual === 'datos' && estado.nombre.trim().length < 2) {
+      $('#error-nombre').hidden = false;
+      $('#nombre').focus();
+      return;
+    }
+    if (actual === 'bebidas' && !estado.bebidas.length) {
+      $('#error-bebidas').hidden = false;
+      $('#b-fernet').focus();
+      return;
+    }
+    const r = ruta();
+    const i = r.indexOf(actual);
+    if (i !== -1 && i < r.length - 1) ir(r[i + 1], 1);
+  }
+  form.addEventListener('submit', function (e) { e.preventDefault(); siguiente(); });
+  // Al mandar la respuesta por WhatsApp la tarjeta queda vacía, lista para que confirme otra persona
+  function vaciarTarjeta() {
+    estado = { id: '', asiste: null, nombre: '', bebidas: [], comida: [], comidaOtra: '', cancion: '', mensaje: '' };
+    form.reset();
+    $('#error-nombre').hidden = true;
+    $('#error-bebidas').hidden = true;
+    try { localStorage.removeItem(CLAVE); } catch (e) {}
+    aplicarModo();
+    ir('asistencia', -1);
+  }
+  // Después de mandar por WhatsApp se vuelve a la invitación, y la tarjeta se vacía cuando ya no se ve
+  $('#enviar-wa').addEventListener('click', function () {
+    setTimeout(function () { bajarHoja(); setTimeout(vaciarTarjeta, reducir ? 0 : 900); }, 800);
+  });
+  $('#atras').addEventListener('click', function () {
+    const r = ruta(); const i = r.indexOf(actual);
+    if (i > 0) ir(r[i - 1], -1);
+  });
+
+  aplicarModo();
+  ir(actual, 0);
+})();
+</script>
+
+</body>
+</html>
