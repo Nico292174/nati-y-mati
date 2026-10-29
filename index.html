@@ -974,7 +974,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   </footer>
 </main>
 
-<!-- Confirmación: otra página que sube sobre la invitación; al abrirla, la música se apaga despacio -->
+<!-- Confirmación: otra página que sube sobre la invitación (así la música sigue sonando) -->
 <div class="hoja" id="hoja-confirmar" role="dialog" aria-modal="true" aria-labelledby="t-confirmar" tabindex="-1" hidden>
   <div class="hoja-dentro">
     <button type="button" class="hoja-volver" id="volver-invitacion">
@@ -1120,15 +1120,15 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     // Dirección de la planilla de Google que anota las confirmaciones (la "Aplicación web" de planilla/Codigo.gs).
     // Vacía: las respuestas solo se mandan por WhatsApp.
     planilla: '',
-    // Tope del volumen de la música, de 0 a 1: este archivo ya viene grabado bajo, como música de fondo
-    volumen: 1
+    // Tope del volumen de la música, de 0 a 1: la canción es un máster normal y así queda como música de fondo
+    volumen: 0.6
   };
 
   const reducir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   // Se muestra en el diagnóstico (?debug) para saber qué versión cargó el teléfono
-  const VERSION = '11';
+  const VERSION = '12';
 
   // ---- Pétalos en acuarela ----
   // Los de fondo están pegados a la pantalla, arriba de todo, y siguen cayendo mientras se baja. Son elementos con
@@ -1241,15 +1241,15 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const btnMusica = $('#btn-musica');
   let quiereMusica = true;
   function pintarMusica() {
-    const suena = !audio.paused && !apagada;
+    const suena = !audio.paused;
     btnMusica.classList.toggle('sonando', suena);
     btnMusica.setAttribute('aria-pressed', suena ? 'true' : 'false');
     btnMusica.setAttribute('aria-label', suena ? 'Pausar la música' : 'Poner la música');
   }
-  // En iPhone el volumen del audio no se puede cambiar desde la página. Para poder subir y apagar la música
-  // despacio, ahí se la pasa por un control de volumen de Web Audio, armado con el toque en "Abrir", antes de que
-  // empiece a sonar: cambiarla de camino a mitad de canción la cortaba en seco
-  let ganancia = null, analizador = null, volumen = null, apagada = false, ultimoError = '';
+  // En iPhone el volumen del audio no se puede cambiar desde la página. Para poder subir la música de a poco y
+  // ponerle un tope, ahí se la pasa por un control de volumen de Web Audio, armado con el toque en "Abrir", antes
+  // de que empiece a sonar: cambiarla de camino a mitad de canción la cortaba en seco
+  let ganancia = null, volumen = null, ultimoError = '';
   function volumenFijo() {
     const antes = audio.volume;
     try { audio.volume = antes > 0.5 ? antes - 0.1 : antes + 0.1; } catch (e) { return true; }
@@ -1270,24 +1270,10 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
       const ac = new AC();
       const g = ac.createGain();
       g.gain.value = inicial;
-      const fuente = ac.createMediaElementSource(audio);
-      fuente.connect(g);
+      ac.createMediaElementSource(audio).connect(g);
       g.connect(ac.destination);
-      // Escucha lo que entra al control, para saber si el audio de verdad pasa por acá
-      const an = ac.createAnalyser();
-      an.fftSize = 32;
-      fuente.connect(an);
-      ganancia = g; analizador = an;
+      ganancia = g;
     } catch (e) { ultimoError = String(e); }
-  }
-  // ¿Pasa señal por el control de volumen? Si no pasa, el teléfono saca el audio por su lado y bajar la
-  // ganancia no se escucha: entonces no hay que pausar, porque eso sí se escucharía, de golpe
-  function pasaSenal() {
-    if (!analizador) return false;
-    const d = new Uint8Array(analizador.fftSize);
-    analizador.getByteTimeDomainData(d);
-    for (let i = 0; i < d.length; i++) if (Math.abs(d[i] - 128) > 2) return true;
-    return false;
   }
   // Solo donde la página no maneja el volumen y el teléfono deja ignorar el silencio: sin eso, pasar la música
   // por Web Audio desde el principio la dejaría muda en un iPhone en silencio
@@ -1320,30 +1306,6 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
       if (v >= 1) clearInterval(volumen);
     }, 120);
   }
-  // Al ir a confirmar, la música se apaga despacio y ya no vuelve sola (el botón queda por si la quieren poner)
-  const APAGADO_MS = 3000;
-  function apagarMusica() {
-    // Sin forma de bajarla de a poco (iPhone viejo), la música sigue sonando: mejor eso que cortarla en seco
-    if (!ganancia && sinVolumen()) return;
-    quiereMusica = false;
-    clearInterval(volumen);
-    if (audio.paused) return;
-    const t0 = performance.now();
-    let conSenal = false;
-    volumen = setInterval(function () {
-      const x = Math.min(1, (performance.now() - t0) / APAGADO_MS);
-      if (ganancia && pasaSenal()) conSenal = true;
-      // Baja más al principio y se apaga suave al final, como se escucha natural
-      ponerVolumen(Math.pow(1 - x, 2));
-      if (x < 1) return;
-      clearInterval(volumen);
-      // Se pausa solo si el apagado se escuchó: con el volumen de la página, o con señal pasando por el control.
-      // Si no, la música sigue sonando; el botón la muestra apagada y al tocarlo vuelve a subir
-      if (!ganancia || conSenal) audio.pause();
-      apagada = true;
-      pintarMusica();
-    }, 60);
-  }
   let musicaArrancada = false;
   // Los navegadores (sobre todo el iPhone) solo dejan sonar audio que se habilitó con un toque:
   // al tocar "Abrir" se habilita en silencio y se pausa, así después puede arrancar sola, terminada la transición
@@ -1357,7 +1319,6 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   function arrancarMusica() {
     let p;
     musicaArrancada = true;
-    apagada = false;
     audio.muted = false;
     try { p = audio.play(); } catch (e) { return; }
     if (!p || !p.then) return;
@@ -1371,7 +1332,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   audio.addEventListener('play', pintarMusica);
   audio.addEventListener('pause', pintarMusica);
   btnMusica.addEventListener('click', function () {
-    if (audio.paused || apagada) { quiereMusica = true; arrancarMusica(); }
+    if (audio.paused) { quiereMusica = true; arrancarMusica(); }
     else { quiereMusica = false; audio.pause(); }
   });
   document.addEventListener('visibilitychange', function () {
@@ -1572,7 +1533,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     if (desde) { try { desde.focus({ preventScroll: true }); } catch (e) {} }
   }
   $$('a[href="#confirmar"]').forEach(function (a) {
-    a.addEventListener('click', function (e) { e.preventDefault(); apagarMusica(); abrirHoja(a); });
+    a.addEventListener('click', function (e) { e.preventDefault(); abrirHoja(a); });
   });
   function bajarHoja() {
     if (!conHistoria) { cerrarHoja(); return; }
@@ -1868,9 +1829,9 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
       caja.textContent = [
         'versión ' + VERSION,
         'iOS: ' + (esIOS ? 'sí' : 'no') + ' · volumen fijo: ' + (fijo ? 'sí' : 'no') + ' · audioSession: ' + (navigator.audioSession ? navigator.audioSession.type : 'no'),
-        'control: ' + (ganancia ? 'sí · ' + ac.state : 'no') + ' · señal: ' + (pasaSenal() ? 'sí' : 'no'),
+        'control: ' + (ganancia ? 'sí · ' + ac.state : 'no'),
         'ganancia: ' + (ganancia ? ganancia.gain.value.toFixed(2) : '-') + ' · volume: ' + audio.volume.toFixed(2),
-        'audio: ' + (audio.paused ? 'pausado' : 'sonando') + ' ' + audio.currentTime.toFixed(1) + 's' + (audio.muted ? ' · muted' : '') + ' · apagada: ' + (apagada ? 'sí' : 'no'),
+        'audio: ' + (audio.paused ? 'pausado' : 'sonando') + ' ' + audio.currentTime.toFixed(1) + 's' + (audio.muted ? ' · muted' : ''),
         'error: ' + (ultimoError || errores[0] || '-'),
         navigator.userAgent.replace(/^Mozilla\/5\.0 \(/, '').slice(0, 80)
       ].join('\n');
