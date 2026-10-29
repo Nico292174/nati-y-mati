@@ -146,6 +146,29 @@ fieldset:focus, main:focus { outline: none; }
   background: radial-gradient(70% 55% at 50% 48%, rgba(251, 245, 235, .35) 0%, rgba(251, 245, 235, .9) 100%);
   pointer-events: none;
 }
+/* Aviso para el navegador de Samsung: una tira de papel arriba del sobre, con el botón para abrir en Chrome */
+.aviso-samsung {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 14px);
+  left: 16px;
+  right: 16px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  border: 1px solid var(--linea);
+  border-radius: 14px;
+  background: rgba(251, 245, 235, .92);
+  font-family: var(--f-sans);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--tinta-suave);
+  text-align: center;
+}
+.aviso-samsung p { max-width: 30ch; }
 .sobre-caja { --w: min(340px, 84vw); position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; padding-top: calc(var(--w) * 0.2); }
 /* "Tenés una invitación", sobre, nombres y botón a 24px a la vista entre sí */
 .sobre-caja > .ojo { margin-bottom: -4px; transition: opacity .45s ease, transform .45s ease; }
@@ -842,6 +865,12 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
 <body>
 
 <div id="sobre" class="sobre" hidden>
+  <!-- Solo en el navegador de Samsung: su "modo oscuro forzado" recolorea la invitación sin que la página pueda
+       evitarlo, y como no avisa cuándo lo hace, el aviso se muestra a todos los que usen ese navegador -->
+  <div class="aviso-samsung" id="aviso-samsung" hidden>
+    <p>Si la ves oscura, es el modo oscuro de este navegador.</p>
+    <a class="btn-linea chico" id="abrir-en-chrome" href="#">Abrir en Chrome</a>
+  </div>
   <div class="sobre-caja">
     <p class="ojo">Tenés una invitación</p>
     <button class="env" type="button" id="env" aria-label="Abrir la invitación">
@@ -1168,7 +1197,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   // Se muestra en el diagnóstico (?debug) para saber qué versión cargó el teléfono
-  const VERSION = '19';
+  const VERSION = '20';
 
   // ---- Pétalos en acuarela ----
   // Los de fondo están pegados a la pantalla, arriba de todo, y siguen cayendo mientras se baja. Son elementos con
@@ -1379,6 +1408,17 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     if (document.hidden) { if (!audio.paused) audio.pause(); }
     else if (quiereMusica && !btnMusica.hidden && audio.paused) { reanudarContexto(); audio.play().catch(function () {}); }
   });
+
+  // ---- Aviso para el navegador de Samsung ----
+  // Su "modo oscuro forzado" recolorea la página sin que se pueda evitar desde acá y sin avisar cuándo lo hace,
+  // así que a quien use ese navegador se le ofrece abrir la invitación en Chrome. El enlace es un "intent" de
+  // Android: abre esta misma dirección en Chrome y, si Chrome no está, deja la página donde está
+  if (/SamsungBrowser\//.test(navigator.userAgent)) {
+    const direccion = location.href.split('#')[0];
+    $('#abrir-en-chrome').href = 'intent://' + location.host + location.pathname + location.search +
+      '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(direccion) + ';end';
+    $('#aviso-samsung').hidden = false;
+  }
 
   // ---- Sobre ----
   // Al abrir el sobre la invitación arranca siempre desde arriba, aunque el navegador haya guardado otra posición
