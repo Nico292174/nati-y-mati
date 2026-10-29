@@ -14,12 +14,12 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#FBF5EB">
-<!-- La invitación se ve igual con el teléfono en modo oscuro: "only light" le pide al navegador que no la oscurezca
-     por su cuenta (el navegador de Samsung y Chrome en Android lo hacen con las páginas que no lo declaran) -->
-<meta name="color-scheme" content="only light">
-<meta name="supported-color-schemes" content="light">
+<!-- La invitación se ve igual con el teléfono en modo oscuro. El navegador de Samsung (y Chrome en Android, si lo
+     activan) recolorea por su cuenta las páginas que no contemplan el modo oscuro, y lo que respeta es que la página
+     declare que lo contempla: por eso se declara "light dark", y los estilos para modo oscuro son los mismos colores -->
+<meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2246%22 fill=%22%23A9483C%22/%3E%3C/svg%3E">
-<style>html{color-scheme:only light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Casamiento de Natalia y Matías</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,8 +52,9 @@
   --f-script: 'Pinyon Script', 'Snell Roundhand', 'Apple Chancery', cursive;
   --f-serif: 'Cormorant Garamond', Garamond, 'Times New Roman', serif;
   --f-sans: 'Jost', 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
-  /* Solo colores claros, y que el navegador no los cambie en modo oscuro (ver el <meta> de color-scheme) */
-  color-scheme: only light;
+  /* "Contemplamos" el modo oscuro para que el navegador no recoloree la página por su cuenta (ver el <meta> de
+     color-scheme); los colores, todos explícitos, son los mismos en los dos modos */
+  color-scheme: light dark;
 }
 
 html { background: var(--papel); scroll-behavior: smooth; }
@@ -826,10 +827,10 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   .lista-resumen { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .lista-resumen dd + dt { margin-top: 8px; }
 }
-/* Con el teléfono en modo oscuro, los mismos colores: algunos navegadores solo dejan en paz a las páginas que
-   contemplan ese modo, y esta regla es la forma de decirles que lo contemplamos... con los colores de siempre */
+/* Con el teléfono en modo oscuro, los mismos colores: el navegador de Samsung solo deja en paz a las páginas que
+   contemplan ese modo, y esta regla es nuestro "tema oscuro"... con los colores de siempre. Ojo: no declarar acá
+   ningún elemento como "light" solo, porque Chrome recolorea justo a esos */
 @media (prefers-color-scheme: dark) {
-  :root { color-scheme: only light; }
   html, body { background: var(--papel); color: var(--tinta); }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1167,7 +1168,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   // Se muestra en el diagnóstico (?debug) para saber qué versión cargó el teléfono
-  const VERSION = '18';
+  const VERSION = '19';
 
   // ---- Pétalos en acuarela ----
   // Los de fondo están pegados a la pantalla, arriba de todo, y siguen cayendo mientras se baja. Son elementos con
