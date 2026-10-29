@@ -1099,7 +1099,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   // Se muestra en el diagnóstico (?debug) para saber qué versión cargó el teléfono
-  const VERSION = '8';
+  const VERSION = '9';
 
   // ---- Pétalos en acuarela ----
   // Los que caen de fondo van pegados a la portada: llueven sobre ella y se van apenas se empieza a bajar.
@@ -1227,6 +1227,10 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     try { audio.volume = antes; } catch (e) {}
     return fijo;
   }
+  // El iPhone deja escribir audio.volume pero no le hace caso (manda solo el volumen de los botones del teléfono),
+  // así que probar la propiedad no alcanza: se lo reconoce por el aparato. El iPad se presenta como Mac con pantalla táctil
+  const esIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  function sinVolumen() { return esIOS || volumenFijo(); }
   function armarGanancia(inicial) {
     const AC = window.AudioContext || window.webkitAudioContext;
     if (ganancia || !AC) return;
@@ -1258,7 +1262,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   // Solo donde la página no maneja el volumen y el teléfono deja ignorar el silencio: sin eso, pasar la música
   // por Web Audio desde el principio la dejaría muda en un iPhone en silencio
   function prepararMusica() {
-    if (volumenFijo() && navigator.audioSession) armarGanancia(0);
+    if (sinVolumen() && navigator.audioSession) armarGanancia(0);
   }
   // Al volver a la página, el iPhone deja el audio interrumpido hasta que se lo reanuda
   function reanudarContexto() {
@@ -1288,7 +1292,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const APAGADO_MS = 3000;
   function apagarMusica() {
     // Sin forma de bajarla de a poco (iPhone viejo), la música sigue sonando: mejor eso que cortarla en seco
-    if (!ganancia && volumenFijo()) return;
+    if (!ganancia && sinVolumen()) return;
     quiereMusica = false;
     clearInterval(volumen);
     if (audio.paused) return;
@@ -1831,7 +1835,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
       const ac = ganancia && ganancia.context;
       caja.textContent = [
         'versión ' + VERSION,
-        'volumen fijo: ' + (fijo ? 'sí' : 'no') + ' · audioSession: ' + (navigator.audioSession ? navigator.audioSession.type : 'no'),
+        'iOS: ' + (esIOS ? 'sí' : 'no') + ' · volumen fijo: ' + (fijo ? 'sí' : 'no') + ' · audioSession: ' + (navigator.audioSession ? navigator.audioSession.type : 'no'),
         'control: ' + (ganancia ? 'sí · ' + ac.state : 'no') + ' · señal: ' + (pasaSenal() ? 'sí' : 'no'),
         'ganancia: ' + (ganancia ? ganancia.gain.value.toFixed(2) : '-') + ' · volume: ' + audio.volume.toFixed(2),
         'audio: ' + (audio.paused ? 'pausado' : 'sonando') + ' ' + audio.currentTime.toFixed(1) + 's' + (audio.muted ? ' · muted' : '') + ' · apagada: ' + (apagada ? 'sí' : 'no'),
