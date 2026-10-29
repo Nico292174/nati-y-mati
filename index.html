@@ -196,6 +196,16 @@ fieldset:focus, main:focus { outline: none; }
 .aviso-cerrar:hover { color: var(--tinta); }
 /* "Ahora no", debajo del botón de WhatsApp */
 .aviso-cuerpo .btn-texto { margin-top: 14px; }
+/* La sugerencia de Chrome se alarga hasta tapar el botón "Abrir invitación" del sobre, que si no quedaba a la vista
+   bajo el velo. El sobre y la tarjeta están centrados en la pantalla, así que alcanza con que la tarjeta mida lo que
+   la caja del sobre (ancho --w: 0,2w de aire arriba + rótulo + sobre de w/1,42 + nombres + botón ≈ 0,9w + 190px) y
+   un poco más; nunca más que la pantalla. El contenido queda centrado en el papel */
+#aviso-chrome .aviso-caja {
+  min-height: min(calc(min(340px, 84vw) * 0.9 + 220px), calc(100vh - 48px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 /* Al aparecer, el velo se funde y la tarjeta llega subiendo */
 @keyframes aviso-velo { from { opacity: 0; } to { opacity: 1; } }
 @keyframes aviso-llega { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
@@ -558,7 +568,9 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
 .lugar .lugar-arte { align-self: end; margin-bottom: 12px; }
 .lugar-arte.chico { width: 74%; }
 /* Debajo de la tarjeta de la cuenta: 32px a la vista desde su borde */
-.lugares-confirmar { margin-top: 32px; }
+/* Más separado de la tarjeta de la cuenta (pegado a ella parecía parte de los regalos y pasaba desapercibido), más
+   grande y, como el botón de WhatsApp, cada tanto se mueve para llamar la atención */
+.lugares-confirmar { margin-top: 56px; min-height: 54px; padding: 0 38px; font-size: 16px; animation: llamar 3.2s ease-in-out 2s infinite; }
 .lugar-arte.salon-medio { width: min(100%, 400px); margin-top: 52px; }
 /* Iglesia y chacra como cuadritos: el difuminado leve del borde ya viene en la imagen */
 .lugar-arte.plana { mix-blend-mode: normal; -webkit-mask-image: none; mask-image: none; }
@@ -1258,7 +1270,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   // Se muestra en el diagnóstico (?debug) para saber qué versión cargó el teléfono
-  const VERSION = '30';
+  const VERSION = '31';
 
   // ---- Pétalos en acuarela ----
   // Los de fondo están pegados a la pantalla, arriba de todo, y siguen cayendo mientras se baja. Son elementos con
