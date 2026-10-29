@@ -554,8 +554,14 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
 .paso { border: 0; margin: 15px 0 0; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
 /* El primer paso no muestra título: las opciones quedan a 24px de la barra */
 #p-asistencia { margin-top: 19px; }
-.paso.entra-adelante { animation: entra-adelante .45s cubic-bezier(.2, .7, .2, 1); }
-.paso.entra-atras { animation: entra-atras .45s cubic-bezier(.2, .7, .2, 1); }
+/* Al cambiar de paso, el que estaba se desvanece hacia un lado y el nuevo llega desde el otro,
+   cuando la hoja ya volvió arriba y la tarjeta se acomodó a su alto (--espera) */
+.paso.entra-adelante { animation: entra-adelante .55s cubic-bezier(.2, .7, .2, 1) var(--espera, 0s) both; }
+.paso.entra-atras { animation: entra-atras .55s cubic-bezier(.2, .7, .2, 1) var(--espera, 0s) both; }
+.paso.sale-adelante { animation: sale-adelante .28s cubic-bezier(.4, 0, 1, 1) forwards; }
+.paso.sale-atras { animation: sale-atras .28s cubic-bezier(.4, 0, 1, 1) forwards; }
+.nav-pasos { transition: opacity .3s ease; }
+.tarjeta.cambiando .nav-pasos { opacity: 0; pointer-events: none; }
 .titulo-paso { padding: 0; margin-bottom: 20px; font-size: 30px; line-height: 1.15; font-weight: 500; color: var(--tinta); }
 .ayuda { font-size: 17px; color: var(--tinta-suave); margin-top: -17px; }
 
@@ -757,6 +763,8 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
 @keyframes tic { from { opacity: 0; transform: translateY(-35%); } to { opacity: 1; transform: none; } }
 @keyframes entra-adelante { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
 @keyframes entra-atras { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+@keyframes sale-adelante { to { opacity: 0; transform: translateX(-20px); } }
+@keyframes sale-atras { to { opacity: 0; transform: translateX(20px); } }
 @keyframes elegir { 0% { transform: scale(.94); } 100% { transform: scale(1); } }
 
 @media (max-width: 460px) {
@@ -937,7 +945,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   </footer>
 </main>
 
-<!-- Confirmación: otra página que sube sobre la invitación (así la música sigue sonando) -->
+<!-- Confirmación: otra página que sube sobre la invitación; al abrirla, la música se apaga despacio -->
 <div class="hoja" id="hoja-confirmar" role="dialog" aria-modal="true" aria-labelledby="t-confirmar" tabindex="-1" hidden>
   <div class="hoja-dentro">
     <button type="button" class="hoja-volver" id="volver-invitacion">
@@ -1189,15 +1197,66 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     btnMusica.setAttribute('aria-pressed', suena ? 'true' : 'false');
     btnMusica.setAttribute('aria-label', suena ? 'Pausar la música' : 'Poner la música');
   }
+  // En iPhone el volumen del audio no se puede cambiar desde la página. Para poder apagar la música despacio,
+  // ahí se la pasa por un control de volumen de Web Audio, que se arma con el toque en "Confirmar asistencia"
+  let ganancia = null, volumen = null;
+  function volumenFijo() {
+    const antes = audio.volume;
+    try { audio.volume = antes > 0.5 ? antes - 0.1 : antes + 0.1; } catch (e) { return true; }
+    const fijo = audio.volume === antes;
+    try { audio.volume = antes; } catch (e) {}
+    return fijo;
+  }
+  function armarGanancia() {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (ganancia || !AC || !volumenFijo()) return;
+    try {
+      // Que siga sonando aunque el iPhone esté en silencio, como suena el audio común
+      if (navigator.audioSession) navigator.audioSession.type = 'playback';
+      const ac = new AC();
+      const g = ac.createGain();
+      ac.createMediaElementSource(audio).connect(g);
+      g.connect(ac.destination);
+      ganancia = g;
+    } catch (e) {}
+  }
+  function ponerVolumen(v) {
+    if (ganancia) {
+      const ac = ganancia.context;
+      if (ac.state === 'suspended') ac.resume();
+      ganancia.gain.setTargetAtTime(v, ac.currentTime, 0.05);
+      return;
+    }
+    try { audio.volume = v; } catch (e) {}
+  }
   function subirVolumen() {
     let v = 0;
-    try { audio.volume = 0; } catch (e) {}
-    const t = setInterval(function () {
-      // El archivo ya viene grabado bajo, como música de fondo (en iPhone el volumen no se puede cambiar desde la página)
+    clearInterval(volumen);
+    ponerVolumen(0);
+    volumen = setInterval(function () {
+      // El archivo ya viene grabado bajo, como música de fondo (en iPhone, al abrir la invitación esto no cambia nada)
       v = Math.min(1, v + 0.05);
-      try { audio.volume = v; } catch (e) {}
-      if (v >= 1) clearInterval(t);
+      ponerVolumen(v);
+      if (v >= 1) clearInterval(volumen);
     }, 120);
+  }
+  // Al ir a confirmar, la música se apaga despacio y ya no vuelve sola (el botón queda por si la quieren poner)
+  const APAGADO_MS = 3000;
+  function apagarMusica() {
+    quiereMusica = false;
+    clearInterval(volumen);
+    if (audio.paused) return;
+    if (reducir) { audio.pause(); return; }
+    armarGanancia();
+    const t0 = performance.now();
+    volumen = setInterval(function () {
+      const x = Math.min(1, (performance.now() - t0) / APAGADO_MS);
+      // Baja más al principio y se apaga suave al final, como se escucha natural
+      ponerVolumen(Math.pow(1 - x, 2));
+      if (x < 1) return;
+      clearInterval(volumen);
+      audio.pause();
+    }, 60);
   }
   let musicaArrancada = false;
   // Los navegadores (sobre todo el iPhone) solo dejan sonar audio que se habilitó con un toque:
@@ -1424,7 +1483,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     if (desde) { try { desde.focus({ preventScroll: true }); } catch (e) {} }
   }
   $$('a[href="#confirmar"]').forEach(function (a) {
-    a.addEventListener('click', function (e) { e.preventDefault(); abrirHoja(a); });
+    a.addEventListener('click', function (e) { e.preventDefault(); apagarMusica(); abrirHoja(a); });
   });
   function bajarHoja() {
     if (!conHistoria) { cerrarHoja(); return; }
@@ -1548,36 +1607,107 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     $('#enviar-wa').href = 'https://wa.me/' + BODA.whatsapp + '?text=' + encodeURIComponent(texto);
   }
 
+  // Al cambiar de paso todo va de a uno: el paso que estaba se desvanece, la hoja sube despacio hasta la tarjeta
+  // si había quedado abajo, la tarjeta se acomoda al alto del paso nuevo y recién ahí llega el siguiente
+  const SALIDA_MS = 280, AJUSTE_MS = 450;
+  let cambiando = false, turno = 0, soltarAlto = null, deslizando = 0, alLlegar = null;
   function ir(paso, dir) {
+    const antes = actual;
     actual = paso;
-    Object.keys(pasos).forEach(function (k) {
-      pasos[k].hidden = k !== paso;
-      pasos[k].classList.remove('entra-adelante', 'entra-atras');
-    });
-    const el = pasos[paso];
-    if (dir && !reducir) { void el.offsetWidth; el.classList.add(dir > 0 ? 'entra-adelante' : 'entra-atras'); }
     const r = ruta();
     const i = Math.max(0, r.indexOf(paso));
     const total = r.length - 1;
+    // La barra avanza enseguida, mientras la hoja sube
     $('#progreso-texto').textContent = paso === 'resumen' ? '¡Listo!' : 'Paso ' + (i + 1) + ' de ' + total;
     $('#progreso-barra').style.width = (paso === 'resumen' ? 100 : (i / total) * 100) + '%';
+    guardar();
+    const este = ++turno;
+    // Si la tarjeta quedó arriba de la pantalla, la hoja vuelve al principio (con el sello a la vista)
+    const subir = form.getBoundingClientRect().top < 0;
+    if (!dir || reducir || !hoja.classList.contains('arriba')) {
+      if (dir && subir) hoja.scrollTop = 0;
+      mostrarPaso(paso, dir, false);
+      return;
+    }
+    cambiando = true;
+    form.classList.add('cambiando');
+    pasos[antes].classList.remove('entra-adelante', 'entra-atras');
+    pasos[antes].classList.add(dir > 0 ? 'sale-adelante' : 'sale-atras');
+    let faltan = 2;
+    function listo() { if (--faltan === 0 && este === turno) mostrarPaso(paso, dir, true); }
+    setTimeout(listo, SALIDA_MS);
+    if (subir) deslizarHoja(0, listo); else listo();
+  }
+  function mostrarPaso(paso, dir, animado) {
+    const alto = form.getBoundingClientRect().height;
+    Object.keys(pasos).forEach(function (k) {
+      pasos[k].hidden = k !== paso;
+      pasos[k].classList.remove('entra-adelante', 'entra-atras', 'sale-adelante', 'sale-atras');
+    });
+    const el = pasos[paso];
+    const r = ruta();
+    const i = Math.max(0, r.indexOf(paso));
     $('#atras').hidden = i === 0 || paso === 'resumen';
     $('#siguiente').hidden = paso === 'asistencia' || paso === 'resumen';
     // En el último paso antes del resumen el botón confirma
     $('#siguiente').textContent = r[i + 1] === 'resumen' ? 'Confirmar' : 'Siguiente';
     if (paso === 'resumen') armarResumen();
     if (paso === 'resumen' && dir) anotarEnPlanilla();
-    guardar();
-    if (dir) {
-      try { el.focus({ preventScroll: true }); } catch (e) {}
-      // Si la tarjeta quedó arriba de la pantalla, la hoja vuelve al principio (con el sello a la vista)
-      if (form.getBoundingClientRect().top < 0) hoja.scrollTo({ top: 0, behavior: reducir ? 'auto' : 'smooth' });
-      if (paso === 'resumen' && estado.asiste === 'si') {
+    // Si la tarjeta cambia de alto, el paso nuevo espera a que se haya acomodado casi del todo
+    const espera = animado && acomodarAlto(alto) ? Math.round(AJUSTE_MS * 0.6) : 0;
+    el.style.setProperty('--espera', espera + 'ms');
+    if (dir && !reducir) { void el.offsetWidth; el.classList.add(dir > 0 ? 'entra-adelante' : 'entra-atras'); }
+    setTimeout(function () { cambiando = false; form.classList.remove('cambiando'); }, espera);
+    if (!dir) return;
+    try { el.focus({ preventScroll: true }); } catch (e) {}
+    if (paso === 'resumen' && estado.asiste === 'si') {
+      setTimeout(function () {
         const t = $('#resumen-titulo').getBoundingClientRect();
         petalos.rafaga(t.left + t.width / 2, t.top + t.height / 2);
-      }
+      }, espera);
     }
   }
+  // La tarjeta pasa de a poco del alto del paso anterior al del nuevo, en vez de estirarse o encogerse de golpe
+  function acomodarAlto(desde) {
+    clearTimeout(soltarAlto);
+    form.style.transition = 'none';
+    form.style.height = '';
+    const hasta = form.getBoundingClientRect().height;
+    if (Math.abs(hasta - desde) < 4) { form.style.transition = ''; return false; }
+    form.style.height = desde + 'px';
+    void form.offsetHeight;
+    // Las mismas transiciones de la tarjeta al subir y bajar la hoja, más la del alto
+    form.style.transition = 'opacity .6s ease, transform .9s cubic-bezier(.22, .8, .24, 1), height ' + AJUSTE_MS + 'ms cubic-bezier(.4, 0, .2, 1)';
+    form.style.height = hasta + 'px';
+    soltarAlto = setTimeout(function () { form.style.height = ''; form.style.transition = ''; }, AJUSTE_MS + 50);
+    return true;
+  }
+  // La hoja vuelve arriba con una curva que arranca y llega despacio, en vez del salto rápido del navegador.
+  // Si el invitado toca la pantalla mientras tanto, se deja de mover
+  function deslizarHoja(destino, cuandoLlegue) {
+    const desde = hoja.scrollTop, distancia = destino - desde;
+    // Más largo cuanto más hay que subir: entre 0,6 y 1,2 segundos
+    const ms = Math.min(1200, Math.max(600, 400 + Math.abs(distancia) * 0.5));
+    const t0 = performance.now();
+    cancelAnimationFrame(deslizando);
+    alLlegar = cuandoLlegue;
+    function avanzar(ahora) {
+      const x = Math.min(1, Math.max(0, (ahora - t0) / ms));
+      const suave = x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+      hoja.scrollTop = desde + distancia * suave;
+      if (x < 1) deslizando = requestAnimationFrame(avanzar); else llegar();
+    }
+    deslizando = requestAnimationFrame(avanzar);
+  }
+  function llegar() {
+    cancelAnimationFrame(deslizando);
+    const f = alLlegar;
+    alLlegar = null;
+    if (f) f();
+  }
+  ['touchstart', 'wheel'].forEach(function (ev) {
+    hoja.addEventListener(ev, function () { if (alLlegar) llegar(); }, { passive: true });
+  });
 
   // Cada confirmación se anota también en la planilla de los novios. Si la misma persona vuelve a confirmar
   // desde este celular, lleva el mismo código y la planilla reemplaza su respuesta en vez de duplicarla.
@@ -1595,6 +1725,8 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
   }
 
   function siguiente() {
+    // Mientras cambia de paso no se aceptan más toques (ni la tecla Enter)
+    if (cambiando) return;
     leer();
     if (actual === 'datos' && estado.nombre.trim().length < 2) {
       $('#error-nombre').hidden = false;
@@ -1626,6 +1758,7 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     setTimeout(function () { bajarHoja(); setTimeout(vaciarTarjeta, reducir ? 0 : 900); }, 800);
   });
   $('#atras').addEventListener('click', function () {
+    if (cambiando) return;
     const r = ruta(); const i = r.indexOf(actual);
     if (i > 0) ir(r[i - 1], -1);
   });
