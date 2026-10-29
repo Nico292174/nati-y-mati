@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Diagnóstico de colores</title>
+<style>
+  /* Misma declaración que la invitación, para que el navegador la trate igual */
+  :root { color-scheme: light dark; }
+  body { margin: 0; padding: 16px; background: #FBF5EB; color: #3A3029; font: 15px/1.4 system-ui, sans-serif; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  h2 { font-size: 14px; margin: 18px 0 6px; text-transform: uppercase; letter-spacing: .1em; color: #6B5D50; }
+  .grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(62px, 1fr)); gap: 6px; }
+  .m { height: 56px; border-radius: 6px; border: 1px solid rgba(0,0,0,.15); }
+  .m small { display: block; font-size: 10px; margin-top: 2px; text-align: center; font-family: monospace; }
+  .caja { padding: 10px; border-radius: 8px; background: #FBF5EB; margin-bottom: 6px; border: 1px solid #E2D3BC; }
+  .caja span { font-family: monospace; font-size: 12px; }
+  img, canvas, svg { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+  pre { background: #111; color: #fff; padding: 10px; border-radius: 8px; font-size: 13px; white-space: pre-wrap; }
+  .texto p { margin: 4px 0; font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>Diagnóstico de colores</h1>
+<p>Sacale una captura a esta pantalla entera (podés hacer dos si no entra) y mandámela.</p>
+
+<h2>1. Fondos CSS</h2>
+<div class="grilla" id="muestras"></div>
+
+<h2>2. Textos de color sobre el papel</h2>
+<div class="texto" id="textos"></div>
+
+<h2>3. Imagen (PNG) con los mismos colores</h2>
+<img id="png" width="680" height="40" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAqgAAAAoCAIAAAC99Z/6AAAA/klEQVR42u3VMQqBcQCH4f/nAFYjm8nAYDR+ZXINpRxA6vt2oxPIZHQcZ6CUMsjAMX7K81zgHd/q/byWhNfzHunW9SLSHY+Gke7seot0u5tlpHs8HSLdQb8X6U7LI9KdzNeR7u58iXT321Wk27ZtpNs0TaRbqiqT/ZTyT+FOAQD+hvEDgPEDAMYPABg/AGD8AIDxAwDGDwAYPwBg/ACA8QMAxg8AGD8AGD8AYPwAgPEDAMYPABg/AGD8AIDxAwDGDwAYPwBg/ACA8QOA8QMAxg8AGD8AYPwAgPEDAMYPABg/AGD8AIDxAwDGDwAYPwAYPwBg/ACA8QMAxg8A/LYvBeIXT/ZjrNMAAAAASUVORK5CYII=">
+
+<h2>4. Canvas con los mismos colores</h2>
+<canvas id="cv" width="680" height="40"></canvas>
+
+<h2>5. SVG en línea con los mismos colores</h2>
+<svg id="svg" viewBox="0 0 680 40" xmlns="http://www.w3.org/2000/svg"></svg>
+
+<h2>6. Mismo fondo, distinto color-scheme por elemento</h2>
+<div class="caja" style="color-scheme: light dark"><span>light dark</span></div>
+<div class="caja" style="color-scheme: only light"><span>only light</span></div>
+<div class="caja" style="color-scheme: dark"><span>dark</span></div>
+<div class="caja" style="color-scheme: normal"><span>normal</span></div>
+
+<h2>7. Lo que ve el script</h2>
+<pre id="salida">…</pre>
+
+<script>
+(function () {
+  var colores = ["#FBF5EB","#F4EADA","#3A3029","#6B5D50","#A9483C","#B7C2A4","#5A6B45","#7A8A5C","#B08A4E","#E2D3BC","#6D8495","#000000","#808080","#FFFFFF","#FF0000","#00FF00","#0000FF"];
+  var g = document.getElementById('muestras'), t = document.getElementById('textos'), svg = document.getElementById('svg');
+  var ctx = document.getElementById('cv').getContext('2d');
+  colores.forEach(function (c, i) {
+    var d = document.createElement('div');
+    d.innerHTML = '<div class="m" style="background:' + c + '"></div><small>' + c + '</small>';
+    g.appendChild(d);
+    var p = document.createElement('p'); p.style.color = c; p.textContent = 'Texto ' + c; t.appendChild(p);
+    ctx.fillStyle = c; ctx.fillRect(i * 40, 0, 40, 40);
+    var r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    r.setAttribute('x', i * 40); r.setAttribute('y', 0); r.setAttribute('width', 40); r.setAttribute('height', 40); r.setAttribute('fill', c);
+    svg.appendChild(r);
+  });
+  // Colores de sistema: se resuelven con el esquema "usado" de cada elemento. Si el navegador está forzando el
+  // oscuro, el esquema usado pasa a ser oscuro y CanvasText debería leerse blanco en vez de negro
+  function sonda(scheme) {
+    var s = document.createElement('span');
+    s.style.cssText = 'color: CanvasText; background: Canvas; color-scheme: ' + scheme;
+    document.body.appendChild(s);
+    var cs = getComputedStyle(s), r = 'texto ' + cs.color + ' · fondo ' + cs.backgroundColor;
+    s.remove();
+    return r;
+  }
+  var lineas = [
+    'prefers-color-scheme dark: ' + matchMedia('(prefers-color-scheme: dark)').matches,
+    'prefers-color-scheme light: ' + matchMedia('(prefers-color-scheme: light)').matches,
+    'color-scheme de :root: ' + getComputedStyle(document.documentElement).colorScheme,
+    'sistema (light dark): ' + sonda('light dark'),
+    'sistema (only light): ' + sonda('only light'),
+    'sistema (dark): ' + sonda('dark'),
+    'sistema (normal): ' + sonda('normal'),
+    'forced-colors: ' + matchMedia('(forced-colors: active)').matches,
+    'inverted-colors: ' + matchMedia('(inverted-colors: inverted)').matches,
+    'pantalla: ' + innerWidth + 'x' + innerHeight + ' @' + devicePixelRatio,
+    navigator.userAgent
+  ];
+  document.getElementById('salida').textContent = lineas.join('\n');
+})();
+</script>
+</body>
+</html>
