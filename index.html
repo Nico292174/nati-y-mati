@@ -1120,15 +1120,15 @@ img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
     // Dirección de la planilla de Google que anota las confirmaciones (la "Aplicación web" de planilla/Codigo.gs).
     // Vacía: las respuestas solo se mandan por WhatsApp.
     planilla: '',
-    // Tope del volumen de la música, de 0 a 1: la canción es un máster normal y así queda como música de fondo
-    volumen: 0.6
+    // Tope del volumen de la música, de 0 a 1: este archivo (Viva la Vida en violín) ya viene grabado bajo, como música de fondo
+    volumen: 1
   };
 
   const reducir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   // Se muestra en el diagnóstico (?debug) para saber qué versión cargó el teléfono
-  const VERSION = '15';
+  const VERSION = '16';
 
   // ---- Pétalos en acuarela ----
   // Los de fondo están pegados a la pantalla, arriba de todo, y siguen cayendo mientras se baja. Son elementos con
